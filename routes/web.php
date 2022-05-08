@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('login', [ClientController::class, 'login'])->name('login');
+
+Route::get('register', [ClientController::class, 'register'])->name('register');
+
+Route::get('forgotpass', [ClientController::class, 'forgotPass'])->name('forgotpass');
