@@ -39,8 +39,7 @@
                                 <input style="width:50%" id="captcha" required autofocus placeholder="captcha"
                                     autocomplete="off" name="captcha" type="text" value="">
                                 <a href="javascript:changeCaptcha();" id="refreshCaptcha">
-                                    <img id="imgCapcha" style=""
-                                        src="captchav1/captcha-image.php?rand=<?php echo rand(); ?>&w=150&h=50">
+                                    {!!captcha_img()!!}
                                 </a>
                                 <label for="captcha" alt="captcha" placeholder="captcha"></label>
                             </div>
