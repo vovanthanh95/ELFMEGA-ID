@@ -7,12 +7,11 @@
         <div class="loginmodal-container">
             <div class="conten_login">
                 <div class="bk-form-login">
-                    <form action="login" method="post" novalidate="novalidate">
-                        <input name="_token" type="hidden" value="">
+                    <form action="{{route('post-login')}}" method="post" novalidate="novalidate">
+                        @csrf
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="login" required autofocus autocomplete="off" name="username" type="text"
-                                    value="">
+                                <input id="login" required autofocus autocomplete="off" name="username" type="text" value="">
                                 <label for="login" alt="username" placeholder="username'"></label>
                             </div>
                         </div>
@@ -40,7 +39,6 @@
                                 </div>
                             </div>
                         </div>
-                        <input name="return_url" type="hidden" value="">
                     </form>
                 </div>
             </div>
