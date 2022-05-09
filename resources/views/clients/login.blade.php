@@ -47,7 +47,7 @@
             <div class="clearfix"></div>
             <div class="login-help">
                 <div style="text-align: center;margin-top: 20px;">
-                    <p> Quên mật khẩu? Nhấn vào đây: <a href="{{ route('forgotpass') }}"
+                    <p> Quên mật khẩu? Nhấn vào đây: <a href="{{ route('forgot-pass') }}"
                             style="text-decoration: underline;"><b>Đặt lại mật khẩu</b></a></p>
                     <p style="margin-left: -20px;"> Người mới? Nhấn vào đây: <a href="register"
                             style="text-decoration: underline;"><b>Tạo tài khoản mới</b></a></p>

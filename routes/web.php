@@ -14,12 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [ClientController::class, 'index'])->name('account');
 
 Route::get('login', [ClientController::class, 'login'])->name('login');
 
 Route::get('register', [ClientController::class, 'register'])->name('register');
 
-Route::get('forgotpass', [ClientController::class, 'forgotPass'])->name('forgotpass');
+Route::get('forgot-pass', [ClientController::class, 'forgotPass'])->name('forgot-pass');
+
+Route::get('change-pass', [ClientController::class, 'changePass'])->name('change-pass');
+
+Route::get('change-email', [ClientController::class, 'changeEmail'])->name('change-email');
+
+Route::get('change-phone', [ClientController::class, 'changePhone'])->name('change-phone');
+
+Route::get('top-up', [ClientController::class, 'topUp'])->name('top-up');
+
+Route::get('top-up-vn', [ClientController::class, 'topUpVn'])->name('top-up-vn');
+
+Route::get('top-up-mo-mo', [ClientController::class, 'topUpMoMo'])->name('top-up-mo-mo');
