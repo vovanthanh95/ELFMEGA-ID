@@ -16,27 +16,23 @@ class ClientController extends Controller
 
     public function login()
     {
-        //Auth::guard('client')->logout();
         return view('clients.login');
     }
 
     public function postLogin(Request $request)
     {
-
-        try {
-            $user = Account::where('username', '00963836632')
-                ->where('username', $request->username)
-                ->where('password', md5($request->password))
-                ->first();
-            Auth::guard('client')->login($user);
-            if (Auth::guard('client')->check()) {
-                return redirect()->route('account');
-            } else {
-                return redirect()->route('login');
-            }
-        } catch (\Throwable $th) {
-            return redirect()->route('login');
+        $account = new Account();
+        $account->login($request->username, $request->password);
+        if(Auth::guard('client')->check()){
+            return redirect()->route('account');
+        }else{
+            return redirect()->route('login')->with('msg','tên hoặc mật khẩu không đúng');
         }
+    }
+
+    public function logout(){
+        Auth::guard('client')->logout();
+        return redirect()->route('login');
     }
 
     public function register()
@@ -79,9 +75,13 @@ class ClientController extends Controller
         return view('clients.topUpMoMo');
     }
 
-    public function test(Request $request)
-    {
-        $a = Auth::guard('client')->check();
-        return view('welcome')->with(compact('a'));
+    public function giftCode(){
+        return view('clients.giftCode');
     }
+
+    public function history()
+    {
+        return view('clients.history');
+    }
+
 }

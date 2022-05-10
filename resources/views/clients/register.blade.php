@@ -63,7 +63,7 @@
                 <div style="text-align: center;margin-top: 20px;">
                     <p style="margin-left: -20px;">doyouhaveaccount <a href="{{ route('login') }}"
                             style="text-decoration: underline;"><b>login</b></a></p>
-                    <p> Quên mật khẩu? Nhấn vào đây: <a href="{{ route('forgotpass') }}"
+                    <p> Quên mật khẩu? Nhấn vào đây: <a href="{{ route('forgot-pass') }}"
                             style="text-decoration: underline;"><b>Đặt lại mật khẩu</b></a></p>
                 </div>
             </div>

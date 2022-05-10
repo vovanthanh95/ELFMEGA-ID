@@ -296,7 +296,7 @@
         <div class="nav-bottom bg-white">
             <div class="container">
                 <div class="link-nav-bottom m-auto d-flex flex-center bg-white">
-                    <?php if (!isset($_SESSION["username"])) { ?>
+                    @if (!Auth::guard('client')->check())
                     <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
                         <i class="icon-nav-bottom d-flex flex-center fa fa-home"> </i>
                         <span class="txt-nav-bottom">home</span>
@@ -309,32 +309,29 @@
                         <i class="icon-nav-bottom d-flex flex-center fa fa-facebook-f"> </i>
                         <span class="txt-nav-bottom">Fanpage</span>
                     </a>
-                    <?php } else { ?>
-                    <a href="<?= $config['url_api'] ?>topup" class="item-nav-bottom d-flex flex-center f-d-column ">
+                    @endif
+                    @if (Auth::guard('client')->check())
+                    <a href="{{route('top-up')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
                         <i class="icon-nav-bottom d-flex flex-center fa fa-credit-card"> </i>
                         <span class="txt-nav-bottom">topup</span>
                     </a>
-                    <a href="<?= $config['url_api'] ?>giftcode" class="item-nav-bottom d-flex flex-center f-d-column ">
+                    <a href="{{route('gift-code')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
                         <i class="icon-nav-bottom d-flex flex-center fa fa-gift"> </i>
                         <span class="txt-nav-bottom">giftcode</span>
                     </a>
-                    <!-- <a href="<?= $config['url_api'] ?>tranferdiamon" class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-diamond"> </i>
-                            <span class="txt-nav-bottom">transferdiamon</span>
-                        </a> -->
-                    <a href="<?= $config['url_api'] ?>history" class="item-nav-bottom d-flex flex-center f-d-column ">
+                    <a href="{{route('history')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
                         <i class="icon-nav-bottom d-flex flex-center fa fa-history"> </i>
                         <span class="txt-nav-bottom">history</span>
                     </a>
-                    <a href="<?= $config['url_api'] ?>account" class="item-nav-bottom d-flex flex-center f-d-column ">
+                    <a href="{{route('account')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
                         <i class="icon-nav-bottom d-flex flex-center fa fa-user"> </i>
                         <span class="txt-nav-bottom">username</span>
                     </a>
-                    <a href="<?= $config['url_api'] ?>logout" class="item-nav-bottom d-flex flex-center f-d-column ">
+                    <a href="{{route('logout')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
                         <i class="icon-nav-bottom d-flex flex-center fa fa-sign-out"> </i>
                         <span class="txt-nav-bottom">logout</span>
                     </a>
-                    <?php } ?>
+                    @endif
                 </div>
             </div>
         </div>
