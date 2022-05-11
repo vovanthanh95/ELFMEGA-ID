@@ -28,15 +28,27 @@ class Account extends Authenticatable
 
     public function login($username, $password)
     {
+        $info = [];
         $user_bcrypt = Account::where('username', $username)
             ->first();
         $user_md5 = Account::where('username', $username)
             ->where('password', md5($password))
             ->first();
         if ($user_bcrypt != null && Hash::check($password, $user_bcrypt->password3)) {
+            if ($user_bcrypt->status != 0) {
+                $info['msg'] = 'tài khoản bị khóa';
+                return $info;
+            }
             Auth::guard('client')->login($user_bcrypt);
         } elseif ($user_md5 != null) {
+            if ($user_md5->status != 0) {
+                $info['msg'] = 'tài khoản bị khóa';
+                return $info;
+            }
             Auth::guard('client')->login($user_md5);
+        } else {
+            $info['msg'] = 'tên hoặc mật khẩu chưa đúng';
+            return $info;
         }
     }
 }

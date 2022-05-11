@@ -7,11 +7,12 @@
         <div class="loginmodal-container">
             <div class="conten_login">
                 <div class="bk-form-login">
-                    <form action="{{route('post-login')}}" method="post" novalidate="novalidate">
+                    <form action="{{ route('post-login') }}" method="post" novalidate="novalidate">
                         @csrf
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="login" required autofocus autocomplete="off" name="username" type="text" value="">
+                                <input id="login" required autofocus autocomplete="off" name="username" type="text"
+                                    value="">
                                 <label for="login" alt="username" placeholder="username'"></label>
                             </div>
                         </div>
@@ -25,7 +26,9 @@
                             <div class="row">
                                 <select class="select-list" name="serverid" id="serverid">
                                     <option>selectserver</option>
-                                    <option value="server 1">value</option>
+                                    @foreach (config('custom.zonelist') as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -50,16 +53,26 @@
                     <p style="margin-left: -20px;"> Người mới? Nhấn vào đây: <a href="register"
                             style="text-decoration: underline;"><b>Tạo tài khoản mới</b></a></p>
                 </div>
-                <!-- <div class="pull-left col-md-6">
-        <a href="register" style="text-decoration: underline;" class="login-register-link">register'</a>
-       </div>
-       <div class="pull-left">
-        <span class="pull-left login-register">
-        <i class="fa fa-refresh" aria-hidden="true"></i>
-        <a href="forgotpass" style="text-decoration: underline;">recoveraccount</a></span>
-       </div> -->
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
+
+    {{-- @if (session('msg'))
+        <script type="text/javascript">
+            setTimeout(function() {
+                swal("{{ session('msg') }}");
+            }, 500);
+        </script>
+    @endif --}}
+
+    @if (session('lis'))
+        @foreach ( session('lis') as $key => $a)
+        {{$key}}
+        <br>
+            {{$a}}
+        @endforeach
+    @else
+    {{ "222222222"}}
+    @endif
 @endsection

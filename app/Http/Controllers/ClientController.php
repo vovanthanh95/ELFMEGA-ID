@@ -21,13 +21,20 @@ class ClientController extends Controller
 
     public function postLogin(Request $request)
     {
-        $account = new Account();
-        $account->login($request->username, $request->password);
-        if(Auth::guard('client')->check()){
-            return redirect()->route('account');
-        }else{
-            return redirect()->route('login')->with('msg','tên hoặc mật khẩu không đúng');
-        }
+        $list = ['a'=> '1', 'b'=> '2'];
+        return redirect()->route('login')->with('lis',$list);
+        // $account = new Account();
+        // if($request->serverid < 0 || !is_numeric($request->serverid)){
+        //     return redirect()->route('login')->with('msg','chưa chọn server');
+        // }
+        // $info = $account->login($request->username, $request->password);
+        // if($info != null){
+        //     return redirect()->route('login')->with('msg',$info['msg']);
+        // }
+        // if(Auth::guard('client')->check()){
+        //     $zonename = config('custom.zonelist')[$request->serverid];
+        //     return redirect()->route('account')->with(['serverid' => $zonename]);
+        // }
     }
 
     public function logout(){

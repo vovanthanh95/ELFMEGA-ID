@@ -191,18 +191,31 @@
                             <a href=""><img style="margin: 0.5rem 0 0 0; width:95%;"
                                     src="{{ asset('assets/images/3q-logo.png') }}"></a>
                         </div>
-                        <?php if (isset($_SESSION["username"])) { ?>
                         <div class="col-xs-5" style="text-align: center;">
-                            <?php if (isset($_SESSION['serverid']) && $_SESSION['serverid'] > 0) { ?>
-                            <span style="color: #ff753a;"><?= $lang['serverid'] ?>: <?php echo getNamZoneID($_SESSION['serverid'], $config['zonelist']); ?></span>
-                            <?php } ?>
+                            <span style="color: #ff753a;">
+                                @if (Auth::guard('client')->check())
+                                    Máy Chủ: {{ session('serverid') }}
+                                @endif
+
+                            </span>
                         </div>
                         <div class="col-xs-4" style="text-align: right;">
-                            <div class="name-user f-tahomabold"><?= $_SESSION['username'] ?></div>
-                            <span style="color: #ff753a;font-size: 13px;"><b id="txtMoneyHave">0</b>
-                                <?= $config['namemoney'] ?></span>
+                            <div class="name-user f-tahomabold">
+                                @if (Auth::guard('client')->check())
+                                    {{ Auth::guard('client')->user()->username }}
+                                @endif
+                            </div>
+                            <span style="color: #ff753a;font-size: 13px;"><b id="txtMoneyHave">
+                                    @if (Auth::guard('client')->check())
+                                        {{ Auth::guard('client')->user()->money }}
+                                    @endif
+                                </b>
+                                @if (Auth::guard('client')->check())
+                                    {{ 'namemoney' }}
+                                @endif
+
+                            </span>
                         </div>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -297,40 +310,41 @@
             <div class="container">
                 <div class="link-nav-bottom m-auto d-flex flex-center bg-white">
                     @if (!Auth::guard('client')->check())
-                    <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
-                        <i class="icon-nav-bottom d-flex flex-center fa fa-home"> </i>
-                        <span class="txt-nav-bottom">home</span>
-                    </a>
-                    <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
-                        <i class="icon-nav-bottom d-flex flex-center fa fa-download"> </i>
-                        <span class="txt-nav-bottom">downloadgame</span>
-                    </a>
-                    <a href="https://www.facebook.com/badao3q" class="item-nav-bottom d-flex flex-center f-d-column ">
-                        <i class="icon-nav-bottom d-flex flex-center fa fa-facebook-f"> </i>
-                        <span class="txt-nav-bottom">Fanpage</span>
-                    </a>
+                        <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
+                            <i class="icon-nav-bottom d-flex flex-center fa fa-home"> </i>
+                            <span class="txt-nav-bottom">home</span>
+                        </a>
+                        <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
+                            <i class="icon-nav-bottom d-flex flex-center fa fa-download"> </i>
+                            <span class="txt-nav-bottom">downloadgame</span>
+                        </a>
+                        <a href="https://www.facebook.com/badao3q"
+                            class="item-nav-bottom d-flex flex-center f-d-column ">
+                            <i class="icon-nav-bottom d-flex flex-center fa fa-facebook-f"> </i>
+                            <span class="txt-nav-bottom">Fanpage</span>
+                        </a>
                     @endif
                     @if (Auth::guard('client')->check())
-                    <a href="{{route('top-up')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                        <i class="icon-nav-bottom d-flex flex-center fa fa-credit-card"> </i>
-                        <span class="txt-nav-bottom">topup</span>
-                    </a>
-                    <a href="{{route('gift-code')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                        <i class="icon-nav-bottom d-flex flex-center fa fa-gift"> </i>
-                        <span class="txt-nav-bottom">giftcode</span>
-                    </a>
-                    <a href="{{route('history')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                        <i class="icon-nav-bottom d-flex flex-center fa fa-history"> </i>
-                        <span class="txt-nav-bottom">history</span>
-                    </a>
-                    <a href="{{route('account')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                        <i class="icon-nav-bottom d-flex flex-center fa fa-user"> </i>
-                        <span class="txt-nav-bottom">username</span>
-                    </a>
-                    <a href="{{route('logout')}}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                        <i class="icon-nav-bottom d-flex flex-center fa fa-sign-out"> </i>
-                        <span class="txt-nav-bottom">logout</span>
-                    </a>
+                        <a href="{{ route('top-up') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
+                            <i class="icon-nav-bottom d-flex flex-center fa fa-credit-card"> </i>
+                            <span class="txt-nav-bottom">topup</span>
+                        </a>
+                        <a href="{{ route('gift-code') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
+                            <i class="icon-nav-bottom d-flex flex-center fa fa-gift"> </i>
+                            <span class="txt-nav-bottom">giftcode</span>
+                        </a>
+                        <a href="{{ route('history') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
+                            <i class="icon-nav-bottom d-flex flex-center fa fa-history"> </i>
+                            <span class="txt-nav-bottom">history</span>
+                        </a>
+                        <a href="{{ route('account') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
+                            <i class="icon-nav-bottom d-flex flex-center fa fa-user"> </i>
+                            <span class="txt-nav-bottom">username</span>
+                        </a>
+                        <a href="{{ route('logout') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
+                            <i class="icon-nav-bottom d-flex flex-center fa fa-sign-out"> </i>
+                            <span class="txt-nav-bottom">logout</span>
+                        </a>
                     @endif
                 </div>
             </div>
