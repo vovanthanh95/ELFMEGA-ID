@@ -194,7 +194,7 @@
                         <div class="col-xs-5" style="text-align: center;">
                             <span style="color: #ff753a;">
                                 @if (Auth::guard('client')->check())
-                                    Máy Chủ: {{ session('serverid') }}
+                                    {{ __('message.serverid') }}: {{ session('serverid')}}
                                 @endif
 
                             </span>
@@ -202,16 +202,16 @@
                         <div class="col-xs-4" style="text-align: right;">
                             <div class="name-user f-tahomabold">
                                 @if (Auth::guard('client')->check())
-                                    {{ Auth::guard('client')->user()->username }}
+                                    {{ $username }}
                                 @endif
                             </div>
                             <span style="color: #ff753a;font-size: 13px;"><b id="txtMoneyHave">
                                     @if (Auth::guard('client')->check())
-                                        {{ Auth::guard('client')->user()->money }}
+                                        {{ $money }}
                                     @endif
                                 </b>
                                 @if (Auth::guard('client')->check())
-                                    {{ 'namemoney' }}
+                                    {{ config('custom.namemoney') }}
                                 @endif
 
                             </span>
@@ -312,11 +312,11 @@
                     @if (!Auth::guard('client')->check())
                         <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
                             <i class="icon-nav-bottom d-flex flex-center fa fa-home"> </i>
-                            <span class="txt-nav-bottom">home</span>
+                            <span class="txt-nav-bottom">{{ __('message.home') }}</span>
                         </a>
                         <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
                             <i class="icon-nav-bottom d-flex flex-center fa fa-download"> </i>
-                            <span class="txt-nav-bottom">downloadgame</span>
+                            <span class="txt-nav-bottom">{{ __('message.downloadgame') }}</span>
                         </a>
                         <a href="https://www.facebook.com/badao3q"
                             class="item-nav-bottom d-flex flex-center f-d-column ">
@@ -327,23 +327,23 @@
                     @if (Auth::guard('client')->check())
                         <a href="{{ route('top-up') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
                             <i class="icon-nav-bottom d-flex flex-center fa fa-credit-card"> </i>
-                            <span class="txt-nav-bottom">topup</span>
+                            <span class="txt-nav-bottom">{{ __('message.topup') }}</span>
                         </a>
                         <a href="{{ route('gift-code') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
                             <i class="icon-nav-bottom d-flex flex-center fa fa-gift"> </i>
-                            <span class="txt-nav-bottom">giftcode</span>
+                            <span class="txt-nav-bottom">{{ __('message.giftcode') }}</span>
                         </a>
                         <a href="{{ route('history') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
                             <i class="icon-nav-bottom d-flex flex-center fa fa-history"> </i>
-                            <span class="txt-nav-bottom">history</span>
+                            <span class="txt-nav-bottom">{{ __('message.history') }}</span>
                         </a>
                         <a href="{{ route('account') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
                             <i class="icon-nav-bottom d-flex flex-center fa fa-user"> </i>
-                            <span class="txt-nav-bottom">username</span>
+                            <span class="txt-nav-bottom">{{ __('message.username') }}</span>
                         </a>
                         <a href="{{ route('logout') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
                             <i class="icon-nav-bottom d-flex flex-center fa fa-sign-out"> </i>
-                            <span class="txt-nav-bottom">logout</span>
+                            <span class="txt-nav-bottom">{{ __('message.logout') }}</span>
                         </a>
                     @endif
                 </div>

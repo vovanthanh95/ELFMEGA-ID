@@ -14,12 +14,15 @@ class Account extends Authenticatable
 
     protected $table = "account";
     public $timestamps = false;
-    protected $primaryKey = 'username';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
+        'id',
         'username',
         'password',
         'password3',
+        'email',
+        'phone'
     ];
 
     protected $hidden = [

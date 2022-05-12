@@ -2,7 +2,7 @@
 @section('content')
     <div class="payment-body main_df_bt">
         <section class="bg_title">
-            <div class="box-title__text text-center">login</div>
+            <div class="box-title__text text-center">{{__('message.login')}}</div>
         </section>
         <div class="loginmodal-container">
             <div class="conten_login">
@@ -19,13 +19,13 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="password" required autocomplete="off" name="password" type="password" value="">
-                                <label for="password" alt="password" placeholder="password"></label>
+                                <label for="password" alt="password" placeholder="{{__('message.password')}}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <select class="select-list" name="serverid" id="serverid">
-                                    <option>selectserver</option>
+                                    <option>{{__('message.selectserver')}}</option>
                                     @foreach (config('custom.zonelist') as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
@@ -37,7 +37,7 @@
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <div class="row">
                                         <input type="submit" name="login"
-                                            class="login loginmodal-submit pull-left col-md-12" value="login">
+                                            class="login loginmodal-submit pull-left col-md-12" value="{{__('message.login')}}">
                                     </div>
                                 </div>
                             </div>
@@ -58,21 +58,12 @@
         </div>
     </div>
 
-    {{-- @if (session('msg'))
+    @if (session('msg'))
         <script type="text/javascript">
             setTimeout(function() {
                 swal("{{ session('msg') }}");
             }, 500);
         </script>
-    @endif --}}
-
-    @if (session('lis'))
-        @foreach ( session('lis') as $key => $a)
-        {{$key}}
-        <br>
-            {{$a}}
-        @endforeach
-    @else
-    {{ "222222222"}}
     @endif
+
 @endsection

@@ -2,7 +2,7 @@
 @section('content')
     <div class="payment-body main_df_bt">
         <section class="bg_title">
-            <div class="box-title__text text-center">myaccount</div>
+            <div class="box-title__text text-center">{{ __('message.myaccount') }}</div>
         </section>
         <br />
         <div class="loginmodal-container">
@@ -12,30 +12,35 @@
                         <input name="_token" type="hidden" value="">
                         <div class="col-md-12">
                             <div class="row">
-                                email<br />
-                                <input id="email" autocomplete="off" name="email" type="text" placeholder="email" value="">
+                                {{ __('message.email') }}
+                                <br />
+                                <input id="email" {{$email != null? 'readonly' : ""}} name="email" type="text"
+                                    placeholder="{{ $email == null ? __('message.updateemail') : '' }}"
+                                    value="{{ $email != null ? $email : '' }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                phone:<br />
-                                <input id="phone" autocomplete="off" name="phone" type="text" placeholder="updatephone"
-                                    value="">
+                                {{ __('message.phone') }}:
+                                <br />
+                                <input id="phone" {{$phone != null? 'readonly' : ""}} autocomplete="off" name="phone" type="text"
+                                    placeholder="{{ $phone == null ? __('message.updatephone') : '' }}"
+                                    value="{{ $phone != null ? $phone : '' }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                createtime:<br />
+                                {{ __('message.createtime') }}:<br />
                                 <input id="createtime" required readonly autocomplete="off" name="createtime" type="text"
-                                    value="">
+                                    value="{{ $createtime }}">
                             </div>
                         </div>
-                        createip:<br />
+                        <br />
                         <div class="col-md-12">
                             <div class="row">
-                                surplus:<br />
+                                {{ __('message.surplus') }}({{ config('custom.namemoney') }}):<br />
                                 <input id="surplus" required readonly autocomplete="off" name="surplus" type="text"
-                                    value="">
+                                    value="{{ $money }}">
                             </div>
                         </div>
                         <div class="col-md-12 col-xs-12 col-sm-12">
@@ -43,7 +48,8 @@
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <div class="row">
                                         <input type="submit" name="account"
-                                            class="login loginmodal-submit pull-left col-md-12" value="update">
+                                            class="login loginmodal-submit pull-left col-md-12"
+                                            value="{{ __('message.update') }}">
                                     </div>
                                 </div>
                             </div>
@@ -55,9 +61,12 @@
             <div class="clearfix"></div>
         </div>
         <div class="link-auth block">
-            <a href="{{ route('change-pass') }}" class="btn btn-warning" style="width: 138px;">changepass</a>
-            <a href="{{ route('change-email') }}" class="btn btn-warning" style="width: 138px;">changeemail</a>
-            <a href="{{ route('change-phone') }}" class="btn btn-warning" style="width: 138px;">changephone</a>
+            <a href="{{ route('change-pass') }}" class="btn btn-warning"
+                style="width: 138px;">{{ __('message.changepass') }}</a>
+            <a href="{{ route('change-email') }}" class="btn btn-warning"
+                style="width: 138px;">{{ __('message.changeemail') }}</a>
+            <a href="{{ route('change-phone') }}" class="btn btn-warning"
+                style="width: 138px;">{{ __('message.changephone') }}</a>
         </div>
         <style>
             .payment-body {
