@@ -7,11 +7,11 @@
         <div class="loginmodal-container">
             <div class="conten_login">
                 <div class="bk-form-login">
-                    <form action="register" method="post" novalidate="novalidate">
+                    <form action="{{route('post-register')}}" method="post" novalidate="novalidate">
                         @csrf
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="username" required autofocus autocomplete="off" name="username" type="text">
+                                <input id="username" required autofocus autocomplete="off" name="username" type="text" value ="{{old('username')}}">
                                 <label for="username" alt="username" placeholder="{{ __('message.username') }}"></label>
                             </div>
                         </div>
@@ -24,13 +24,13 @@
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="email" required autofocus autocomplete="off" name="email" type="text">
+                                <input id="email" required autofocus autocomplete="off" name="email" type="text" value ="{{old('email')}}">
                                 <label for="email" alt="email" placeholder="{{ __('message.email') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="phone" required autofocus autocomplete="off" name="phone" type="text">
+                                <input id="phone" required autofocus autocomplete="off" name="phone" type="text" value="{{old('phone')}}">
                                 <label for="phone" alt="phone" placeholder="{{ __('message.phone') }}"></label>
                             </div>
                         </div>
@@ -39,9 +39,9 @@
                                 <input style="width:50%" id="captcha" required autofocus
                                     placeholder="{{ __('message.captcha') }}" autocomplete="off" name="captcha" type="text"
                                     value="">
-                                <a href="javascript:changeCaptcha();" id="refreshCaptcha">
+                                <label id="refreshCaptcha">
                                     {!! captcha_img() !!}
-                                </a>
+                                </label>
                                 <label for="captcha" alt="captcha" placeholder="{{ __('message.captcha') }}"></label>
                             </div>
                         </div>
@@ -88,6 +88,21 @@
 
         </style>
     </div>
+
+    <script>
+		$(document).ready(function(){
+            $('#refreshCaptcha').click(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: 'GET',
+                    url: 'reloadCaptcha',
+                    success: function(result){
+                        $('#refreshCaptcha').html(result.captcha);
+                    },
+                });
+            });
+        });
+	</script>
 
     @if ($errors->any())
        <script type="text/javascript">

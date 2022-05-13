@@ -22,7 +22,11 @@ class Account extends Authenticatable
         'password',
         'password3',
         'email',
-        'phone'
+        'phone',
+        'money',
+        'status',
+        'createtime',
+        'createip',
     ];
 
     protected $hidden = [
@@ -53,5 +57,48 @@ class Account extends Authenticatable
             $info['msg'] = 'tên hoặc mật khẩu chưa đúng';
             return $info;
         }
+    }
+
+    public function createAccount($username, $password ,$email , $phone, $ip){
+        $this->username = $username;
+        $this->password3 = Hash::make($password);
+        $this->password2 = $this->encryptSecPwd($password);
+        $this->email = $email;
+        $this->phone = $phone;
+        $this->money = '0';
+        $this->status = '0';
+        $this->createtime = date("Y-m-d H:i:s");
+        $this->createip = $ip;
+        $this->save();
+    }
+//-----------------------------------------------------------------------------------------------------------//
+    public function encryptSecPwd($string, $key = "SecPwd") {
+        $en = $this->rc4($key, $string);
+        return base64_encode($en);
+    }
+    public function rc4($key, $str) {
+        $s = array();
+        for ($i = 0; $i < 256; $i++) {
+            $s[$i] = $i;
+        }
+        $j = 0;
+        for ($i = 0; $i < 256; $i++) {
+            $j = ($j + $s[$i] + ord($key[$i % strlen($key)])) % 256;
+            $x = $s[$i];
+            $s[$i] = $s[$j];
+            $s[$j] = $x;
+        }
+        $i = 0;
+        $j = 0;
+        $res = '';
+        for ($y = 0; $y < strlen($str); $y++) {
+            $i = ($i + 1) % 256;
+            $j = ($j + $s[$i]) % 256;
+            $x = $s[$i];
+            $s[$i] = $s[$j];
+            $s[$j] = $x;
+            $res .= $str[$y] ^ chr($s[($s[$i] + $s[$j]) % 256]);
+        }
+        return $res;
     }
 }

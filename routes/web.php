@@ -23,6 +23,7 @@ Route::middleware('loginclient')->get('logout', [ClientController::class, 'logou
 
 Route::get('register', [ClientController::class, 'register'])->name('register');
 Route::post('register', [ClientController::class, 'postRegister'])->name('post-register');
+Route::get('reloadCaptcha', [ClientController::class, 'reloadCaptcha'])->name('reload-captcha');
 
 Route::middleware('loginclient')->get('forgot-pass', [ClientController::class, 'forgotPass'])->name('forgot-pass');
 
