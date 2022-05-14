@@ -12,26 +12,26 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="username" required autofocus autocomplete="off" name="username" type="text" value ="{{old('username')}}">
-                                <label for="username" alt="username" placeholder="{{ __('message.username') }}"></label>
+                                <label for="username" alt="{{ __('message.username') }}" placeholder="{{ __('message.username') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="password" required autofocus autocomplete="off" name="password" type="password"
                                     value="">
-                                <label for="password" alt="password" placeholder="{{ __('message.password') }}"></label>
+                                <label for="password" alt="{{ __('message.password') }}" placeholder="{{ __('message.password') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="email" required autofocus autocomplete="off" name="email" type="text" value ="{{old('email')}}">
-                                <label for="email" alt="email" placeholder="{{ __('message.email') }}"></label>
+                                <label for="email" alt="{{ __('message.email') }}" placeholder="{{ __('message.email') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="phone" required autofocus autocomplete="off" name="phone" type="text" value="{{old('phone')}}">
-                                <label for="phone" alt="phone" placeholder="{{ __('message.phone') }}"></label>
+                                <label for="phone" alt="{{ __('message.phone') }}" placeholder="{{ __('message.phone') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -42,7 +42,7 @@
                                 <label id="refreshCaptcha">
                                     {!! captcha_img() !!}
                                 </label>
-                                <label for="captcha" alt="captcha" placeholder="{{ __('message.captcha') }}"></label>
+                                <label for="captcha" alt="{{ __('message.captcha') }}" placeholder="{{ __('message.captcha') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12 col-xs-12 col-sm-12">

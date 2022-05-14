@@ -25,13 +25,16 @@ Route::get('register', [ClientController::class, 'register'])->name('register');
 Route::post('register', [ClientController::class, 'postRegister'])->name('post-register');
 Route::get('reloadCaptcha', [ClientController::class, 'reloadCaptcha'])->name('reload-captcha');
 
-Route::middleware('loginclient')->get('forgot-pass', [ClientController::class, 'forgotPass'])->name('forgot-pass');
+Route::get('forgot-pass', [ClientController::class, 'forgotPass'])->name('forgot-pass');
 
 Route::middleware('loginclient')->get('change-pass', [ClientController::class, 'changePass'])->name('change-pass');
+Route::middleware('loginclient')->post('change-pass', [ClientController::class, 'postChangePass'])->name('post-change-pass');
 
 Route::middleware('loginclient')->get('change-email', [ClientController::class, 'changeEmail'])->name('change-email');
+Route::middleware('loginclient')->post('change-email', [ClientController::class, 'postChangeEmail'])->name('post-change-email');
 
 Route::middleware('loginclient')->get('change-phone', [ClientController::class, 'changePhone'])->name('change-phone');
+Route::middleware('loginclient')->post('change-phone', [ClientController::class, 'postChangePhone'])->name('post-change-phone');
 
 Route::middleware('loginclient')->get('top-up', [ClientController::class, 'topUp'])->name('top-up');
 

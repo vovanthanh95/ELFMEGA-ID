@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#00b7f1">
     <link rel="icon" href="{{ asset('assets/images/3q-logo.png') }}">
     <!-- CSRF Token -->
-    <title>abc</title>
+    <title>{{config('custom.namegame')}}-{{config('custom.namewebsite')}}</title>
     <meta content=", game online 2020, game mobile, game hot thailand, game android ios pc" name="keywords" />
     <meta content=", game online 2020, game mobile, game hot thailand, game android ios pc" name="description" />
     <!-- <link href="public/assets/css/roboto.css?v=<?php echo rand(); ?>" rel="stylesheet"> -->
@@ -351,7 +351,7 @@
         </div>
         <div class="footer_wapper  container">
             <div class="company_title">
-                <a href="#" style="color:#ccc">namewebsite</a><br />Server Time <span id="localTime"></span>
+                <a href="{{route('account')}}" style="color:#ccc">{{config('custom.namegame')}}</a><br />Server Time <span id="localTime"></span>
             </div>
         </div>
     </div>
@@ -397,6 +397,17 @@
             }
         });
     </script>
+// thông báo
+    @if (session()->has('msg') && session()->has('type'))
+        <script type="text/javascript">
+            setTimeout(function() {
+                swal({
+                    text: "{{ session('msg') }}",
+                    type: "{{ session('type') }}"
+                });
+            }, 500);
+        </script>
+    @endif
 
 </body>
 

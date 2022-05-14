@@ -7,4 +7,6 @@ return [
         '1013'=>'S3-Triệu vân'
     ],
     'namemoney' => "Xu",
+    'namegame' => "3Q Bá Đạo",
+    'namewebsite'=>"3qbadao.mobi",
 ];

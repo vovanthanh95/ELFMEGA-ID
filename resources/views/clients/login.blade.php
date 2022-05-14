@@ -13,13 +13,13 @@
                             <div class="row">
                                 <input id="login" required autofocus autocomplete="off" name="username" type="text"
                                     value="">
-                                <label for="login" alt="username" placeholder="username'"></label>
+                                <label for="login" alt="{{__('message.username')}}" placeholder="{{__('message.username')}}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="password" required autocomplete="off" name="password" type="password" value="">
-                                <label for="password" alt="password" placeholder="{{__('message.password')}}"></label>
+                                <label for="password" alt="{{__('message.password')}}" placeholder="{{__('message.password')}}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
