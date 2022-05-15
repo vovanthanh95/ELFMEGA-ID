@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Mail\ForgotPassEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class Account extends Authenticatable
 {
@@ -143,6 +145,37 @@ class Account extends Authenticatable
             }
         } else {
             $info['msg'] = 'Mật khẩu không đúng';
+            $info['type'] = 'error';
+            return $info;
+        }
+    }
+
+    public function forgotPass($username, $email, $ip)
+    {
+        $info = [];
+        $user = Account::where(['username' => $username, 'email' => $email])->first();
+        //dd($user);
+        if ($user != null) {
+            $newpass = random_int(0000000, 9999999);
+            $user->password3 = Hash::make($newpass);
+            $user->password2 = $this->encryptSecPwd(strval($newpass));
+            $history = new HistoryLog();
+            if ($user->save() && $history->createHistory($username, "ForgotPass", $ip)) {
+                $info['msg'] = 'Hãy kiểm tra password ở email đã đăng ký';
+                $info['type'] = 'success';
+                $details = [
+                    'username' => $username,
+                    'newpass' => $newpass,
+                ];
+                Mail::to($email)->send(new ForgotPassEmail($details));
+                return $info;
+            } else {
+                $info['msg'] = 'Vui lòng thử lại';
+                $info['type'] = 'error';
+                return $info;
+            }
+        } else {
+            $info['msg'] = 'Tên đăng nhập hoặc email không đúng';
             $info['type'] = 'error';
             return $info;
         }

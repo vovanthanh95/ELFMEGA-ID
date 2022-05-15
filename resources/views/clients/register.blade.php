@@ -88,7 +88,7 @@
 
         </style>
     </div>
-
+{{-- reload captcha onclick --}}
     <script>
 		$(document).ready(function(){
             $('#refreshCaptcha').click(function(e){

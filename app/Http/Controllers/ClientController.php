@@ -87,6 +87,29 @@ class ClientController extends Controller
         return view('clients.forgotPass');
     }
 
+    public function postForgotPass(Request $request)
+    {
+        $rule = [
+            'username' => 'required',
+            'email' => 'required|email',
+            'captcha' => 'required|captcha',
+        ];
+        $message = [
+            'username.required' => 'Tên đăng nhập không được trống',
+            'email.required' => 'Email không được trống',
+            'email.email' => 'Email không đúng',
+            'captcha.required' => 'Captcha không được trống',
+            'captcha.captcha' => 'Captcha chưa đúng',
+        ];
+        $request->validate($rule, $message);
+        $user = new Account();
+        $info = $user->forgotPass($request->username, $request->email, $this->getIP());
+        if($info['type'] == 'error'){
+            return redirect()->back()->with($info);
+        }
+        return redirect()->route('login')->with($info);
+    }
+
     public function changePass()
     {
 
@@ -188,10 +211,13 @@ class ClientController extends Controller
         return view('clients.giftCode')->with($this->getDataUser());
     }
 
+    public function postGiftCode(Request $request)
+    {
+
+    }
+
     public function history()
     {
-        //$history = new HistoryLog();
-        //dd(json_encode($history->getHistoryLog()));
         return view('clients.history')->with($this->getDataUser());
     }
 

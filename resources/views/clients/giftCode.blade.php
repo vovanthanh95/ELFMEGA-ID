@@ -2,17 +2,18 @@
 @section('content')
 <div class="payment-body main_df_bt">
 	<section class="bg_title">
-		<div class="box-title__text text-center">giftcode</div>
+		<div class="box-title__text text-center">{{__('message.giftcode')}}</div>
 	</section>
 	<div class="other-function-container">
 		<div class="loginmodal-container">
 			<div class="conten_login">
 				<div class="bk-form-login">
-					<form action="giftcode" method="post" novalidate="novalidate">
+					<form action="{{route('post-gift-code')}}" method="post" novalidate="novalidate">
+                        @csrf
 						<div class="col-md-12">
 							<div class="row">
 								<input id="code" required autofocus autocomplete="off" name="code" type="text" value="">
-								<label for="code" alt="giftcode'" placeholder="giftcode"></label>
+								<label for="code" alt="{{__('message.giftcode')}}" placeholder="{{__('message.giftcode')}}"></label>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -24,11 +25,11 @@
 						</div>
 						<div class="col-md-12">
 							<div class="row">
-								<input style="width:50%" id="captcha" required placeholder="captcha" autocomplete="off" name="captcha" type="text" value="">
-								<a href="javascript:changeCaptcha();" id="refreshCaptcha">
-									{!!captcha_img()!!}
-								</a>
-								<label for="captcha" alt="captcha" placeholder="captcha"></label>
+								<input style="width:50%" id="captcha" required placeholder="{{__('message.captcha')}}" autocomplete="off" name="captcha" type="text" value="">
+								<label id="refreshCaptcha">
+                                    {!! captcha_img() !!}
+                                </label>
+								<label for="captcha" alt="{{__('message.captcha')}}" placeholder="{{__('message.captcha')}}"></label>
 							</div>
 						</div>
 
@@ -36,7 +37,7 @@
 							<div class="row">
 								<div class="col-md-12 col-xs-12 col-sm-12">
 									<div class="row">
-										<input type="submit" name="giftcode" class="login loginmodal-submit pull-left col-md-12" value="redeemgiftcode">
+										<input type="submit" name="giftcode" class="login loginmodal-submit pull-left col-md-12" value="{{__('message.redeemgiftcode')}}">
 									</div>
 								</div>
 							</div>
@@ -98,5 +99,20 @@
 			}
 		}, 'json');
 	}
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#refreshCaptcha').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: 'reloadCaptcha',
+                success: function(result){
+                    $('#refreshCaptcha').html(result.captcha);
+                },
+            });
+        });
+    });
 </script>
 @endsection

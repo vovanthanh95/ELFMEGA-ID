@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Mail\ForgotPassEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,7 @@ Route::post('register', [ClientController::class, 'postRegister'])->name('post-r
 Route::get('reloadCaptcha', [ClientController::class, 'reloadCaptcha'])->name('reload-captcha');
 
 Route::get('forgot-pass', [ClientController::class, 'forgotPass'])->name('forgot-pass');
+Route::post('forgot-pass', [ClientController::class, 'postForgotPass'])->name('post-forgot-pass');
 
 Route::middleware('loginclient')->get('change-pass', [ClientController::class, 'changePass'])->name('change-pass');
 Route::middleware('loginclient')->post('change-pass', [ClientController::class, 'postChangePass'])->name('post-change-pass');
@@ -39,6 +42,7 @@ Route::middleware('loginclient')->post('change-phone', [ClientController::class,
 Route::middleware('loginclient')->get('top-up', [ClientController::class, 'topUp'])->name('top-up');
 
 Route::middleware('loginclient')->get('gift-code', [ClientController::class, 'giftCode'])->name('gift-code');
+Route::middleware('loginclient')->post('gift-code', [ClientController::class, 'postGiftCode'])->name('post-gift-code');
 
 Route::middleware('loginclient')->get('top-up-vn', [ClientController::class, 'topUpVn'])->name('top-up-vn');
 
@@ -46,3 +50,4 @@ Route::middleware('loginclient')->get('top-up-mo-mo', [ClientController::class, 
 
 Route::get('history', [ClientController::class, 'history'])->name('history');
 Route::post('ajaxhistory', [ClientController::class, 'ajaxHistory'])->name('ajax-history');
+
