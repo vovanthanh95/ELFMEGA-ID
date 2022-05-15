@@ -29,6 +29,7 @@ return [
 'createaccount' => "Create Account",
 'recoveraccount' => "Recover Account",
 'changepass' => "Change Password",
+'forgotpass' => "forgot password",
 'surplus' => "Surplus",
 'name' => "Name",
 'dateofbirth' => "Date of Birth",

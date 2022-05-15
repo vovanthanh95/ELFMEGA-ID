@@ -12,7 +12,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="currentemail" required autofocus autocomplete="off" name="currentemail"
-                                    type="text" value="">
+                                    type="text" value="{{old('currentemail')}}">
                                 <label for="currentemail" alt="{{__('message.currentemail')}}" placeholder="{{__('message.currentemail')}}"></label>
                                 <h5>{{__('message.suggest')}}:
                                     @if (Auth::guard('client')->check())
@@ -26,7 +26,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="currentphone" required autofocus autocomplete="off" name="currentphone"
-                                    type="text" value="">
+                                    type="text" value="{{old('currentphone')}}">
                                 <label for="currentphone" alt="{{__('message.currentphone')}}" placeholder="{{__('message.currentphone')}}"></label>
                                 <h5>{{__('message.suggest')}}:
                                     @if (Auth::guard('client')->check())
@@ -40,7 +40,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="newphone" required autofocus autocomplete="off" name="newphone" type="text"
-                                    value="">
+                                    value="{{old('newphone')}}">
                                 <label for="newphone" alt="{{__('message.newphone')}}" placeholder="{{__('message.newphone')}}"></label>
                             </div>
                         </div>

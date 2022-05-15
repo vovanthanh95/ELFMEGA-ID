@@ -103,12 +103,4 @@
             });
         });
 	</script>
-
-    @if ($errors->any())
-       <script type="text/javascript">
-        setTimeout(function() {
-            swal("{{$errors->all()[0]}}");
-        }, 500);
-    </script>
-    @endif
 @endsection

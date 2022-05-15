@@ -25,6 +25,7 @@ return [
 'captcha' => "Captcha",
 'logout' => "Đăng xuất",
 'register' => "Đăng ký",
+'forgotpass' => "Quên mật khẩu",
 'enterlogin' => "Nhập thông tin đăng nhập",
 'createeaccount' => "Tạo tài khoản",
 'recoveraccount' => "Khôi phục tài khoản",

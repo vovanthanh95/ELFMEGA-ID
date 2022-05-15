@@ -12,7 +12,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="currentphone" required autofocus autocomplete="off" name="currentphone"
-                                    type="text" value="">
+                                    type="text" value="{{old('currentphone')}}">
                                 <label for="currentphone" alt="{{ __('message.currentphone') }}"
                                     placeholder="{{ __('message.currentphone') }}"></label>
                                 <h5>{{ __('message.suggest') }}:
@@ -25,10 +25,9 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-
                             <div class="row">
                                 <input id="currentemail" required autofocus autocomplete="off" name="currentemail"
-                                    type="text" value="">
+                                    type="text" value="{{old('currentemail')}}">
                                 <label for="currentemail" alt="{{ __('message.currentemail') }}"
                                     placeholder="{{ __('message.currentemail') }}"></label>
                                 <h5>{{ __('message.suggest') }}:
@@ -43,7 +42,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="newemail" required autofocus autocomplete="off" name="newemail" type="text"
-                                    value="">
+                                    value="{{old('newemail')}}">
                                 <label for="newemail" alt="{{ __('message.newemail') }}"
                                     placeholder="{{ __('message.newemail') }}"></label>
                             </div>

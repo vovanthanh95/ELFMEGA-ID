@@ -45,3 +45,4 @@ Route::middleware('loginclient')->get('top-up-vn', [ClientController::class, 'to
 Route::middleware('loginclient')->get('top-up-mo-mo', [ClientController::class, 'topUpMoMo'])->name('top-up-mo-mo');
 
 Route::get('history', [ClientController::class, 'history'])->name('history');
+Route::post('ajaxhistory', [ClientController::class, 'ajaxHistory'])->name('ajax-history');

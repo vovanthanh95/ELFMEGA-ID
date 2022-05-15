@@ -408,6 +408,17 @@
             }, 500);
         </script>
     @endif
+//thông báo validate()
+    @if ($errors->any())
+       <script type="text/javascript">
+        setTimeout(function() {
+            swal({
+                text: "{{$errors->all()[0]}}",
+                type: "error",
+            });
+        }, 500);
+    </script>
+    @endif
 
 </body>
 
