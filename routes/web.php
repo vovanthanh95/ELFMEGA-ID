@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ClientController;
 use App\Mail\ForgotPassEmail;
 use Illuminate\Support\Facades\Mail;
@@ -42,6 +43,7 @@ Route::middleware('loginclient')->post('change-phone', [ClientController::class,
 Route::middleware('loginclient')->get('top-up', [ClientController::class, 'topUp'])->name('top-up');
 
 Route::middleware('loginclient')->get('gift-code', [ClientController::class, 'giftCode'])->name('gift-code');
+Route::post('ajax-show-role', [AjaxController::class, 'showRole'])->name('ajax-show-role');
 Route::middleware('loginclient')->post('gift-code', [ClientController::class, 'postGiftCode'])->name('post-gift-code');
 
 Route::middleware('loginclient')->get('top-up-vn', [ClientController::class, 'topUpVn'])->name('top-up-vn');

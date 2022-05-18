@@ -194,7 +194,7 @@
                         <div class="col-xs-5" style="text-align: center;">
                             <span style="color: #ff753a;">
                                 @if (Auth::guard('client')->check())
-                                    {{ __('message.serverid') }}: {{ session('serverid')}}
+                                    {{ __('message.serverid') }}: {{ session('servername')}}
                                 @endif
 
                             </span>
