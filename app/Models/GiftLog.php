@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\GiftCodeController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,5 +36,27 @@ class GiftLog extends Model
             return 1;
         }
         return 0;
+    }
+
+    public function addLogGift($code, $giftcode, $rid, $username, $serverid, $ismuti)
+    {
+        global $conn_web;
+        $log = new GiftLog();
+        $log->rid = $rid;
+        $log->giftcode = $giftcode;
+        $log->time = date("Y-m-d H:i:s");
+        $log->serverid = $serverid;
+        $log->username = $username;
+        $log->status = 1;
+        $log->code = $code;
+        if ($ismuti == 1) {
+            $giftmultiplecode = new GiftMultipleCode();
+            $giftmultiplecode->addLogMutiGift($code, $giftcode, $rid, $username, $serverid, $ismuti);
+        }
+        if ($log->save()) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

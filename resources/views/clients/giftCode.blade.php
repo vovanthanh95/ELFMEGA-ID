@@ -12,7 +12,7 @@
                             @csrf
                             <div class="col-md-12">
                                 <div class="row">
-                                    <input id="code" required autofocus autocomplete="off" name="code" type="text" value="">
+                                    <input id="code" required autofocus autocomplete="off" name="code" type="text" value="{{old('code')}}">
                                     <label for="code" alt="{{ __('message.giftcode') }}"
                                         placeholder="{{ __('message.giftcode') }}"></label>
                                 </div>

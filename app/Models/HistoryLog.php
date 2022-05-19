@@ -39,8 +39,9 @@ class HistoryLog extends Authenticatable
         $json             = array();
 
         if ($page < 1) $page = 1;
-        $offset = ($page - 1) * 10;
-        $row_count = 10;
+        $row_count = 5;
+        $offset = ($page - 1) *  $row_count;
+
         $totalitem = 0;
         $dem = 1 + ($page * $row_count) - $row_count;
         $d_count = HistoryLog::where('username', $username)

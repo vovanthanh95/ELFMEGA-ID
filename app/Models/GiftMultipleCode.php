@@ -54,17 +54,12 @@ class GiftMultipleCode extends Model
 
     public function addLogMutiGift($code, $giftcode, $rid, $username, $serverid, $ismuti)
     {
-        global $conn_web;
-        $time = date("Y-m-d H:i:s");
-        $sql = "UPDATE gift_multiple_code SET status = '1', username = '$username', rid = '$rid', serverid = '$serverid', time = '$time'  WHERE code = '$code'";
         $giftmultiplecode = GiftMultipleCode::where('code', '=', $code)->first();
         $giftmultiplecode->status = 1;
         $giftmultiplecode->username = $username;
         $giftmultiplecode->rid = $rid;
         $giftmultiplecode->serverid = $serverid;
         $giftmultiplecode->time = date("Y-m-d H:i:s");
-        $giftmultiplecode->save();
-
         if ($giftmultiplecode->save()) {
             return 1;
         } else {
