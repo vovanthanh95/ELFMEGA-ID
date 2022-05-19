@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Classes\GetInfo;
 
-
-class ClientController extends Controller
+class HistoryController extends Controller
 {
     public $getinfo;
     public function __construct()
     {
         $this->getinfo = new GetInfo();
     }
-    public function index()
+
+    public function history()
     {
-        return view('clients.account')->with($this->getinfo->getDataUser());
+        return view('clients.history')->with($this->getinfo->getDataUser());
     }
 }
