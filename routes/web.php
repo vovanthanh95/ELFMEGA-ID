@@ -59,5 +59,4 @@ Route::get('history', [HistoryController::class, 'history'])->name('history');
 Route::post('ajaxhistory', [AjaxController::class, 'ajaxHistory'])->name('ajax-history');
 
 //callbacktopup
-
 Route::get('/call-back-top-up/{Code?}/{Mess?}/{Reason?}/{CardValue?}/{TrxID?}', [TopUpController::class, 'callBackTopUp'])->name('call-back-top-up');

@@ -113,6 +113,22 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'ipnfailed' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/ipnfailed.log'),
+        ],
+
+        'ipnsuccess' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/ipnsuccess.log'),
+        ],
+
+        'ipnerror' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/ipnerror.log'),
+        ],
+
     ],
 
 ];

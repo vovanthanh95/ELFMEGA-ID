@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Classes\Pay247;
 use App\Models\Account;
 use App\Models\MoneyLog;
+use Illuminate\Support\Facades\Log;
 
 class TopUpController extends Controller
 {
@@ -83,7 +84,7 @@ class TopUpController extends Controller
             $CardSeri = $request->card_serial;
             $CardCode = $request->card_password;
             $CardValue = $request->card_value;
-            $URLCallback = "ipn247.php";
+            $URLCallback = route('call-back-top-up');
             $TrxID = $note;
             $result = $pay247->tichHop247($APIKey, $Network, $CardCode, $CardSeri, $CardValue, $URLCallback, $TrxID);
             $obj = json_decode($result);
@@ -127,16 +128,17 @@ class TopUpController extends Controller
                 $valuepromotion = $getpromotion['valuepromotion'];
                 $money = ($value / 100) * $valuepromotion;
                 $result = $account->getUserByUserName($username);
+                //dd($result);
                 if ($result != null) {
-                    $data = $result->fetch_array(MYSQLI_ASSOC);
-                    $moneyold = $data['money'];
-                    $moneynew = $data['money'] + $money;
+                    $moneyold = $result['money'];
+                    $moneynew = $result['money'] + $money;
                     $cardlog->updateCardLogTopUp($code, $money, $value, 'tichhop247.com', $note);
                     $historylog->updateHistoryLogTopUp($code, $note);
                     $moneylog->addMoneyLog($username, 'PrepaidCard', $moneyold, $moneynew);
                     $account->updateMoneyTopUp($username, $moneynew);
                     $logcontent = "Xu ly thanh cong !! --> seri: $seri - pin: $pin - note: $note menh gia: $value";
                     //writeLog($logcontent,'ipnsuccess.log');
+                    Log::channel('ipnsuccess')->info($logcontent);
                 }
             } else if ($request->Code == 2 || $request->Code == 3) {
 
@@ -146,9 +148,8 @@ class TopUpController extends Controller
                 $money = ($value / 100) * $valuepromotion;
                 $result = $account->getUserByUserName($username);
                 if ($result != null) {
-                    $data = $result->fetch_array(MYSQLI_ASSOC);
-                    $moneyold = $data['money'];
-                    $moneynew = $data['money'] + $money;
+                    $moneyold = $result['money'];
+                    $moneynew = $result['money'] + $money;
 
                     $cardlog->updateCardLogTopUp($code, $money, $value, 'tichhop247.com', $note);
                     $historylog->updateHistoryLogTopUp($code, $note);
@@ -157,6 +158,7 @@ class TopUpController extends Controller
 
                     $logcontent = "Xu ly thanh cong, sai menh gia !! --> seri: $seri - pin: $pin - note: $note menh gia: $value";
                     //writeLog($logcontent,'ipnsuccess.log');
+                    Log::channel('ipnsuccess')->info($logcontent);
                 }
             } else if ($request->Code == 5) {
 
@@ -165,6 +167,7 @@ class TopUpController extends Controller
                 $historylog->updateHistoryLogTopUp($code, $note);
                 $logcontent = "Xu ly thanh cong, the sai !! --> seri: $seri - pin: $pin - note: $note menh gia: $value";
                 // writeLog($logcontent,'ipnfailed.log');
+                Log::channel('ipnfailed')->info($logcontent);
 
             } else {
 
@@ -173,11 +176,13 @@ class TopUpController extends Controller
                 $historylog->updateHistoryLogTopUp($code, $note);
                 $logcontent = "Xu ly khong thanh cong !! --> seri: $seri - pin: $pin - note: $note menh gia: $value";
                 //writeLog($logcontent,'ipnfailed.log');
+                Log::channel('ipnfailed')->info($logcontent);
 
             }
         } else {
             $logcontent = "Khong du tham so !! --> seri: " . $request->Code . "  pin: " . $request->Mess;
             //writeLog($logcontent,'ipnerror.log');
+            Log::channel('ipnerror')->info($logcontent);
             exit();
         }
         return '123';

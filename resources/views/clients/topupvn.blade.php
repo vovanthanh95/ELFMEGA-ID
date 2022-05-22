@@ -70,7 +70,7 @@
                             <div class="box-subtitle__text text-center">CHỌN LOẠI THẺ NẠP</div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <select class="select-list" name="card_provider" id="card_provider">
+                                    <select class="select-list" name="card_provider" id="card_provider" onchange="changeCardProvider(this)">
                                         <option value="">Chọn loại thẻ bạn cần nạp?</option>
                                         <option value="11">Thẻ Viettel</option>
                                         <option value="12">Thẻ Mobifone</option>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <select class="select-list" name="card_value" id="card_value"
+                                    <select class="select-list" name="card_value" id="card_value" disabled="disabled" onchange="changeCardValue(this)"
                                         onchange="getXu(this.value)">
                                         <option value="">Chọn mệnh giá?</option>
                                         <option value="10000">10,000 VNĐ</option>
@@ -111,21 +111,21 @@
                             <div class="box-subtitle__text text-center">NHẬP THÔNG TIN THẺ</div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <input id="card_serial" required autocomplete="off" name="card_serial" type="text"
-                                        value="">
+                                    <input id="card_serial" required autocomplete="off" name="card_serial" type="text" disabled
+                                        value="{{old('card_serial')}}">
                                     <label for="Seri" alt="Seri" placeholder="Seri"></label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <input id="card_password" required autocomplete="off" name="card_password" type="text"
-                                        value="">
+                                    <input id="card_password" required autocomplete="off" name="card_password" type="text" disabled
+                                        value="{{old('card_password')}}">
                                     <label for="Mã thẻ" alt="Mã thẻ" placeholder="Mã thẻ"></label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <input style="width:50%" id="captcha" required placeholder="{{__('message.captcha')}}" autocomplete="off"
+                                    <input style="width:50%" id="captcha" required placeholder="{{__('message.captcha')}}" autocomplete="off" disabled
                                         name="captcha" type="text" value="">
                                         <label id="refreshCaptcha">
                                             {!! captcha_img() !!}
@@ -137,8 +137,8 @@
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="row">
-                                            <input type="submit" name="topup"
-                                                class="login loginmodal-submit pull-left col-md-12" value="{{__('message.topup')}}">
+                                            <input type="submit" name="topup" id="submit" disabled
+                                                class="login loginmodal-submit pull-left col-md-12 show-submit" value="{{__('message.topup')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -169,32 +169,60 @@
                 display: none;
             }
 
+            .show-submit{
+                background-color: #eee;
+            }
+
         </style>
     </div>
     <script type="text/javascript">
-        function format_curency(a) {
-            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-        }
-        $('#form-th').submit(function() {
-            <?php
-            $array_desc = str_split('ABCDEFGHIJ');
-            if (empty($_SESSION['can_refill']) == true || (empty($_SESSION['can_refill']) and unserialize($_SESSION['can_refill']) == false)) {
-                shuffle($array_desc);
-                $_SESSION['can_refill'] = serialize($array_desc);
-            } else {
-                shuffle($array_desc);
-                $_SESSION['can_refill'] = serialize($array_desc);
-            }
+        function changeCardProvider(a) {
+            if(a.value != ""){
+                $('#card_value').prop('disabled', false);
+            }else{
+                $('#card_value').prop('disabled', true);
+                $('#card_value').prop('selectedIndex',0);
 
-            echo ' var temp = document.getElementById("epinCode").value; ';
-            foreach ($array_desc as $digit => $char) {
-                echo 'while(temp.indexOf(\'' . $digit . '\')!=-1) { temp = temp.replace(\'' . $digit . '\',\'' . $char . '\'); }';
+                $('#card_password').prop('disabled', true);
+                $('#card_password').val('');
+
+                $('#card_serial').prop('disabled', true);
+                $('#card_serial').val('');
+
+                $('#captcha').prop('disabled', true);
+                $('#captcha').val('');
+
+                $('#submit').prop('disabled', true);
+                $('#submit').addClass( "show-submit" );
             }
-            echo '
-                                    			document.getElementById("pin_sent").value = temp;
-                                    		';
-            ?>
-        });
+        }
+
+        function changeCardValue(a) {
+            if(a.value != ""){
+                $('#card_serial').prop('disabled', false);
+                $('#card_password').prop('disabled', false);
+                $('#captcha').prop('disabled', false);
+                $('#submit').prop('disabled', false);
+                $('#submit').removeClass( "show-submit" );
+
+            }else{
+                $('#card_serial').prop('disabled', true);
+                $('#card_password').prop('disabled', true);
+                $('#captcha').prop('disabled', true);
+                $('#submit').prop('disabled', true);
+
+                $('#card_password').prop('disabled', true);
+                $('#card_password').val('');
+
+                $('#card_serial').prop('disabled', true);
+                $('#card_serial').val('');
+
+                $('#captcha').prop('disabled', true);
+                $('#captcha').val('');
+
+                $('#submit').addClass( "show-submit" );
+            }
+        }
     </script>
 
     {{-- reload captcha onclick --}}

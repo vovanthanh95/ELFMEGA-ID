@@ -64,100 +64,69 @@
                         @endphp
                         @if ($value['type'] == 'tmt')
                             @if ($value['status'] == 1)
-                                {
                                 @php
                                     $status = '<font color="#3079ed">'.__('message.success').'</font>';
                                 @endphp
-                                }
                             @elseif ($value['status'] == 2)
-                                {
                                 @php
                                     $status = '<font color="red">'.__('message.invalidcardcode').'</font>';
                                 @endphp
-                                }
                             @elseif ($value['status'] == 3)
-                                {
-                                }
+
                             @elseif ($value['status'] == 4)
-                                {
                                 @php
                                     $status = '<font color="red">'.__('message.invalidcardcode').'</font>';
                                 @endphp
-                                }
                             @elseif ($value['status'] == 5)
-                                {
-                                }
                             @elseif ($value['status'] == 0)
-                                {
                                 @php
                                     $status = '<font color="blue">'.__('message.waitingforprogressing').'</font>';
                                 @endphp
-                                }
                             @else
-                                {
                                 @php
                                     $status = '<font color="red">'.__('message.theserverisempty').'</font>';
                                 @endphp
-                                }
                             @endif
                         @else
                             @if ($value['status'] == 1)
-                                {
                                 @php
                                     $status = '<font color="#3079ed">'.__('message.success').'</font>';
                                 @endphp
-                                }
                             @elseif ($value['status'] == 2)
-                                {
                                 @php
                                     $status = '<font color="red">'.__('message.invalidcardcode').'</font>';
                                 @endphp
-                                }
                             @elseif ($value['status'] == 3)
-                                {
                                 @php
                                     $status = '<font color="red">'.__('message.errorofloadingcardvalue').'</font>';
                                 @endphp
-                                }
                             @elseif ($value['status'] == 4)
-                                {
                                 @php
                                     $status = '<font color="red">'.__('message.theserverisundermaintenance').'</font>';
                                 @endphp
-                                }
                             @elseif ($value['status'] == 5)
-                                {
                                 @php
                                     $status = '<font color="red">'.__('message.cardused').'</font>';
                                 @endphp
-                                }
                             @elseif ($value['status'] == 0)
-                                {
                                 @php
                                     $status = '<font color="blue">'.__('message.waitingforprogressing').'</font>';
                                 @endphp
-                                }
                             @else
-                                {
                                 @php
                                     $status = '<font color="red">'.__('message.theserverisempty').'</font>';
                                 @endphp
-                                }
                             @endif
                         @endif
 
                         @if ($value['type'] != 'MOMO')
-                            {
                             @php
                                 $stringType = '<p>PIN: <span class="blue">'.preg_replace("/^.+(?=(.{5}$))/", "********", $value['pin']).'</span></p>';
                             @endphp
-                            }
                         @else
-                            {
                             @php
                                 $stringType = '';
                             @endphp
-                            }
                         @endif
 
                         <div class="list-data-content txn">
