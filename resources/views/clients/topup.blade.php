@@ -11,7 +11,7 @@
     </style>
     <div class="payment-body main_df_bt">
         <section class="bg_title">
-            <div class="box-title__text text-center">topup</div>
+            <div class="box-title__text text-center">{{__('message.topup')}}</div>
         </section>
         <div class="other-function-container">
             <div class="">
@@ -23,24 +23,26 @@
 
                 </style>
                 <div class="row">
-                    <a class="animated flipInY list_bank2__" href="{{route('top-up-vn')}}">
+                    <a class="animated flipInY list_bank2__" href="{{ route('top-up-vn') }}">
                         <div class="row tab_bank_atm " style="margin-left: 1px; margin-right: 1px;">
                             <div class="list_bank_atm" style="padding-bottom: 10px">
                                 <div class="tile-stats" type="2" id="list_bank" bpm_id="15">
                                     <div class="im_bank">
-                                        <img class="max_width" src="{{asset('assets/images/card_types/card.png')}}">
+                                        <img class="max_width"
+                                            src="{{ asset('assets/images/card_types/card.png') }}">
                                     </div>
                                     <p class="text-center" style="color:#464646">Nạp Card</p>
                                 </div>
                             </div>
                         </div>
                     </a>
-                    <a class="animated flipInY list_bank2__" href="{{route('top-up-mo-mo')}}">
+                    <a class="animated flipInY list_bank2__" href="{{ route('top-up-mo-mo') }}">
                         <div class="row tab_bank_atm " style="margin-left: 1px; margin-right: 0px;">
                             <div class="list_bank_atm" style="padding-bottom: 10px">
                                 <div class="tile-stats" type="3" id="list_bank" bpm_id="60">
                                     <div class="im_bank">
-                                        <img class="max_width" src="{{asset('assets/images/card_types/bank.png')}}">
+                                        <img class="max_width"
+                                            src="{{ asset('assets/images/card_types/bank.png') }}">
                                     </div>
                                     <p class="text-center" style="color:#464646">ATM, Momo, ZaloPay</p>
                                 </div>
@@ -53,9 +55,127 @@
             <br />
             <div class="other-function-content-data shadow">
                 <div class="list-data">
-                    <h3>historypayment</h3>
+                    <h3>{{__('message.historypayment')}}</h3>
                 </div>
-                {{-- history --}}
+                @if ($data->count() > 0)
+                    @foreach ($data as $value)
+                        @php
+                            $status = '';
+                        @endphp
+                        @if ($value['type'] == 'tmt')
+                            @if ($value['status'] == 1)
+                                {
+                                @php
+                                    $status = '<font color="#3079ed">'.__('message.success').'</font>';
+                                @endphp
+                                }
+                            @elseif ($value['status'] == 2)
+                                {
+                                @php
+                                    $status = '<font color="red">'.__('message.invalidcardcode').'</font>';
+                                @endphp
+                                }
+                            @elseif ($value['status'] == 3)
+                                {
+                                }
+                            @elseif ($value['status'] == 4)
+                                {
+                                @php
+                                    $status = '<font color="red">'.__('message.invalidcardcode').'</font>';
+                                @endphp
+                                }
+                            @elseif ($value['status'] == 5)
+                                {
+                                }
+                            @elseif ($value['status'] == 0)
+                                {
+                                @php
+                                    $status = '<font color="blue">'.__('message.waitingforprogressing').'</font>';
+                                @endphp
+                                }
+                            @else
+                                {
+                                @php
+                                    $status = '<font color="red">'.__('message.theserverisempty').'</font>';
+                                @endphp
+                                }
+                            @endif
+                        @else
+                            @if ($value['status'] == 1)
+                                {
+                                @php
+                                    $status = '<font color="#3079ed">'.__('message.success').'</font>';
+                                @endphp
+                                }
+                            @elseif ($value['status'] == 2)
+                                {
+                                @php
+                                    $status = '<font color="red">'.__('message.invalidcardcode').'</font>';
+                                @endphp
+                                }
+                            @elseif ($value['status'] == 3)
+                                {
+                                @php
+                                    $status = '<font color="red">'.__('message.errorofloadingcardvalue').'</font>';
+                                @endphp
+                                }
+                            @elseif ($value['status'] == 4)
+                                {
+                                @php
+                                    $status = '<font color="red">'.__('message.theserverisundermaintenance').'</font>';
+                                @endphp
+                                }
+                            @elseif ($value['status'] == 5)
+                                {
+                                @php
+                                    $status = '<font color="red">'.__('message.cardused').'</font>';
+                                @endphp
+                                }
+                            @elseif ($value['status'] == 0)
+                                {
+                                @php
+                                    $status = '<font color="blue">'.__('message.waitingforprogressing').'</font>';
+                                @endphp
+                                }
+                            @else
+                                {
+                                @php
+                                    $status = '<font color="red">'.__('message.theserverisempty').'</font>';
+                                @endphp
+                                }
+                            @endif
+                        @endif
+
+                        @if ($value['type'] != 'MOMO')
+                            {
+                            @php
+                                $stringType = '<p>PIN: <span class="blue">'.preg_replace("/^.+(?=(.{5}$))/", "********", $value['pin']).'</span></p>';
+                            @endphp
+                            }
+                        @else
+                            {
+                            @php
+                                $stringType = '';
+                            @endphp
+                            }
+                        @endif
+
+                        <div class="list-data-content txn">
+                            <div class="col-xs-6 order-left-content">
+                                <p><span class="blue">{{ $value['type'] }}</span></p>
+                                {!! $stringType !!}
+                                <p>{{ date('H:i d/m/y', strtotime($value['time'])) }}</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <p class="text-right">
+                                    {!! $status !!}
+                                </p>
+                                <p class="text-right ">{{ number_format($value['amount']) }} {{config('custom.namemoney')}}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    @endforeach
+                @endif
                 <div class="clearfix"></div>
             </div>
 
@@ -80,41 +200,5 @@
 
         </style>
     </div>
-    <script type="text/javascript">
-        function format_curency(a) {
-            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-        }
 
-        function changeCaptcha() {
-            var url = "url_api";
-            var id = url + "/captcha/captcha-image.php?rand=" + Math.random() + "&w=150&h=50";
-            $("#imgCapcha").attr("src", id);
-        }
-
-        function changeCaptcha2() {
-            var url = "url_api";
-            var id = url + "/captcha/captcha-image.php?rand=" + Math.random() + "&w=150&h=50";
-            $("#imgCapcha2").attr("src", id);
-        }
-        $('#form-th').submit(function() {
-            <?php
-            $array_desc = str_split('ABCDEFGHIJ');
-            if (empty($_SESSION['can_refill']) == true || (empty($_SESSION['can_refill']) and unserialize($_SESSION['can_refill']) == false)) {
-                shuffle($array_desc);
-                $_SESSION['can_refill'] = serialize($array_desc);
-            } else {
-                shuffle($array_desc);
-                $_SESSION['can_refill'] = serialize($array_desc);
-            }
-
-            echo ' var temp = document.getElementById("epinCode").value; ';
-            foreach ($array_desc as $digit => $char) {
-                echo 'while(temp.indexOf(\'' . $digit . '\')!=-1) { temp = temp.replace(\'' . $digit . '\',\'' . $char . '\'); }';
-            }
-            echo '
-            			document.getElementById("pin_sent").value = temp;
-            		';
-            ?>
-        });
-    </script>
 @endsection

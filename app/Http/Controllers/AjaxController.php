@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HistoryLog;
 use App\Models\TPlayer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AjaxController extends Controller
@@ -19,6 +20,7 @@ class AjaxController extends Controller
     {
         $history = new HistoryLog();
         return response()->json($history->getHistoryLog(Auth::guard('client')->user()->username));
+        //return response()->json(request()->page);
     }
 
     public function reloadCaptcha()

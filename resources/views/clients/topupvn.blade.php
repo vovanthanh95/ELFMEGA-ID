@@ -55,8 +55,8 @@
             <div class="loginmodal-container">
                 <div class="conten_login">
                     <div class="bk-form-login" id="pay-2">
-                        <form action="/topup-vn" method="post" novalidate="novalidate">
-                            <input name="_token" type="hidden" value="">
+                        <form action="{{route('post-top-up-vn')}}" method="post" novalidate="novalidate">
+                            @csrf
                             <input name="type" type="hidden" value="payVN">
                             <u><strong>Chú ý:</strong></u>
                             <ul>
@@ -88,7 +88,7 @@
                                 <div class="row">
                                     <select class="select-list" name="card_value" id="card_value"
                                         onchange="getXu(this.value)">
-                                        <option value="0">Chọn mệnh giá?</option>
+                                        <option value="">Chọn mệnh giá?</option>
                                         <option value="10000">10,000 VNĐ</option>
                                         <option value="20000">20,000 VNĐ</option>
                                         <option value="50000">50,000 VNĐ</option>
@@ -104,7 +104,7 @@
                             <script>
                                 function getXu(value) {
                                     var valuepromotion = document.getElementById("promo").value;
-                                    document.getElementById("Xus1").innerHTML = ((value / 100) * valuepromotion).toString().replace(
+                                    document.getElementById("Xus1").innerHTML = ((value / 100) * {{$getpromotion}}).toString().replace(
                                         /\B(?=(\d{3})+(?!\d))/g, ",") + " Xu";
                                 }
                             </script>
@@ -125,12 +125,12 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <input style="width:50%" id="captcha" required placeholder="captcha" autocomplete="off"
+                                    <input style="width:50%" id="captcha" required placeholder="{{__('message.captcha')}}" autocomplete="off"
                                         name="captcha" type="text" value="">
-                                    <a href="javascript:changeCaptcha2();" id="refreshCaptcha">
-                                        {!! captcha_img() !!}
-                                    </a>
-                                    <label for="captcha" alt="captcha" placeholder="captcha"></label>
+                                        <label id="refreshCaptcha">
+                                            {!! captcha_img() !!}
+                                        </label>
+                                    <label for="captcha" alt="{{__('message.captcha')}}" placeholder="{{__('message.captcha')}}"></label>
                                 </div>
                             </div>
                             <div class="col-md-12 col-xs-12 col-sm-12">
@@ -138,7 +138,7 @@
                                     <div class="col-md-12 col-xs-12 col-sm-12">
                                         <div class="row">
                                             <input type="submit" name="topup"
-                                                class="login loginmodal-submit pull-left col-md-12" value="topup">
+                                                class="login loginmodal-submit pull-left col-md-12" value="{{__('message.topup')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -152,18 +152,6 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-
-
-            <div class="other-function-content-data shadow">
-                <div class="list-data">
-                    <h3>historypayment</h3>
-                </div>
-                {{-- history --}}
-                <div class="clearfix"></div>
-            </div>
-
-
-
         </div>
         <style>
             .payment-body {
@@ -187,18 +175,6 @@
         function format_curency(a) {
             a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
         }
-
-        function changeCaptcha() {
-            var url = "url_api";
-            var id = url + "/captcha/captcha-image.php?rand=" + Math.random() + "&w=150&h=50";
-            $("#imgCapcha").attr("src", id);
-        }
-
-        function changeCaptcha2() {
-            var url = "url_api";
-            var id = url + "/captcha/captcha-image.php?rand=" + Math.random() + "&w=150&h=50";
-            $("#imgCapcha2").attr("src", id);
-        }
         $('#form-th').submit(function() {
             <?php
             $array_desc = str_split('ABCDEFGHIJ');
@@ -220,4 +196,20 @@
             ?>
         });
     </script>
+
+    {{-- reload captcha onclick --}}
+    <script>
+		$(document).ready(function(){
+            $('#refreshCaptcha').click(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: 'GET',
+                    url: 'reloadCaptcha',
+                    success: function(result){
+                        $('#refreshCaptcha').html(result.captcha);
+                    },
+                });
+            });
+        });
+	</script>
 @endsection

@@ -180,6 +180,23 @@ class Account extends Authenticatable
             return $info;
         }
     }
+
+    public function getUserByUserName($username){
+        $data = Account::where('username', $username)->first();
+        if($data != null){
+            return $data->toArray();
+        }else{
+            return $data;
+        }
+    }
+
+    public function updateMoneyTopUp($username, $moneynew){
+        $data = Account::where('username', $username)->first();
+        if($data != null){
+            $data->money = $moneynew;
+            $data->save();
+        }
+    }
     //-----------------------------------------------------------------------------------------------------------//
     public function encryptSecPwd($string, $key = "SecPwd")
     {

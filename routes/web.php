@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::middleware('loginclient')->get('/', [ClientController::class, 'index']);
 Route::middleware('loginclient')->get('/account', [ClientController::class, 'index'])->name('account');
 
 Route::get('login', [ClientAuthController::class, 'login'])->name('login');
@@ -51,8 +51,13 @@ Route::post('ajax-show-role', [AjaxController::class, 'showRole'])->name('ajax-s
 Route::middleware('loginclient')->post('gift-code', [GiftCodeController::class, 'postGiftCode'])->name('post-gift-code');
 
 Route::middleware('loginclient')->get('top-up-vn', [TopUpController::class, 'topUpVn'])->name('top-up-vn');
+Route::middleware('loginclient')->post('top-up-vn', [TopUpController::class, 'postTopUpVn'])->name('post-top-up-vn');
 
 Route::middleware('loginclient')->get('top-up-mo-mo', [TopUpController::class, 'topUpMoMo'])->name('top-up-mo-mo');
 
 Route::get('history', [HistoryController::class, 'history'])->name('history');
 Route::post('ajaxhistory', [AjaxController::class, 'ajaxHistory'])->name('ajax-history');
+
+//callbacktopup
+
+Route::get('/call-back-top-up/{Code?}/{Mess?}/{Reason?}/{CardValue?}/{TrxID?}', [TopUpController::class, 'callBackTopUp'])->name('call-back-top-up');

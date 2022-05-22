@@ -11,10 +11,6 @@
                         @csrf
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="currentphone" required autofocus autocomplete="off" name="currentphone"
-                                    type="text" value="{{old('currentphone')}}">
-                                <label for="currentphone" alt="{{ __('message.currentphone') }}"
-                                    placeholder="{{ __('message.currentphone') }}"></label>
                                 <h5>{{ __('message.suggest') }}:
                                     @if (Auth::guard('client')->check())
                                         {{ $phone }}
@@ -22,14 +18,14 @@
                                         <i style="color:red">{{ __('message.phoneisnotregistered') }}</i>
                                     @endif
                                 </h5>
+                                <input id="currentphone" required autofocus autocomplete="off" name="currentphone"
+                                    type="text" value="{{old('currentphone')}}">
+                                <label for="currentphone" alt="{{ __('message.currentphone') }}"
+                                    placeholder="{{ __('message.currentphone') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="currentemail" required autofocus autocomplete="off" name="currentemail"
-                                    type="text" value="{{old('currentemail')}}">
-                                <label for="currentemail" alt="{{ __('message.currentemail') }}"
-                                    placeholder="{{ __('message.currentemail') }}"></label>
                                 <h5>{{ __('message.suggest') }}:
                                     @if (Auth::guard('client')->check())
                                         {{ $email }}
@@ -37,6 +33,10 @@
                                         <i style="color:red">'{{ __('message.emailisnotregistered') }}</i>
                                     @endif
                                 </h5>
+                                <input id="currentemail" required autofocus autocomplete="off" name="currentemail"
+                                    type="text" value="{{old('currentemail')}}">
+                                <label for="currentemail" alt="{{ __('message.currentemail') }}"
+                                    placeholder="{{ __('message.currentemail') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">

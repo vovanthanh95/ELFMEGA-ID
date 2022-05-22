@@ -36,14 +36,14 @@
         function inquire(page) {
             var hdBeginDate = "";
             var hdEndDate = "";
-            var dataString = "hdBeginDate=" + hdBeginDate + "&hdEndDate=" + hdEndDate + "&page=" + page;
-            console.log(dataString);
             $.ajax({
                 type: "POST",
                 url: "{{ route('ajax-history') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    "dataString": dataString,
+                    "hdBeginDate": hdBeginDate,
+                    "hdEndDate": hdEndDate,
+                    "page": page,
                 },
                 cache: false,
                 beforeSend: function() {

@@ -2,46 +2,49 @@
 @section('content')
     <div class="payment-body main_df_bt">
         <section class="bg_title">
-            <div class="box-title__text text-center">{{__('message.changephone')}}</div>
+            <div class="box-title__text text-center">{{ __('message.changephone') }}</div>
         </section>
         <div class="loginmodal-container">
             <div class="conten_login">
                 <div class="bk-form-login">
-                    <form action="{{route('post-change-phone')}}" method="post" novalidate="novalidate">
+                    <form action="{{ route('post-change-phone') }}" method="post" novalidate="novalidate">
                         @csrf
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="currentemail" required autofocus autocomplete="off" name="currentemail"
-                                    type="text" value="{{old('currentemail')}}">
-                                <label for="currentemail" alt="{{__('message.currentemail')}}" placeholder="{{__('message.currentemail')}}"></label>
-                                <h5>{{__('message.suggest')}}:
+                                <h5>{{ __('message.suggest') }}:
                                     @if (Auth::guard('client')->check())
-                                        {{$email}}
+                                        {{ $email }}
                                     @else
-                                    <i style="color:red">{{__('message.emailisnotregistered')}}</i>
+                                        <i style="color:red">{{ __('message.emailisnotregistered') }}</i>
                                     @endif
                                 </h5>
+                                <input id="currentemail" required autofocus autocomplete="off" name="currentemail"
+                                    type="text" value="{{ old('currentemail') }}">
+                                <label for="currentemail" alt="{{ __('message.currentemail') }}"
+                                    placeholder="{{ __('message.currentemail') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                <input id="currentphone" required autofocus autocomplete="off" name="currentphone"
-                                    type="text" value="{{old('currentphone')}}">
-                                <label for="currentphone" alt="{{__('message.currentphone')}}" placeholder="{{__('message.currentphone')}}"></label>
-                                <h5>{{__('message.suggest')}}:
+                                <h5>{{ __('message.suggest') }}:
                                     @if (Auth::guard('client')->check())
-                                        {{$phone}}
+                                        {{ $phone }}
                                     @else
-                                     <i style="color:red">{{__('message.phoneisnotregistered')}}</i>
-                                    </h5>
+                                        <i style="color:red">{{ __('message.phoneisnotregistered') }}</i>
                                     @endif
+                                </h5>
+                                <input id="currentphone" required autofocus autocomplete="off" name="currentphone"
+                                    type="text" value="{{ old('currentphone') }}">
+                                <label for="currentphone" alt="{{ __('message.currentphone') }}"
+                                    placeholder="{{ __('message.currentphone') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="row">
                                 <input id="newphone" required autofocus autocomplete="off" name="newphone" type="text"
-                                    value="{{old('newphone')}}">
-                                <label for="newphone" alt="{{__('message.newphone')}}" placeholder="{{__('message.newphone')}}"></label>
+                                    value="{{ old('newphone') }}">
+                                <label for="newphone" alt="{{ __('message.newphone') }}"
+                                    placeholder="{{ __('message.newphone') }}"></label>
                             </div>
                         </div>
                         <div class="col-md-12 col-xs-12 col-sm-12">
@@ -49,7 +52,8 @@
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <div class="row">
                                         <input type="submit" name="changepass"
-                                            class="login loginmodal-submit pull-left col-md-12" value="{{__('message.changephone')}}">
+                                            class="login loginmodal-submit pull-left col-md-12"
+                                            value="{{ __('message.changephone') }}">
                                     </div>
                                 </div>
                             </div>
@@ -61,9 +65,11 @@
             <div class="clearfix"></div>
         </div>
         <div class="link-auth block">
-            <a href="{{ route('change-pass') }}" class="btn btn-warning ty-link c-point">{{__('message.changepass')}}</a>
-            <a href="{{ route('change-email') }}" class="btn btn-warning ty-link c-point">{{__('message.changeemail')}}</a>
-            <a href="{{ route('account') }}" class="btn btn-warning ty-link c-point">{{__('message.myaccount')}}</a>
+            <a href="{{ route('change-pass') }}"
+                class="btn btn-warning ty-link c-point">{{ __('message.changepass') }}</a>
+            <a href="{{ route('change-email') }}"
+                class="btn btn-warning ty-link c-point">{{ __('message.changeemail') }}</a>
+            <a href="{{ route('account') }}" class="btn btn-warning ty-link c-point">{{ __('message.myaccount') }}</a>
         </div>
         <style>
             .payment-body {

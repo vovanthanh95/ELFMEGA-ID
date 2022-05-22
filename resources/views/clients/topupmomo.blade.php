@@ -117,18 +117,6 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-
-
-            <div class="other-function-content-data shadow">
-                <div class="list-data">
-                    <h3>historypayment</h3>
-                </div>
-                {{-- history --}}
-                <div class="clearfix"></div>
-            </div>
-
-
-
         </div>
         <style>
             .payment-body {

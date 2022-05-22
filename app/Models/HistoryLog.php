@@ -24,21 +24,20 @@ class HistoryLog extends Authenticatable
 
     public function getHistoryLog($username)
     {
-        @$hdBeginDate    = strtotime($_POST['hdBeginDate']);
-        @$hdEndDate        = strtotime($_POST['hdEndDate']);
+        $hdBeginDate = strtotime(request()->hdBeginDate);
+        $hdEndDate = strtotime(request()->hdEndDate);
         $table    = "";
         $search = "";
-        if (isset($_POST['hdBeginDate']) and $_POST['hdBeginDate'] != "") {
+        if (isset(request()->hdBeginDate) and request()->hdBeginDate != "") {
             $search .= " AND time >= '" . date("Y-m-d 00:00:00", $hdBeginDate) . "'";
         }
-        if (isset($_POST['hdEndDate']) and $_POST['hdEndDate'] != "") {
+        if (isset(request()->hdEndDate) and request()->hdEndDate != "") {
             $search .= " AND time <= '" . date("Y-m-d 23:59:59", $hdEndDate) . "'";
         }
 
-        @$page             = trim($_POST['page']);
-        $json             = array();
-
-        if ($page < 1) $page = 1;
+        $page = trim(request()->page);
+        $json = array();
+        if ($page < 1){ $page = 1;}
         $row_count = 5;
         $offset = ($page - 1) *  $row_count;
 
@@ -175,5 +174,13 @@ class HistoryLog extends Authenticatable
         }else{
             return false;
         };
+    }
+
+    public function updateHistoryLogTopUp($status, $note){
+        $data = HistoryLog::where('note', $note)->first();
+        if($data != null){
+            $data->status = $status;
+            $data->save();
+        }
     }
 }
