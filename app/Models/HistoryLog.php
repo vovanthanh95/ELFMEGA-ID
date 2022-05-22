@@ -78,19 +78,19 @@ class HistoryLog extends Authenticatable
                 switch ($value['type']) {
                     case "PrepaidCard":
                         $type = __('message.topup');
-                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . $lang['historymsg2'] . " <span style='color:red'>" . number_format($array[2]) . "</span> " . $lang['historymsg3'] . " <span style='color:red'>" . number_format($array[3]) . "</span> " . $config['namemoney'];
+                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . __('message.historymsg3') . " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
                         break;
                     case "MOMO":
                         $type =  __('message.topup');
-                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . $lang['historymsg2'] . " <span style='color:red'>" . number_format($array[2]) . "</span> " . $lang['historymsg3'] . " <span style='color:red'>" . number_format($array[3]) . "</span> " . $config['namemoney'];
+                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . $__('message.historymsg3'). " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
                         break;
                     case "ATM":
                         $type =  __('message.topup');
-                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . $lang['historymsg2'] . " <span style='color:red'>" . number_format($array[2]) . "</span> " . $lang['historymsg3'] . " <span style='color:red'>" . number_format($array[3]) . "</span> " . $config['namemoney'];
+                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . __('message.historymsg3') . " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
                         break;
                     case "Recharge":
                         $type =  __('message.recharge');
-                        $content = __('message.historymsg4') . " <span style='color:red'>" . $array[1] . "</span> " . $lang['historymsg5'] . " <span style='color:red'>" . number_format($array[2]) . "</span> " . $config['namemoney'];
+                        $content = __('message.historymsg4') . " <span style='color:red'>" . $array[1] . "</span> " . __('message.historymsg5') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . config('custom.namemoney');
                         break;
                     case "ChangePass":
                         $type =  __('message.changepass');

@@ -53,6 +53,7 @@
                     $("#loading").css('display', 'none');
                 },
                 success: function(data) {
+                    console.log(data);
                     $("#data").html(data.table);
                     totalpage = data.totalpage;
                     totalitem = data.totalitem;

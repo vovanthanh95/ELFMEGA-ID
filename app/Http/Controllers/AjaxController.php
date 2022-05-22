@@ -19,6 +19,7 @@ class AjaxController extends Controller
     public function ajaxHistory()
     {
         $history = new HistoryLog();
+        //dd($history->getHistoryLog(Auth::guard('client')->user()->username));
         return response()->json($history->getHistoryLog(Auth::guard('client')->user()->username));
         //return response()->json(request()->page);
     }

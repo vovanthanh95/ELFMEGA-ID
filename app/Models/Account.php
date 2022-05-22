@@ -16,10 +16,11 @@ class Account extends Authenticatable
 
     protected $table = "account";
     public $timestamps = false;
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'username';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
-        'id',
         'username',
         'password',
         'password3',
