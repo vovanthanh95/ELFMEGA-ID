@@ -16,7 +16,7 @@ class ClientAuthController extends Controller
     }
     public function login()
     {
-        return view('clients.login');
+        return view('clients.login2');
     }
 
     public function postLogin(Request $request)
@@ -45,7 +45,7 @@ class ClientAuthController extends Controller
 
     public function register()
     {
-        return view('clients.register');
+        return view('clients.register2');
     }
 
     public function postRegister(Request $request)
@@ -77,7 +77,7 @@ class ClientAuthController extends Controller
         ];
         $request->validate($rule, $message);
         $account = new Account();
-        $info = $account->createAccount($request->username, $request->password, $request->email, $request->password, $this->getinfo->getIP());
+        $info = $account->createAccount($request->username, $request->password, $request->email, $request->phone, $this->getinfo->getIP());
 
         return redirect()->route('login')->with($info);
     }

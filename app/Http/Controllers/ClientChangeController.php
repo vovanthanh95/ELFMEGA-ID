@@ -67,7 +67,7 @@ class ClientChangeController extends Controller
 
     public function changeEmail()
     {
-        return view('clients.changeEmail')->with($this->getinfo->getDataUser());
+        return view('clients.changeemail2')->with($this->getinfo->getDataUser());
     }
 
     public function postChangeEmail(Request $request)
@@ -90,13 +90,13 @@ class ClientChangeController extends Controller
         ];
         $request->validate($rule, $message);
         $user = new Account();
-        $info = $user->changeEmail($request->currentemail, $request->currentphone, $request->newemail, $this->getinfo->getDataUser());
+        $info = $user->changeEmail($request->currentemail, $request->currentphone, $request->newemail, $this->getinfo->getIP());
         return redirect()->route('change-email')->with($info);
     }
 
     public function changePhone()
     {
-        return view('clients.changePhone')->with($this->getinfo->getDataUser());
+        return view('clients.changePhone2')->with($this->getinfo->getDataUser());
     }
 
     public function postChangePhone(Request $request)
@@ -119,7 +119,11 @@ class ClientChangeController extends Controller
         ];
         $request->validate($rule, $message);
         $user = new Account();
-        $info = $user->changePhone($request->currentemail, $request->currentphone, $request->newphone, $this->getinfo->getDataUser());
+        $info = $user->changePhone($request->currentemail, $request->currentphone, $request->newphone, $this->getinfo->getIP());
         return redirect()->route('change-phone')->with($info);
+    }
+
+    public function updateAccount(){
+        return view('clients.updateaccount')->with($this->getinfo->getDataUser());
     }
 }

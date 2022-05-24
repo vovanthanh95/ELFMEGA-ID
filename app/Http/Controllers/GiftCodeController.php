@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\GetInfo;
+use App\Classes\SendMail;
 use App\Models\GiftCode;
 use App\Models\GiftLog;
 use App\Models\GiftMultipleCode;
@@ -44,6 +45,7 @@ class GiftCodeController extends Controller
         $giftmultiplecode = new GiftMultipleCode();
         $giftlog = new GiftLog();
         $historylog = new HistoryLog();
+        $sendmail = new SendMail();
 
         $serverid    = $request->session()->get('serverid');
         $username    = Auth::guard('client')->user()->username;
@@ -81,7 +83,7 @@ class GiftCodeController extends Controller
                             $addlog = $giftlog->addLogGift($code, $codeRes['giftcode'], $rid, $username, $serverid, 0);
                             if ($addlog == 1) {
                                 $return = 0;
-                                //addSendMail($codeRes['listgoods'], $loadrole['playerId'], $loadrole['currentServer'], $codeRes['title'], $codeRes['content']);
+                                //$sendmail->addSendMail($codeRes['listgoods'], $loadrole['playerId'], $loadrole['currentServer'], $codeRes['title'], $codeRes['content']);
                                 if ($return == 0) {
                                     $content = $code . "|" . $rid . "|" . $serverid;
                                     $historylog->createHistory($username, "GiftCode", $content);
@@ -113,7 +115,7 @@ class GiftCodeController extends Controller
                             $addlog = $giftlog->addLogGift($code, $codeRes['giftcode'], $rid, $username, $serverid, 1);
                             if ($addlog == 1) {
                                 $return = 0;
-                                //addSendMail($codeRes['listgoods'], $loadrole['playerId'], $loadrole['currentServer'], $codeRes['title'], $codeRes['content']);
+                                //$sendmail->addSendMail($codeRes['listgoods'], $loadrole['playerId'], $loadrole['currentServer'], $codeRes['title'], $codeRes['content']);
                                 if ($return == 0) {
                                     $content = $code . "|" . $rid . "|" . $serverid;
                                     $historylog->createHistory($username, "GiftCode", $content);

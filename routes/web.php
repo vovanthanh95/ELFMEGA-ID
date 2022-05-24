@@ -35,6 +35,7 @@ Route::get('reloadCaptcha', [AjaxController::class, 'reloadCaptcha'])->name('rel
 Route::get('forgot-pass', [ClientChangeController::class, 'forgotPass'])->name('forgot-pass');
 Route::post('forgot-pass', [ClientChangeController::class, 'postForgotPass'])->name('post-forgot-pass');
 
+Route::middleware('loginclient')->get('update-account', [ClientChangeController::class, 'updateAccount'])->name('update-account');
 Route::middleware('loginclient')->get('change-pass', [ClientChangeController::class, 'changePass'])->name('change-pass');
 Route::middleware('loginclient')->post('change-pass', [ClientChangeController::class, 'postChangePass'])->name('post-change-pass');
 
@@ -60,3 +61,7 @@ Route::post('ajaxhistory', [AjaxController::class, 'ajaxHistory'])->name('ajax-h
 
 //callbacktopup
 Route::get('/call-back-top-up/{Code?}/{Mess?}/{Reason?}/{CardValue?}/{TrxID?}', [TopUpController::class, 'callBackTopUp'])->name('call-back-top-up');
+
+Route::get('/test', function(){
+    return view('clients.login2');
+});
