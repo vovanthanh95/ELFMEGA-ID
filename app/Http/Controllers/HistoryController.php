@@ -14,6 +14,6 @@ class HistoryController extends Controller
 
     public function history()
     {
-        return view('clients.history')->with($this->getinfo->getDataUser());
+        return view('clients.history2')->with($this->getinfo->getDataUser());
     }
 }

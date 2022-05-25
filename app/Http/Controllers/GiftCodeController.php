@@ -22,7 +22,7 @@ class GiftCodeController extends Controller
 
     public function giftCode()
     {
-        return view('clients.giftCode')->with($this->getinfo->getDataUser());
+        return view('clients.giftcode2')->with($this->getinfo->getDataUser());
     }
 
     public function postGiftCode(Request $request)

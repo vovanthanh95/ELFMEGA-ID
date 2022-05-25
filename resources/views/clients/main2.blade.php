@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>GGames - Kết Nối Game Thủ</title>
+    <title>{{config('custom.namegame')}}-{{config('custom.namewebsite')}}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="icon" href="{{ asset('assets/favicon.ico')}}" type="image/x-icon">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css2/custom.css?t=1.00') }}">
     <script src="{{ asset('assets/js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/sweetalert.all.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/jquery.paginate.js') }}" type="text/javascript"></script>
 </head>
 
 <body>
@@ -28,14 +29,16 @@
                                 </button>
                                 <a class="navbar-brand icons-logo t-icons-logo" href="{{route('account')}}"
                                     title="Game">
-                                    <img src="{{ asset('assets/images2/logo-small.png?t=1.00') }}"
+                                    <img style="width: 15%;margin-left:3rem;" src="{{ asset('assets/images2/logo-small.png?t=1.00') }}"
                                         class="hidden-lg hidden-md hidden-sm">
-                                    <img src="{{ asset('assets/images2/logo.png?t=1.00') }}" class="hidden-xs">
+                                    <img style="width: 5%;" src="{{ asset('assets/images2/logo.png?t=1.00') }}" class="hidden-xs">
                                 </a>
                                 <div class="pull-right pt5 pb5">
+                                    @if (Auth::guard('client')->check())
                                     <p class="info">
                                         <a href="{{route('logout')}}">{{__('message.logout')}}</a>
                                     </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

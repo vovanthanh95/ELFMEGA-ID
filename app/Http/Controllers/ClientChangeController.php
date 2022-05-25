@@ -16,7 +16,7 @@ class ClientChangeController extends Controller
 
     public function forgotPass()
     {
-        return view('clients.forgotPass');
+        return view('clients.forgotpass2');
     }
 
     public function postForgotPass(Request $request)
@@ -45,7 +45,7 @@ class ClientChangeController extends Controller
     public function changePass()
     {
 
-        return view('clients.changePass')->with($this->getinfo->getDataUser());
+        return view('clients.changepass2')->with($this->getinfo->getDataUser());
     }
 
     public function postChangePass(Request $request)
@@ -53,11 +53,14 @@ class ClientChangeController extends Controller
         $rule = [
             'currentpassword' => 'required',
             'newpassword' => 'required|different:currentpassword',
+            'confirmpassword' => 'required|same:newpassword',
         ];
         $message = [
             'currentpassword.required' => 'Mật khẩu không được trống',
             'newpassword.required' => 'Mật khẩu không được trống',
             'newpassword.different' => 'Không được trùng mật khẩu củ',
+            'confirmpassword.required' => 'Vui lòng xác nhận mật khẩu',
+            'confirmpassword.same' => 'Mật khẩu xác nhận không khớp',
         ];
         $request->validate($rule, $message);
         $user = new Account();

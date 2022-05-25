@@ -25,7 +25,7 @@ class TopUpController extends Controller
         $cardlog = new CardLog();
         $data = $cardlog->getAll();
         //dd($data->count());
-        return view('clients.topUp')->with($this->getinfo->getDataUser())->with(compact('data'));
+        return view('clients.historypayment')->with($this->getinfo->getDataUser())->with(compact('data'));
     }
 
     public function topUpVn()
@@ -33,7 +33,7 @@ class TopUpController extends Controller
         $ad = new AdminPanel();
         $getpromotion     = $ad->getPromotion('tlkmnapthe');
         $valuepromotion = $getpromotion['valuepromotion'];
-        return view('clients.topUpVn')->with($this->getinfo->getDataUser())->with('getpromotion',$valuepromotion);
+        return view('clients.topupvn2')->with($this->getinfo->getDataUser())->with('getpromotion',$valuepromotion);
     }
 
     public function postTopUpVn(Request $request)
@@ -190,6 +190,6 @@ class TopUpController extends Controller
 
     public function topUpMoMo()
     {
-        return view('clients.topUpMoMo')->with($this->getinfo->getDataUser());
+        return view('clients.topupmomo2')->with($this->getinfo->getDataUser());
     }
 }
