@@ -74,3 +74,54 @@
     box-shadow:2px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+.nav-left-list li a i{
+    font-size: 135%;
+    margin-right: 10px
+}
+
+.nav-left-list li .card-body a span{
+    margin-left: 35px;
+}
+.nav-left-list li .card-body a{
+    border-bottom: 1px solid #626262;
+}
+
+.topbt{
+    border-bottom: 1px solid #626262;
+}
+
+
+.topup .row {
+    margin-top: 10px;
+}
+
+.topup .row p{
+    margin-top: 10px;
+}
+.xunhan{
+    text-align: center;
+}
+
+.captcha-img{
+    margin-top: -8px;
+}
+
+.btsm{
+    text-align: center;
+}
+
+.paginationjs-pages ul{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.paginationjs-pages ul li{
+    width: 30px;
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
+    color: #c23321;
+}
+
+.center{
+    text-align: center;
+}

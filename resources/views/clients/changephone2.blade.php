@@ -53,7 +53,9 @@
                                     placeholder="{{ __('message.newphone') }}">
                             </div>
                         </div>
-                        <button type="submit" class="btn bt-click">{{ __('message.changephone') }}</button>
+                        <div class="row btsm">
+                        <button type="submit" class="btn bt-click btsm">{{ __('message.changephone') }}</button>
+                        </div>
                     </form>
                 </div>
             </div>

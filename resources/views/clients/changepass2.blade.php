@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="box-submit">
-                            <div class="pull-left">
+                            <div class="row btsm">
                                 <button type="submit" class="btn bt-click">{{__('message.changepass')}}</button>
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\AppClientController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientAuthController;
 use App\Http\Controllers\ClientChangeController;
@@ -65,3 +66,10 @@ Route::get('/call-back-top-up/{Code?}/{Mess?}/{Reason?}/{CardValue?}/{TrxID?}', 
 Route::get('/test', function(){
     return view('clients.login2');
 });
+
+
+//app login
+Route::get('app-login', [AppClientController::class, 'login'])->name('app-login');
+Route::post('post-app-login', [AppClientController::class, 'postLogin'])->name('post-app-login');
+Route::get('app-register', [AppClientController::class, 'register'])->name('app-register');
+Route::post('post-app-register', [AppClientController::class, 'postRegister'])->name('post-app-register');

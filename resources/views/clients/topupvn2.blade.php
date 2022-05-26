@@ -6,7 +6,9 @@
             @include('clients.navbar')
             {{-- content --}}
             <div class="col-sm-8 col-md-8 col-lg-9 ">
-                <form action="{{ route('post-top-up-vn') }}" method="post" novalidate="novalidate">
+                <div class="boxinfo">
+                    <h3 class="title">{{ __('message.topup') }}</h3>
+                <form action="{{ route('post-top-up-vn') }}" method="post" novalidate="novalidate" class="topup">
                     @csrf
                     <input name="type" type="hidden" value="payVN">
                     <u><strong>Chú ý:</strong></u>
@@ -51,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row xunhan">
                         <button type="button" class="badge badge-pill badge-dark" id="selectedtype"></button>
                         <button type="button" class="btn btn-info">Xu Nhận: <span id="Xus1" style="margin-left: 10px;"
                                 class="badge badge-light">0</span> </button>
@@ -93,19 +95,20 @@
                                     name="captcha" type="text" value="{{ old('captcha') }}">
                             </div>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-2 captcha-img">
                                 <p id="refreshCaptcha">
                                     {!! captcha_img() !!}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row btsm">
                         <input type="submit" name="topup" id="submit"
                             class="btn bt-click"
                             value="{{ __('message.topup') }}">
                     </div>
                 </form>
+                </div>
             </div>
             {{-- end content --}}
         </div>

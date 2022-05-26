@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label for="u_address" class="col-sm-3 control-label">{{ __('message.createtime') }}:</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control " id="u_address" name="u_address"
+                                <input type="text" class="form-control " id="u_address" name="u_address" disabled
                                     placeholder="" value="{{ $createtime }}">
                             </div>
                         </div>
@@ -45,12 +45,12 @@
                             <label for="u_address" class="col-sm-3 control-label">{{ __('message.surplus') }}
                                 ({{ config('custom.namemoney') }}):</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control " id="u_address" name="u_address"
+                                <input type="text" class="form-control " id="u_address" name="u_address" disabled
                                     placeholder="" value="{{ $money }}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="pull-left">
+                            <div class="row btsm">
                                 <button type="submit" class="btn bt-click">{{ __('message.update') }}</button>
                             </div>
                         </div>

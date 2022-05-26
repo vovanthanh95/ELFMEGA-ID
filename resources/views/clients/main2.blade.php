@@ -11,6 +11,7 @@
     <script src="{{ asset('assets/js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/sweetalert.all.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/jquery.paginate.js') }}" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -53,25 +54,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
-                        <div class="pull-left text-left">
-                            <p>Một sản phẩm của Thiên Hà Game </p>
-                            <ul class="t-footer__link">
-                                <li><a href="#">Giới thiệu</a></li>
-                                <li><a href="https://ggames.vn/dieu-khoan-su-dung.html" target="_blank">Điều khoản sử
-                                        dụng</a></li>
-                                <li><a href="#">Q&amp;A</a></li>
-                                <li><a href="#">Góp ý</a></li>
-                            </ul>
-                        </div>
-                        <div class="pull-right">
-                            <p class="text-right">Thông tin ICP<br>
-                                CÔNG TY TNHH TRỰC TUYẾN THIÊN HÀ<br>
-                                Địa chỉ: 497/12 Nguyễn Văn Khối, Phường 8, Quận Gò Vấp, TP. Hồ Chí Minh<br>
-                                Điện thoại: 02862713680 - Email: <a
-                                    href="mailto:hotro@ggames.vn">hotro@ggames.vn</a><br>
-                                Số giấy G1: 255/GP-BTTTT - Ngày cấp: 24/06/2019 - Nơi cấp: Bộ Thông tin và Truyền
-                                thông<br>
-                            </p>
+                        <div class="company_title">
+                            <a href="{{route('account')}}" style="color:#ccc">{{config('custom.namegame')}}</a><br />Server Time <span id="localTime"></span>
                         </div>
                     </div>
                 </div>
@@ -87,6 +71,14 @@
     <script src="{{ asset('assets/js2/common.js?t=1.00') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js2/libs/md5.js?t=1.00') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js2/account.js?t=1.00') }}"></script>
+    <script src="{{ asset('assets/js2/pagination.min.js') }}"></script>
+    <script>
+        var x = setInterval(function() {
+            var now = new Date();
+            document.getElementById("localTime").innerHTML = now.toLocaleDateString() + "-" + now.toTimeString();
+
+        }, 1000);
+    </script>
 
 {{-- thông báo --}}
     @if (session()->has('msg') && session()->has('type'))
