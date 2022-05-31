@@ -52,15 +52,20 @@
                                     done(result);
                                 },
                                 pageSize: 5,
-                                className: 'paginationjs-theme-blue paginationjs-small',
+                                pageNumber: page,
                                 afterPageOnClick: function(event, pageNumber) {
                                     console.log(pageNumber);
-                                    inquire(pageNumber);
+                                   inquire(pageNumber);
                                 },
                                 afterNextOnClick:function(event, pageNumber){
                                     console.log(pageNumber);
                                     inquire(pageNumber);
+                                },
+                                afterPreviousOnClick: function(event, pageNumber){
+                                    console.log(pageNumber);
+                                    inquire(pageNumber);
                                 }
+
                                 // items: totalpage,
                                 // itemOnPage: totalitem,
                                 // currentPage: page,

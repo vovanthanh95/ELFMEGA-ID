@@ -13,7 +13,7 @@ class TPlayer extends Model
     protected $table = "t_player";
     public $timestamps = false;
     protected $primaryKey = 'playerId';
-    protected $connection = 'mysql2';
+    //protected $connection = 'mysql2';
     protected $fillable = [
         'playerId',
         'accountUid',
@@ -25,21 +25,21 @@ class TPlayer extends Model
         'currentServer',
     ];
 
-    public function showRole($username = 'toaigvm')
+    public function showRole($username, $connection)
     {
-        $data = TPlayer::select('playerId', 'accountId', 'name')
+        $data = TPlayer::setConnection($connection)->select('playerId', 'accountId', 'name')
             ->join('t_account', 't_player.accountUid', '=', 't_account.uid')
             ->where('accountId', '=', $username)
             ->get();
-            if ($data != null) {
-                return $data->toArray();
-            }
-            return 0;
+        if ($data != null) {
+            return $data->toArray();
+        }
+        return 0;
     }
 
-    public function loadRole($username = 'toaigvm', $rid = '542776504867')
+    public function loadRole($username, $rid, $connection)
     {
-        $data = TPlayer::select('playerId', 't_player.currentServer', 'accountId', 'name')
+        $data = TPlayer::setConnection($connection)->select('playerId', 't_player.currentServer', 'accountId', 'name')
             ->join('t_account', 't_player.accountUid', '=', 't_account.uid')
             ->where('accountId', '=', $username)
             ->where('playerId', '=', $rid)

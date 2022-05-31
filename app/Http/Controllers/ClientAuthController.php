@@ -51,10 +51,10 @@ class ClientAuthController extends Controller
     public function postRegister(Request $request)
     {
         $rule = [
-            'username' => 'required|max:16|min:6|unique:Account,username|regex:/^[a-zA-Z0-9_]+$/i',
-            'password' => 'required',
-            'email' => 'required|email|unique:Account,email',
-            'phone' => 'required|digits_between:10,11|unique:Account,phone|numeric',
+            'username' => 'required|max:16|min:6|unique:account,username|regex:/^[a-zA-Z0-9_]+$/i',
+            'password' => 'required|max:32|min:6|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,32}$/i',
+            'email' => 'required|email|unique:account,email',
+            'phone' => 'required|digits_between:10,11|unique:account,phone|numeric',
             'captcha' => 'required|captcha',
         ];
         $message = [
@@ -64,6 +64,9 @@ class ClientAuthController extends Controller
             'username.max' => 'Tên đăng nhập phải nhỏ hơn 16 kí tự',
             'username.unique' => 'Tên đăng nhập đã tồn tại',
             'password.required' => 'Mật khẩu không được trống',
+            'password.max' => 'Mật khẩu không được lớn hown32 kí tự',
+            'password.min' => 'Mật khẩu không được nhỏ hơn 6 kí tự',
+            'password.regex' => 'Mật khẩu phải có chứa cả chữ và số',
             'email.required' => 'Email không được trống',
             'email.email' => 'Email không đúng',
             'email.unique' => 'Email đã tồn tại',
@@ -77,7 +80,7 @@ class ClientAuthController extends Controller
         ];
         $request->validate($rule, $message);
         $account = new Account();
-        $info = $account->createAccount($request->username, $request->password, $request->email, $request->phone, $this->getinfo->getIP());
+        $info = $account->createAccount($request->username, $request->password, $this->getinfo->getIP(), $request->email, $request->phone);
 
         return redirect()->route('login')->with($info);
     }

@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AppClientController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientAuthController;
 use App\Http\Controllers\ClientChangeController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\GiftCodeController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PayController;
 use App\Mail\ForgotPassEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -73,3 +75,15 @@ Route::get('app-login', [AppClientController::class, 'login'])->name('app-login'
 Route::post('post-app-login', [AppClientController::class, 'postLogin'])->name('post-app-login');
 Route::get('app-register', [AppClientController::class, 'register'])->name('app-register');
 Route::post('post-app-register', [AppClientController::class, 'postRegister'])->name('post-app-register');
+
+Route::get('test', [AjaxController::class, 'test'])->name('test');
+
+//pay
+Route::get('pay/{srv_id?}/{role_id?}/{money?}/{name?}/{productId?}', [PayController::class, 'pay'])->name('pay');
+
+//auth-app
+//pay
+Route::get('login-app/{usr?}/{pwd?}', [AuthController::class, 'login']);
+Route::get('register-app/{usr?}/{pwd?}', [AuthController::class, 'register']);
+
+

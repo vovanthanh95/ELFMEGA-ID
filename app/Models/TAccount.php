@@ -11,7 +11,7 @@ class TAccount extends Model
     protected $table = "t_account";
     public $timestamps = false;
     protected $primaryKey = 'uid';
-    protected $connection = 'mysql2';
+    //protected $connection = '1011';
     protected $fillable = [
         'uid',
         'accountId',

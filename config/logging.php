@@ -129,6 +129,11 @@ return [
             'path' => storage_path('logs/ipnerror.log'),
         ],
 
+        'pay' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/pay.log'),
+        ],
+
     ],
 
 ];

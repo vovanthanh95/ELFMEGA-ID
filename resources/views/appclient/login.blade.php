@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/appclient/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/appclient/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/appclient/style.css') }}">
-    <link rel="icon" type="image/png" href="https://id.baoboithanky.com/favicon.png">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images2/logo.png')}}">
     <script src="{{ asset('assets/appclient/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/appclient/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/appclient/bootstrap-dialog.js') }}"></script>
@@ -1679,7 +1679,12 @@
     <div style="padding: 15px;">
         <!-- Nav tabs -->
         <ul class="nav nav-pills" role="tablist" style="display: inline-block; margin-bottom: 15px">
-            <li role="presentation" class="active"><a href="{{ route('app-register') }}">Đăng ký</a></li>
+            <li role="presentation" class="appbtn"><a
+                    href="{{route('app-login')}}">Đăng nhập</a></li>
+        </ul>
+        <ul class="nav nav-pills" role="tablist" style="display: inline-block; margin-bottom: 15px">
+            <li role="presentation" ><a
+                    href="{{route('app-register')}}">Đăng ký</a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
@@ -1695,7 +1700,7 @@
                             value="" placeholder="Mật khẩu" class="form-control">
                     </div>
                     <div class="form-group margin">
-                        <input type="submit" name="login" class="submit" value="Đăng nhập">
+                        <input type="submit" name="login" class="submit appbtn" value="Đăng nhập">
                     </div>
                 </form>
             </div>

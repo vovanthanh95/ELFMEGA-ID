@@ -783,3 +783,13 @@ footer .social-icon a i {
         }
     }
 }
+
+.appbtn{
+    color: #fff;
+    background: linear-gradient(to bottom, #20adfb 0%, #068cd7 100%);
+    border-radius: 4px;
+}
+.appbtn a{
+    color: #fff;
+}
+

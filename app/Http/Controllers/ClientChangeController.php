@@ -99,7 +99,7 @@ class ClientChangeController extends Controller
 
     public function changePhone()
     {
-        return view('clients.changePhone2')->with($this->getinfo->getDataUser());
+        return view('clients.changephone2')->with($this->getinfo->getDataUser());
     }
 
     public function postChangePhone(Request $request)

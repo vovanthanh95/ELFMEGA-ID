@@ -67,7 +67,7 @@ class Account extends Authenticatable
         }
     }
 
-    public function createAccount($username, $password, $email, $phone, $ip)
+    public function createAccount($username, $password, $ip, $email = "", $phone = "")
     {
         $info = [];
         $this->username = $username;
@@ -86,6 +86,33 @@ class Account extends Authenticatable
             $info['msg'] = 'Đăng kí thất bại';
             $info['type'] = 'error';
         };
+        return $info;
+    }
+
+    public function createAccountApp($username, $password, $ip)
+    {
+        $info = [];
+        $this->username = $username;
+        $this->password3 = Hash::make($password);
+        $this->password2 = $this->encryptSecPwd($password);
+        $this->money = '0';
+        $this->status = '0';
+        $this->createtime = date("Y-m-d H:i:s");
+        $this->createip = $ip;
+        $user = Account::where(['username' => $username])->first();
+        if($user){
+            $info['msg'] = 'Tài khoản đã được sử dụng';
+            $info['code'] = '1';
+        }else{
+            if ($this->save()) {
+                $info['msg'] = 'Đăng ký tài khoản thành công';
+                $info['code'] = '0';
+            } else {
+                $info['msg'] = 'Lỗi đăng ký tài khoản';
+                $info['code'] = '1';
+            };
+        }
+
         return $info;
     }
 
@@ -182,20 +209,52 @@ class Account extends Authenticatable
         }
     }
 
-    public function getUserByUserName($username){
+    public function getUserByUserName($username)
+    {
         $data = Account::where('username', $username)->first();
-        if($data != null){
+        if ($data != null) {
             return $data->toArray();
-        }else{
+        } else {
             return $data;
         }
     }
 
-    public function updateMoneyTopUp($username, $moneynew){
+    public function updateMoneyTopUp($username, $moneynew)
+    {
         $data = Account::where('username', $username)->first();
-        if($data != null){
+        if ($data != null) {
             $data->money = $moneynew;
             $data->save();
+        }
+    }
+    public function getCoin($username)
+    {
+        $data = Account::where('username', $username)->first();
+        if ($data != null) {
+            return $data->toArray()['money'];
+        } else {
+            return 0;
+        }
+    }
+    public function setCoin($username, $money){
+        $data = Account::where('username', $username)->first();
+        if ($data != null) {
+            $data->money = $money;
+            $data->save();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function setMoneySumMoney($username, $money){
+        $data = Account::where('username', $username)->first();
+        if ($data != null) {
+            $data->money += $money;
+            $data->summoney += $money;
+            $data->save();
+            return true;
+        } else {
+            return false;
         }
     }
     //-----------------------------------------------------------------------------------------------------------//

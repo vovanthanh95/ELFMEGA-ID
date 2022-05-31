@@ -117,10 +117,19 @@
 }
 .paginationjs-pages ul li{
     width: 30px;
-    background-color: rgb(255, 255, 255);
+    border: 1px solid #289de9;
     margin: 5px;
-    color: #c23321;
+    color: #000508;
 }
+.paginationjs-pages ul .active{
+   background-color: #289de9;
+   color: #fdfdfd !important;
+}
+
+.paginationjs-pages ul .active a{
+    background-color: #289de9;
+    color: #fdfdfd;
+ }
 
 .center{
     text-align: center;

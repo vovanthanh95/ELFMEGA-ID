@@ -5,7 +5,7 @@
     <title>{{config('custom.namegame')}}-{{config('custom.namewebsite')}}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="icon" href="{{ asset('assets/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images2/logo.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/css2/style.css?t=1.00') }}">
     <link rel="stylesheet" href="{{ asset('assets/css2/custom.css?t=1.00') }}">
     <script src="{{ asset('assets/js/jquery.min.js') }}" type="text/javascript"></script>
