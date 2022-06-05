@@ -116,11 +116,11 @@ class Account extends Authenticatable
         return $info;
     }
 
-    public function changeEmail($email, $phone, $newemail, $ip)
+    public function changeEmail($email, $newemail, $ip)
     {
         $info = [];
         $history = new HistoryLog();
-        $userchange = Account::where(['email' => $email, 'phone' => $phone])->first();
+        $userchange = Account::where(['email' => $email])->first();
         if ($userchange) {
             $userchange->email = $newemail;
             $user = Auth::guard('client')->user()->username;
@@ -136,10 +136,10 @@ class Account extends Authenticatable
         }
     }
 
-    public function changePhone($email, $phone, $newphone, $ip)
+    public function changePhone($phone, $newphone, $ip)
     {
         $info = [];
-        $userchange = Account::where(['email' => $email, 'phone' => $phone])->first();
+        $userchange = Account::where(['phone' => $phone])->first();
         if ($userchange) {
             $userchange->phone = $newphone;
             $history = new HistoryLog();

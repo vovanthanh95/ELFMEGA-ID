@@ -9,7 +9,7 @@
                 <div class="boxinfo">
                     <h3 class="title">{{ __('message.giftcode') }}</h3>
                     <div class="payment-body main_df_bt">
-                            <form action="{{ route('post-gift-code') }}" method="post" novalidate="novalidate">
+                            <form action="{{ route('post-gift-code') }}" method="post" novalidate="novalidate" style="width: 100%;">
                                 @csrf
                                 <div class="row">
                                     <div class="form-group">
@@ -35,15 +35,15 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <p for="v_email" class="col-sm-3 control-label">
-                                            {{ __('message.captcha') }}:</p>
+                                            {{-- {{ __('message.captcha') }}:</p> --}}
                                         <div class="col-sm-5">
-                                            <input id="captcha" class="form-control" required autocomplete="off"
-                                                name="captcha" type="text" value="">
+                                            {{-- <input id="captcha" class="form-control" required autocomplete="off"
+                                                name="captcha" type="text" value=""> --}}
                                         </div>
                                         <div class="col-sm-4">
-                                            <p id="refreshCaptcha">
+                                            {{-- <p id="refreshCaptcha">
                                                 {!! captcha_img() !!}
-                                            </p>
+                                            </p> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -105,8 +105,10 @@
                 </script>
 
                 <script>
+                    int i = 0;
                     $(document).ready(function() {
                         $('#refreshCaptcha').click(function(e) {
+                            i++;
                             e.preventDefault();
                             $.ajax({
                                 type: 'GET',
@@ -115,6 +117,7 @@
                                     $('#refreshCaptcha').html(result.captcha);
                                 },
                             });
+                            console.log(i);
                         });
                     });
                 </script>

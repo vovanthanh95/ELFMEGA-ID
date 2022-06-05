@@ -3,6 +3,7 @@
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AppClientController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckOnlineController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientAuthController;
 use App\Http\Controllers\ClientChangeController;
@@ -86,4 +87,5 @@ Route::get('pay/{srv_id?}/{role_id?}/{money?}/{name?}/{productId?}', [PayControl
 Route::get('login-app/{usr?}/{pwd?}', [AuthController::class, 'login']);
 Route::get('register-app/{usr?}/{pwd?}', [AuthController::class, 'register']);
 
-
+// check online
+Route::get('checkonline/{num?}/{svr?}', [CheckOnlineController::class, 'index']);

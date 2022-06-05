@@ -13,7 +13,7 @@
                         @csrf
                         <div class="errors_alert">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="v_email" class="col-sm-3 control-label">{{ __('message.currentemail') }}:</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control " id="v_email" name="currentemail"
@@ -28,7 +28,7 @@
                                         @endif
                                 </i></p>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="v_confirmemail" class="col-sm-3 control-label">{{ __('message.currentphone') }}:</label>
                             <div class="col-sm-6">

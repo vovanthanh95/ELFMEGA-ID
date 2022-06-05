@@ -30,13 +30,13 @@ class GiftCodeController extends Controller
         $rule = [
             'code' => 'required',
             'rid' => 'required|numeric',
-            'captcha' => 'required|captcha',
+            //'captcha' => 'required|captcha',
         ];
         $message = [
             'code.required' => 'Vui lòng nhập giftcode',
             'rid.numeric' => 'vui lòng chọn nhân vật',
-            'captcha.required' => 'Captcha không được trống',
-            'captcha.captcha' => 'Captcha không đúng',
+            //'captcha.required' => 'Captcha không được trống',
+            //'captcha.captcha' => 'Captcha không đúng',
         ];
         $request->validate($rule, $message);
 
