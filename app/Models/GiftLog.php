@@ -13,11 +13,12 @@ class GiftLog extends Model
     protected $table = "gift_log";
     public $timestamps = false;
 
-    public function checkLogCodeRid($giftcode = '3QBADAO', $rid = '0', $username = 'toaigvm')
+    public function checkLogCodeRid($giftcode, $rid, $username)
     {
         $data = GiftLog::select('id')
             ->where('giftcode', '=', $giftcode)
             ->where('username', '=', $username)
+            ->where('rid', '=', $rid)
             ->limit(1)->get()->toArray();
         if (!empty($data)) {
             return 1;
@@ -25,7 +26,7 @@ class GiftLog extends Model
         return 0;
     }
 
-    public function checkLogCodeRidAll($giftcode, $rid = "0", $username, $serverid)
+    public function checkLogCodeRidAll($giftcode, $rid, $username, $serverid)
     {
         $data = GiftLog::select('id')
             ->where('giftcode', '=', $giftcode)
@@ -40,7 +41,6 @@ class GiftLog extends Model
 
     public function addLogGift($code, $giftcode, $rid, $username, $serverid, $ismuti)
     {
-        global $conn_web;
         $log = new GiftLog();
         $log->rid = $rid;
         $log->giftcode = $giftcode;

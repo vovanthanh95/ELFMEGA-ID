@@ -61,13 +61,11 @@ class GiftCodeController extends Controller
             $codeRes = $checkGiftCode;
         }
         $checkMutiGiftCode = $giftmultiplecode->checkMutiGiftCode($code);
-        //dd($checkMutiGiftCode);
         if ($checkMutiGiftCode != 0) {
             $codeRes = $giftcode->checkGiftCode($checkMutiGiftCode['giftcode']);
         }
-        // dd($codeRes);
         if ($codeRes) {
-
+            //dd($codeRes);
             if (date("Y-m-d H:i:s") > $codeRes['start'] and date("Y-m-d H:i:s") < $codeRes['end']) {
                 if ($codeRes['serverid'] > 0 && $serverid != $codeRes['serverid']) {
                     $info['type'] = 'error';
@@ -83,7 +81,7 @@ class GiftCodeController extends Controller
                             $addlog = $giftlog->addLogGift($code, $codeRes['giftcode'], $rid, $username, $serverid, 0);
                             if ($addlog == 1) {
                                 $return = 0;
-                                //$sendmail->addSendMail($codeRes['listgoods'], $loadrole['playerId'], $loadrole['currentServer'], $codeRes['title'], $codeRes['content']);
+                               // $sendmail->addSendMail($codeRes['listgoods'], $loadrole['playerId'], $loadrole['currentServer'], $codeRes['title'], $codeRes['content']);
                                 if ($return == 0) {
                                     $content = $code . "|" . $rid . "|" . $serverid;
                                     $historylog->createHistory($username, "GiftCode", $content);
@@ -99,18 +97,16 @@ class GiftCodeController extends Controller
                             }
                         }
                     } else {
-                        $checkIsMutiCode = $giftmultiplecode->checkIsMutiCode($codeRes['giftcode'], $code, $username);
-                        $loggift = $giftmultiplecode->checkLogMutiCodeRid($codeRes['giftcode'], $loadrole['playerId'], $username);
+                        $checkUsed = $giftmultiplecode->checkIsUsed($codeRes['giftcode'], $code);
+                        $loggift = $giftmultiplecode->checkLogMutiCodeRid($codeRes['giftcode'], $code, $loadrole['playerId'], $username);
                         $loggift2 = $giftlog->checkLogCodeRid($codeRes['giftcode'], $loadrole['playerId'], $username);
-                        if ($checkIsMutiCode == 0) {
+                        //dd($codeRes);
+                        if ($checkUsed == 0 || $loggift2 == 1) {
                             $info['type'] = 'error';
-                            $info['msg'] = __('message.giftcodehasexpired');
+                            $info['msg'] = __('message.giftcodehasbeenused');
                         } else if ($loggift == 1) {
                             $info['type'] = 'error';
-                            $info['msg'] = __('message.giftcodehasbeenused');
-                        } else if ($loggift2 == 1) {
-                            $info['type'] = 'error';
-                            $info['msg'] = __('message.giftcodehasbeenused');
+                            $info['msg'] = __('message.onetimeuse');
                         } else {
                             $addlog = $giftlog->addLogGift($code, $codeRes['giftcode'], $rid, $username, $serverid, 1);
                             if ($addlog == 1) {

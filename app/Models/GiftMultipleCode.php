@@ -10,15 +10,19 @@ class GiftMultipleCode extends Model
     use HasFactory;
     protected $table = "gift_multiple_code";
     public $timestamps = false;
+    protected $primaryKey = 'code';
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $fillable = [
         'status', 'username', 'rid', 'serverid', 'time'
     ];
 
-    public function checkLogMutiCodeRid($giftcode = 'LOANTINS3', $rid = '0', $username = 'davidchonb')
+    public function checkLogMutiCodeRid($giftcode, $code, $rid, $username)
     {
         $data = GiftMultipleCode::select('code')
             ->where('giftcode', '=', $giftcode)
             ->where('status', '=', 1)
+            ->where('rid', '=', $rid)
             ->where('username', '=', $username)
             ->limit(1)->get()->toArray();
         if (!empty($data)) {
@@ -27,7 +31,7 @@ class GiftMultipleCode extends Model
         return 0;
     }
 
-    public function checkIsMutiCode($giftcode = 'LOANTINS3', $code = '12KYWITZT')
+    public function checkIsUsed($giftcode, $code)
     {
         $data = GiftMultipleCode::select('code')
             ->where('giftcode', '=', $giftcode)
@@ -40,7 +44,7 @@ class GiftMultipleCode extends Model
         return 0;
     }
 
-    public function checkMutiGiftCode($code = '1389YY7GWS')
+    public function checkMutiGiftCode($code)
     {
         $data = GiftMultipleCode::select('code', 'giftcode', 'status')
             ->where('code', '=', $code)
@@ -48,8 +52,9 @@ class GiftMultipleCode extends Model
             ->limit(1)->get()->toArray();
         if (!empty($data)) {
             return $data[0];
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     public function addLogMutiGift($code, $giftcode, $rid, $username, $serverid, $ismuti)
