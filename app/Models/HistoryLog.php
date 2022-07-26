@@ -61,36 +61,36 @@ class HistoryLog extends Authenticatable
                 if ($value['status'] == 1) {
                     $status = '<font color="#3079ed">' . __('message.success') . '</font>';
                 } else if ($value['status'] == 2) {
-                    $status = '<font color="red">' . __('message.invalidcardcode') . '</font>';
+                    $status = '<font color="#0515f5">' . __('message.invalidcardcode') . '</font>';
                 } else if ($value['status'] == 3) {
-                    $status = '<font color="red">' . __('message.errorofloadingcardvalue') . '</font>';
+                    $status = '<font color="#0515f5">' . __('message.errorofloadingcardvalue') . '</font>';
                 } else if ($value['status'] == 4) {
-                    $status = '<font color="red">' . __('message.theserverisundermaintenance') . '</font>';
+                    $status = '<font color="#0515f5">' . __('message.theserverisundermaintenance') . '</font>';
                 } else if ($value['status'] == 5) {
-                    $status = '<font color="red">' . __('message.cardused') . '</font>';
+                    $status = '<font color="#0515f5">' . __('message.cardused') . '</font>';
                 } else if ($value['status'] == 0) {
                     $status = '<font color="blue">' . __('message.waitingforprogressing') . '</font>';
                 } else {
-                    $status = '<font color="red">' . __('message.theserverisempty') . '</font>';
+                    $status = '<font color="#0515f5">' . __('message.theserverisempty') . '</font>';
                 }
                 $content = "";
                 $type = "";
                 switch ($value['type']) {
                     case "PrepaidCard":
                         $type = __('message.topup');
-                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . __('message.historymsg3') . " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
+                        $content = __('message.historymsg1') . " <span style='color:#0515f5'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . __('message.historymsg3') . " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
                         break;
                     case "MOMO":
                         $type =  __('message.topup');
-                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . $__('message.historymsg3'). " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
+                        $content = __('message.historymsg1') . " <span style='color:#0515f5'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . $__('message.historymsg3'). " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
                         break;
                     case "ATM":
                         $type =  __('message.topup');
-                        $content = __('message.historymsg1') . " <span style='color:red'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . __('message.historymsg3') . " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
+                        $content = __('message.historymsg1') . " <span style='color:#0515f5'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . __('message.historymsg3') . " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
                         break;
                     case "Recharge":
                         $type =  __('message.recharge');
-                        $content = __('message.historymsg4') . " <span style='color:red'>" . $array[1] . "</span> " . __('message.historymsg5') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . config('custom.namemoney');
+                        $content = __('message.historymsg4') . " <span style='color:#0515f5'>" . $array[1] . "</span> " . __('message.historymsg5') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . config('custom.namemoney');
                         break;
                     case "ChangePass":
                         $type =  __('message.changepass');
@@ -114,7 +114,7 @@ class HistoryLog extends Authenticatable
                         break;
                     case "GiftCode":
                         $type = __('message.giftcode');
-                        $content = __('message.receivedsuccessfullygiftcode') . " <span style='color:red'>" . $array[0] . "</span>";
+                        $content = __('message.receivedsuccessfullygiftcode') . " <span style='color:#f13d56'>" . $array[0] . "</span>";
                         break;
                     case "RechargeGift":
                         $type = __('message.event');
@@ -126,7 +126,7 @@ class HistoryLog extends Authenticatable
                         break;
                     case "BuyProduct":
                         $type = __('message.buypackages');
-                        $content = __('message.successfulpurchaseofthepackage') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . config('custom.namemoney');
+                        $content = __('message.successfulpurchaseofthepackage') . " <span style='color:#f13d56'>" . number_format($array[2]) . "</span> " . config('custom.namemoney');
                         break;
                     case "TMT":
                         $type = __('message.topup');
@@ -138,12 +138,12 @@ class HistoryLog extends Authenticatable
                         break;
                 }
                 $table .= '
-        	<div class="list-data-content txn">
-        		<div class="col-xs-4 order-left-content">
+        	<div class="list-data-content txn row">
+        		<div class="col-4 order-left-content">
         			<p><span class="blue">' . $type . '</span></p>
         			<p>' . date('H:i d/m/y', strtotime($value['time'])) . '</p>
         		</div>
-        		<div class="col-xs-8">
+        		<div class="col-8">
         			<p class="text-right "><span class="blue">' . $content . '</span></p>
         		</div>
         		<div class="clearfix"></div>

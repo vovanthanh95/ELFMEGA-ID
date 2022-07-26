@@ -41,25 +41,13 @@ class Account extends Authenticatable
         $info = [];
         $user_bcrypt = Account::where('username', $username)
             ->first();
-        $user_md5 = Account::where('username', $username)
-            ->where('password', md5($password))
-            ->first();
-        if ($user_bcrypt != null && Hash::check($password, $user_bcrypt->password3)) {
+        if ($user_bcrypt != null && Hash::check($password, $user_bcrypt->password)) {
             if ($user_bcrypt->status != 0) {
                 $info['msg'] = 'Tài khoản bị khóa';
                 $info['type'] = 'error';
                 return $info;
             }
             Auth::guard('client')->login($user_bcrypt);
-        } elseif ($user_md5 != null) {
-            if ($user_md5->status != 0) {
-                $info['msg'] = 'Tài khoản bị khóa';
-                $info['type'] = 'error';
-                return $info;
-            }
-            $user_md5->password3 = Hash::make($password);
-            $user_md5->save();
-            Auth::guard('client')->login($user_md5);
         } else {
             $info['msg'] = 'Tên hoặc mật khẩu chưa đúng';
             $info['type'] = 'error';
@@ -93,7 +81,7 @@ class Account extends Authenticatable
     {
         $info = [];
         $this->username = $username;
-        $this->password3 = Hash::make($password);
+        $this->password = Hash::make($password);
         $this->password2 = $this->encryptSecPwd($password);
         $this->money = '0';
         $this->status = '0';
@@ -136,6 +124,48 @@ class Account extends Authenticatable
         }
     }
 
+    public function updateEmail($email, $ip)
+    {
+        $info = [];
+        $history = new HistoryLog();
+        $user = Auth::guard('client')->user()->username;
+        $userchange = Account::where(['username' => $user])->first();
+        if ($userchange) {
+            $userchange->email = $email;
+            $user = Auth::guard('client')->user()->username;
+            if ($userchange->save() && $history->createHistory($user, "Cập nhật Email", $ip)) {
+                $info['msg'] = 'Cập nhật Email thành công';
+                $info['type'] = 'success';
+                return $info;
+            }
+        } else {
+            $info['msg'] = 'Email không đúng';
+            $info['type'] = 'error';
+            return $info;
+        }
+    }
+
+    public function updatePhone($phone, $ip)
+    {
+        $info = [];
+        $history = new HistoryLog();
+        $user = Auth::guard('client')->user()->username;
+        $userchange = Account::where(['username' => $user])->first();
+        if ($userchange) {
+            $userchange->phone = $phone;
+            $user = Auth::guard('client')->user()->username;
+            if ($userchange->save() && $history->createHistory($user, "Cập nhật SĐT", $ip)) {
+                $info['msg'] = 'Cập nhật SĐT thành công';
+                $info['type'] = 'success';
+                return $info;
+            }
+        } else {
+            $info['msg'] = 'SĐT không đúng';
+            $info['type'] = 'error';
+            return $info;
+        }
+    }
+
     public function changePhone($phone, $newphone, $ip)
     {
         $info = [];
@@ -160,14 +190,13 @@ class Account extends Authenticatable
     {
         $info = [];
         $userchange = Account::where(['username' => Auth::guard('client')->user()->username])->first();
-        if ($userchange && Hash::check($password, $userchange->password3)) {
-            $userchange->password3 = Hash::make($newpassword);
-            $userchange->password = "";
+        if ($userchange && Hash::check($password, $userchange->password)) {
+            $userchange->password = Hash::make($newpassword);
             $userchange->password2 = $this->encryptSecPwd($newpassword);
             $history = new HistoryLog();
             $user = Auth::guard('client')->user()->username;
             if ($userchange->save() && $history->createHistory($user, "ChangePass", $ip)) {
-                $info['msg'] = 'Đổi số mật khẩu thành công';
+                $info['msg'] = 'Đổi mật khẩu thành công';
                 $info['type'] = 'success';
                 return $info;
             }
@@ -185,11 +214,11 @@ class Account extends Authenticatable
         //dd($user);
         if ($user != null) {
             $newpass = random_int(0000000, 9999999);
-            $user->password3 = Hash::make($newpass);
+            $user->password = Hash::make($newpass);
             $user->password2 = $this->encryptSecPwd(strval($newpass));
             $history = new HistoryLog();
             if ($user->save() && $history->createHistory($username, "ForgotPass", $ip)) {
-                $info['msg'] = 'Hãy kiểm tra password ở email đã đăng ký';
+                $info['msg'] = 'Hãy kiểm tra mật khẩu ở Email đã đăng ký \\n(Chú ý trong hộp thư rác)';
                 $info['type'] = 'success';
                 $details = [
                     'username' => $username,

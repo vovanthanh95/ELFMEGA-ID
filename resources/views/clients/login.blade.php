@@ -1,69 +1,40 @@
-@extends('clients.main')
+@extends('clients.main-login-fogot')
 @section('content')
-    <div class="payment-body main_df_bt">
-        <section class="bg_title">
-            <div class="box-title__text text-center">{{__('message.login')}}</div>
-        </section>
-        <div class="loginmodal-container">
-            <div class="conten_login">
-                <div class="bk-form-login">
-                    <form action="{{ route('post-login') }}" method="post" novalidate="novalidate">
+    <section class="login-section">
+        <div class="box-container" style="  box-shadow:0 0px 40px rgba(0, 0, 0, 0.17)">
+            <div class="login-container">
+                <div class="login-content">
+                    <div class="login-header">
+                        <img src="{{ asset('assets/img/icon_logo.png') }}" alt="" class="login-logo">
+                    </div>
+                    <form action="{{ route('post-login') }}" method="POST">
                         @csrf
-                        <div class="col-md-12">
-                            <div class="row">
-                                <input id="login" required autofocus autocomplete="off" name="username" type="text"
-                                    value="">
-                                <label for="login" alt="{{__('message.username')}}" placeholder="{{__('message.username')}}"></label>
+                        <div class="login-body">
+                            <div class="row input-mg" style="margin-bottom: 20px;">
+                                <input name="username" class="col-md-12 form-control input-forget" type="text" placeholder="Tên đăng nhập" value="{{ old('username') }}" style="height: 40px;">
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <input id="password" required autocomplete="off" name="password" type="password" value="">
-                                <label for="password" alt="{{__('message.password')}}" placeholder="{{__('message.password')}}"></label>
+                            <div class="row input-mg">
+                                <input name="password" class="col-12 form-control input-forget" type="password" placeholder="Mật khẩu" value="" style="height: 40px;">
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <select class="select-list" name="serverid" id="serverid">
-                                    <option>{{__('message.selectserver')}}</option>
-                                    @foreach (config('custom.zonelist') as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="login-forget">
+                                <a id="forget-pass" href="{{ route('forgot-pass') }}">Quên mật
+                                    khẩu?</a>
                             </div>
-                        </div>
-                        <div class="col-md-12 col-xs-12 col-sm-12">
-                            <div class="row">
-                                <div class="col-md-12 col-xs-12 col-sm-12">
-                                    <div class="row">
-                                        <input type="submit" name="login"
-                                            class="login loginmodal-submit pull-left col-md-12" value="{{__('message.login')}}">
-                                    </div>
-                                </div>
+                            <div class="login-button">
+                                <style>
+                                    .btn-green {
+                                        margin-right: 0px !important
+                                    }
+                                </style>
+                                <button type="submit" class="btn-green core-btn">ĐĂNG NHẬP</button>
                             </div>
                         </div>
                     </form>
+                    <div class="login-footer">
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="login-help">
-                <div style="text-align: center;margin-top: 20px;">
-                    <p> Quên mật khẩu? Nhấn vào đây: <a href="{{ route('forgot-pass') }}"
-                            style="text-decoration: underline;"><b>Đặt lại mật khẩu</b></a></p>
-                    <p style="margin-left: -20px;"> Người mới? Nhấn vào đây: <a href="register"
-                            style="text-decoration: underline;"><b>Tạo tài khoản mới</b></a></p>
-                </div>
-                <div class="clearfix"></div>
             </div>
         </div>
-    </div>
 
-    @if (session('msg'))
-        <script type="text/javascript">
-            setTimeout(function() {
-                swal("{{ session('msg') }}");
-            }, 500);
-        </script>
-    @endif
-
+    </section>
 @endsection

@@ -1,0 +1,335 @@
+@media only screen and (max-width: 1920px) {
+    .game-navbar-nav {
+        display: flex;
+        margin-top: 50px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .game-navbar-nav {
+        display: flex;
+        margin-top: 53px;
+    }
+}
+@media only screen and (max-width: 575px) {
+    .game-navbar-nav {
+        display: flex;
+        margin-top: 22px;
+    }
+}
+.game-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background: #fff;
+    border-bottom: 2px solid #f13d56;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    font-family: Roboto, sans-serif;
+    top: 0
+}
+
+.game-navbar__logo {
+    width: 10%
+}
+
+.game-navbar__logo img {
+    height: 135px;
+    margin-top: 20px;
+    margin-left: -12px;
+}
+
+.game-navbar-nav {
+    display: flex;
+}
+
+.game-navbar__navlink {
+    padding: 0 15px;
+    height: 50px;
+    min-width: 45px;
+}
+
+.game-navbar__navlink a.navItem {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    outline: 0;
+    cursor: pointer;
+    text-decoration: unset
+}
+
+.game-navbar__navlink a.navItem:hover {
+    color: var(--default_color) !important;
+    text-decoration: unset
+}
+
+.game-navbar__navlink a.navItem img {
+    width: 30px
+}
+
+@media only screen and (max-width:480px) {
+    .game-navbar__navlink a.navItem img {
+        width: 24px;
+        margin-bottom: 4px !important
+    }
+}
+
+.game-navbar__navlink a.navItem span {
+    text-transform: uppercase;
+    color: #000
+}
+
+.game-navbar__navlink.dropdown {
+    padding-right: 0
+}
+
+.game-navbar__navlink.dropdown>a>img {
+    width: auto;
+    height: 100%;
+    position: relative
+}
+
+.avatar-toggle {
+    width: 100%;
+    height: 100%;
+    position: relative
+}
+
+.avatar-toggle img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.avatar-toggle::after {
+    background-image: url(./../img/toggle-menu.png);
+    position: absolute;
+    content: '';
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    right: -5px;
+    bottom: -1px
+}
+
+.game-navbar__navlink.active span {
+    color: var(--default_color) !important;
+    font-weight: 550
+}
+
+@media only screen and (max-width:480px) {
+    .game-navbar {
+        font-size: 8px;
+        height: 50px
+    }
+
+    .game-navbar__logo img {
+        height: 70px;
+        margin-top: 10px;
+    }
+
+    .game-navbar__navlink {
+        height: 34px;
+        padding: 0 10px
+    }
+
+    .avatar-toggle::after {
+        width: 20px;
+        height: 20px;
+        right: -2px;
+        bottom: -1px
+    }
+}
+
+.game-navbar__navlink .dropdown-menu {
+    transform: translate(0px, 50px) !important;
+    position: absolute;
+    top: 8px !important;
+    z-index: 1000;
+    min-width: 13rem;
+    right: 0 !important;
+    left: auto !important;
+    margin: 0;
+    font-size: unset;
+    color: #212529;
+    text-align: unset;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: unset;
+    border-radius: unset;
+    padding: 0;
+    border-radius: 16px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, .7);
+    width: 100%;
+    font-size: 12px;
+    border-radius: 16px;
+    overflow: hidden
+}
+
+@media only screen and (max-width:480px) {
+    .game-navbar__navlink .dropdown-menu {
+        transform: translate(0px, 35px) !important
+    }
+}
+
+.game-navbar__navlink .dropdown-menu a {
+    color: #5b545b;
+    text-decoration: unset
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    font-family: 'Open Sans', sans-serif !important;
+    color: var(--default_color);
+    border-bottom: 2px solid var(--default_color)
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo__left {
+    width: 50%;
+    height: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo__left .active {
+    color: var(--default_color);
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo__left .inactive {
+    color: gray;
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo__left>div {
+    max-width: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo__left>div span {
+    line-height: 1.6
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo__left img {
+    margin: 0 auto;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo__right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 54px;
+    font-size: 12px;
+    font-weight: 700
+}
+
+.game-navbar__navlink .dropdown-menu .accountInfo__right p {
+    /* display: flex; */
+    align-items: center;
+    margin-top: 6px;
+}
+
+.game-navbar__navlink .dropdown-menu .dropdownNavigation {
+    font-family: Roboto !important;
+    border-bottom: 1px solid #ccc;
+    padding: 12px 15px
+}
+
+.game-navbar__navlink .dropdown-menu .dropdownNavigation a {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.game-navbar__navlink .dropdown-menu .dropdownNavigation a img {
+    width: 18px
+}
+
+.game-navbar__navlink .dropdown-menu .dropdownNavigation a span {
+    padding-left: 8px
+}
+
+.game-navbar__navlink .dropdown-menu .dropdownNavigation:last-child {
+    border-bottom: 0
+}
+
+@media only screen and (max-width:480px) {
+    .game-navbar__navlink .dropdown-menu .dropdownNavigation a {
+        font-size: 11px
+    }
+
+    .game-navbar__navlink .dropdown-menu .accountInfo {
+        padding: 10px
+    }
+
+    .game-navbar__navlink .dropdown-menu .accountInfo__left,
+    .game-navbar__navlink .dropdown-menu .accountInfo__right {
+        font-size: 11px
+    }
+
+    .game-navbar__navlink .dropdown-menu .accountInfo__right img {
+        width: 14px
+    }
+
+    .game-navbar__navlink .dropdown-menu {
+        top: 8px !important;
+        min-width: 13rem
+    }
+}
+
+.avatar-toggle .has_notification {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+    z-index: 100
+}
+
+.dropdownNavigation {
+    position: relative
+}
+
+.dropdownNavigation .has_notification {
+    position: absolute;
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    border-radius: 50%;
+    top: 50%;
+    right: 33%;
+    transform: translateY(-50%);
+    z-index: 100
+}
+
+@media only screen and (max-width:480px) {
+    .avatar-toggle .has_notification {
+        width: 8px;
+        height: 8px;
+        bottom: 0;
+        right: 0
+    }
+
+    .dropdownNavigation .has_notification {
+        right: 30%
+    }
+}

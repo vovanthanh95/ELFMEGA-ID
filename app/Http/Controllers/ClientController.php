@@ -14,6 +14,6 @@ class ClientController extends Controller
     }
     public function index()
     {
-        return view('clients.account2')->with($this->getinfo->getDataUser());
+        return view('clients.account')->with($this->getinfo->getDataUser());
     }
 }

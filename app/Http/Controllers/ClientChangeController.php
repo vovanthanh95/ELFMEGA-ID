@@ -16,7 +16,7 @@ class ClientChangeController extends Controller
 
     public function forgotPass()
     {
-        return view('clients.forgotpass2');
+        return view('clients.forgotpass');
     }
 
     public function postForgotPass(Request $request)
@@ -45,7 +45,7 @@ class ClientChangeController extends Controller
     public function changePass()
     {
 
-        return view('clients.changepass2')->with($this->getinfo->getDataUser());
+        return view('clients.changepass')->with($this->getinfo->getDataUser());
     }
 
     public function postChangePass(Request $request)
@@ -78,7 +78,7 @@ class ClientChangeController extends Controller
         $rule = [
             //'currentphone' => 'required|digits_between:10,11|numeric',
             'currentemail' => 'required|email',
-            'newemail' => 'required|email|unique:Account,email',
+            'newemail' => 'required|email|unique:account,email',
         ];
         $message = [
             //'currentphone.required' => 'Số điện thoại không được trống',
@@ -99,7 +99,7 @@ class ClientChangeController extends Controller
 
     public function changePhone()
     {
-        return view('clients.changephone2')->with($this->getinfo->getDataUser());
+        return view('clients.changephone')->with($this->getinfo->getDataUser());
     }
 
     public function postChangePhone(Request $request)
@@ -107,7 +107,7 @@ class ClientChangeController extends Controller
         $rule = [
             //'currentemail' => 'required|email',
             'currentphone' => 'required|digits_between:10,11|numeric',
-            'newphone' => 'required|digits_between:10,11|unique:Account,phone|numeric',
+            'newphone' => 'required|digits_between:10,11|unique:account,phone|numeric',
         ];
         $message = [
             //'currentemail.required' => 'Email không được trống',
@@ -128,5 +128,43 @@ class ClientChangeController extends Controller
 
     public function updateAccount(){
         return view('clients.updateaccount')->with($this->getinfo->getDataUser());
+    }
+
+    public function updateEmail(){
+        return view('clients.updateemail')->with($this->getinfo->getDataUser());
+    }
+
+    public function postUpdateEmail(Request $request){
+        $rule = [
+            'email' => 'required|email|unique:account,email',
+        ];
+        $message = [
+            'email.required' => 'Email không được trống',
+            'email.email' => 'Email không đúng định dạng',
+            'email.unique' => 'Email đã tồn tại',
+        ];
+        $request->validate($rule, $message);
+        $user = new Account();
+        $info = $user->updateEmail($request->email, $this->getinfo->getIP());
+        return redirect()->route('account')->with($info);
+    }
+
+    public function updatePhone(){
+        return view('clients.updatephone')->with($this->getinfo->getDataUser());
+    }
+    public function postUpdatePhone(Request $request){
+        $rule = [
+            'phone' => 'required|digits_between:10,11|numeric|unique:account,phone',
+        ];
+        $message = [
+            'phone.required' => 'Số điện thoại không được trống',
+            'phone.digits_between' => 'Số điện thoại không hợp lệ',
+            'phone.numeric' => 'Số điện thoại không hợp lệ',
+            'phone.unique' => 'Số điện thoại đã tồn tại',
+        ];
+        $request->validate($rule, $message);
+        $user = new Account();
+        $info = $user->updatePhone($request->phone, $this->getinfo->getIP());
+        return redirect()->route('account')->with($info);
     }
 }

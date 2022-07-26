@@ -16,23 +16,17 @@ class ClientAuthController extends Controller
     }
     public function login()
     {
-        return view('clients.login2');
+        return view('clients.login');
     }
 
     public function postLogin(Request $request)
     {
         $account = new Account();
-        if ($request->serverid < 0 || !is_numeric($request->serverid)) {
-            return redirect()->route('login')->with(['msg' => 'Chưa chọn server', 'type' => 'error']);
-        }
         $info = $account->login($request->username, $request->password);
         if ($info != null) {
             return redirect()->route('login')->with($info);
         }
         if (Auth::guard('client')->check()) {
-            $zonename = config('custom.zonelist')[$request->serverid];
-            session()->put('servername', $zonename);
-            session()->put('serverid', $request->serverid);
             return redirect()->route('account');
         }
     }

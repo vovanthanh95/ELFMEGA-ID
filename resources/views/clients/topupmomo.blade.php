@@ -1,176 +1,129 @@
 @extends('clients.main')
 @section('content')
-    <style>
-        .box-subtitle__text {
-            font-weight: 900;
-            color: #ff753a;
-            font-size: 16px;
-            text-transform: uppercase;
-        }
-
-    </style>
-    <div class="payment-body main_df_bt">
-        <section class="bg_title">
-            <div class="box-title__text text-center">topup</div>
-        </section>
-        <div class="other-function-container">
-            <div class="">
-                <style>
-                    .list_bank2__ {
-                        width: 48%;
-                        float: left;
-                    }
-
-                </style>
-                <div class="row">
-                    <a class="animated flipInY list_bank2__" href="{{route('top-up-vn')}}">
-                        <div class="row tab_bank_atm " style="margin-left: 1px; margin-right: 1px;">
-                            <div class="list_bank_atm" style="padding-bottom: 10px">
-                                <div class="tile-stats" type="2" id="list_bank" bpm_id="15">
-                                    <div class="im_bank">
-                                        <img class="max_width" src="{{asset('assets/images/card_types/card.png')}}">
-                                    </div>
-                                    <p class="text-center" style="color:#464646">Nạp Card</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="animated flipInY list_bank2__" href="{{route('top-up-mo-mo')}}">
-                        <div class="row tab_bank_atm " style="margin-left: 1px; margin-right: 0px;">
-                            <div class="list_bank_atm" style="padding-bottom: 10px">
-                                <div class="tile-stats" type="3" id="list_bank" bpm_id="60">
-                                    <div class="im_bank">
-                                        <img class="max_width" src="{{asset('assets/images/card_types/bank.png')}}">
-                                    </div>
-                                    <p class="text-center" style="color:#464646">ATM, Momo, ZaloPay</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+    <div class="accountPage__layout">
+        <div class="updatePasswordPage__layout">
+            <div class="rowTitle">
+                <span>VÍ ĐIỆN TỬ</span>
             </div>
-            <br />
-            <div class="loginmodal-container">
-                <div class="conten_login">
-                    <div class="box-subtitle__text text-center">TỈ LỆ NẠP</div>
-                    <span>Chuyển Khoản Momo, MBbank, ZaloPay nhận: 120% giá trị số tiền nạp <br>
-                        <font color="red">Ví dụ: Chuyển Khoản 100,000 VNĐ nhận 120,000 namemoney</font>
-                    </span>
-                    <div class="mb-3">
-                        <div class="box-subtitle__text text-center">HÌNH THỨC CHUYỂN KHOẢN</div>
-                        <p>
-                            Chuyển khoản với nội dung dưới đây, cú pháp nạp không phân biệt hoa thường.
-                        </p>
-                    </div>
-
-                    <div class="bg-sand-corner-light p-4 mb-4">
-                        <div class="row no-gutters">
-                            <div class="col-sm-12">
-                                <p><strong><span style="font-size:15px;"><span style="color:#000000;"><span
-                                                    style="font-size:15px;color:#ff753a;">❖ Cú pháp:
-                                                </span></span></span><span class="font-weight-600">3Q
-                                           username</span></strong></p>
-                            </div>
+            <div class="banking">
+                <div class="row info-momo center">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <img src="{{ asset('assets/img/icon-gift.svg') }}">
+                        @if (isset($discount['timestart']) && isset($discount['timeend']))
+                            <p>
+                                Từ {{ $discount['timestart'] . ' ' }} đến {{ ' ' . $discount['timeend'] . ' ' }}Ưu đãi lên tới
+                                <span style="color: rgb(5, 21, 245);">
+                                    {{ $discount['ispromotion'] }}%
+                                </span>
+                                giá trị nạp khi nạp qua VÍ ĐIỆN TỬ
+                            </p>
+                        @else
+                            <p>
+                                Tỷ lệ nạp lên tới
+                                <span style="color: rgb(5, 21, 245);">
+                                    {{ $discount['value'] }}%
+                                </span>
+                                giá trị nạp khi nạp qua VÍ ĐIỆN TỬ
+                            </p>
+                        @endif   
                         </div>
-                    </div>
-                    <p>Tài khoản nhận nạp qua kênh chuyển khoản</p>
-                    <table class="table table-bordered mt-3">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="w-50">Kênh nạp</th>
-                                <th scope="col"> Thông tin</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>ATM MBBank</td>
-
-                                <td>
-                                    <span class="text-success font-weight-600"><b>38666778899 - NGUYỄN ĐÌNH ĐÌNH</b></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ví MOMO</td>
-                                <td>
-                                    <span class="text-success font-weight-600"><b>0978866517 - NGUYỄN ĐÌNH ĐÌNH</b></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ví ZaloPay</td>
-                                <td>
-                                    <span class="text-success font-weight-600"><b>0978866517 - NGUYỄN ĐÌNH ĐÌNH</b></span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <u><strong>Chú ý:</strong></u>
-                    <ul>
-                        <li><b>3Q</b> là tên cú pháp</li>
-                        <li><b>username</b> là tên đăng nhập, vui lòng ghi đúng để tránh nạp nhầm tài
-                            khoản</li>
-                        <li>Hệ thống sẽ tự động cộng namemone vào tài khoản cho bạn ngay sau khi nhận
-                            được tiền từ 30s-1p, trường hợp sau 5 phút bạn không nhận được namemoney vui
-                            lòng liên hệ <a href="https://m.me/badao3q" style="font-size:15px;color:#0404B4;"
-                                target="_blank">Fanpage</a></li>
-                    </ul>
                 </div>
-                <div class="clearfix"></div>
+                <div class="row center">
+                    <div class="col-3 card-item row" id="">
+                    </div>
+                    <div class="col-3 card-item row" id="">
+                        <input class="col-3" type="radio" name="card_provider" value="mobifone" id="mobifone-input"
+                            checked="checked" onclick="chon('momo','{{ $username }}')">
+                        <label class="col-9" for="mobifone-input"><img id="mobifone" class="icon-card-momo"
+                                src="{{ asset('assets/img/momo.jpg') }}"> </label>
+                    </div>
+
+                    <div class="col-3 card-item row" id="">
+                        <input class="col-3" type="radio" name="card_provider" value="viettel" id="card_2" onclick="chon('zalopay','{{ $username }}')">
+                        <label class="col-9" for="card_2"><img class="icon-card-momo"
+                                src="{{ asset('assets/img/zalopay.png') }}"> </label>
+                    </div>
+                    <div class="col-3 card-item row" id="">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-12" id="stk">
+                        Số tài khoản Momo:
+                    </div>
+                    <div class="col-md-5 col-sm-8 col-8">
+                        <input value="{{$momo['accountnumber']}}" id="payment_amount1" class="form-control" style="height: 40px;"
+                            readonly>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-4 banking-center">
+                        <button class="btn-copy btn-custom btn-custom-mb" onclick="saochep()">
+                            SAO CHÉP
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-12">
+                        Nội dung:
+                    </div>
+                    <div class="col-md-5 col-sm-8 col-8">
+                        <input value="NAP {{ $username }}" id="payment_amount" class="form-control"
+                            style="height: 40px;" readonly>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-4 banking-center">
+                        <button class="btn-copy btn-custom btn-custom-mb" onclick="saochep2()">
+                            SAO CHÉP
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row center">
+                    <span>Hệ thống sẽ tự động cộng Xu vào
+                        tài khoản cho bạn ngay sau khi nhận được tiền từ 30s-1p, trường hợp sau 5 phút bạn không nhận
+                        được Xu vui lòng liên hệ
+                        <a href="https://www.facebook.com/thanthudaichien">
+                            <span style="color: rgb(5, 21, 245);text-decoration: none;">Fanpage
+                            </span>
+                        </a>
+                    </span>
+                </div>
             </div>
         </div>
-        <style>
-            .payment-body {
-                display: flex;
-                align-items: flex-start;
-                justify-content: center;
-            }
-
-            .bk-loading {
-                text-align: center;
-                display: none;
-            }
-
-            .biometric-box {
-                display: none;
-            }
-
-        </style>
     </div>
-    <script type="text/javascript">
-        function format_curency(a) {
-            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+    <script>
+        function saochep() {
+            var copyText = document.getElementById("payment_amount1");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            swal({
+                text: "Đã Sao Chép: " + copyText.value,
+                type: "success"
+            });
         }
 
-        function changeCaptcha() {
-            var url = "url_api";
-            var id = url + "/captcha/captcha-image.php?rand=" + Math.random() + "&w=150&h=50";
-            $("#imgCapcha").attr("src", id);
+        function saochep2() {
+            var copyText = document.getElementById("payment_amount");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            swal({
+                text: "Đã Sao Chép: " + copyText.value,
+                type: "success"
+            });
         }
 
-        function changeCaptcha2() {
-            var url = "url_api";
-            var id = url + "/captcha/captcha-image.php?rand=" + Math.random() + "&w=150&h=50";
-            $("#imgCapcha2").attr("src", id);
-        }
-        $('#form-th').submit(function() {
-            <?php
-            $array_desc = str_split('ABCDEFGHIJ');
-            if (empty($_SESSION['can_refill']) == true || (empty($_SESSION['can_refill']) and unserialize($_SESSION['can_refill']) == false)) {
-                shuffle($array_desc);
-                $_SESSION['can_refill'] = serialize($array_desc);
-            } else {
-                shuffle($array_desc);
-                $_SESSION['can_refill'] = serialize($array_desc);
+        function chon(data, username) {
+            if (data == "momo") {
+                $("#payment_amount1").val('{{$momo['accountnumber']}}');
+                $("#payment_amount").val("NAP " + username);
+                $("#stk").html('Số tài khoản Momo');
             }
-
-            echo ' var temp = document.getElementById("epinCode").value; ';
-            foreach ($array_desc as $digit => $char) {
-                echo 'while(temp.indexOf(\'' . $digit . '\')!=-1) { temp = temp.replace(\'' . $digit . '\',\'' . $char . '\'); }';
+            if (data == "zalopay") {
+                $("#payment_amount1").val('{{$zalopay['accountnumber']}}');
+                $("#payment_amount").val("NAP "+ username);
+                $("#stk").html('Số tài khoản Zalo Pay');
             }
-            echo '
-            			document.getElementById("pin_sent").value = temp;
-            		';
-            ?>
-        });
+        }
     </script>
 @endsection

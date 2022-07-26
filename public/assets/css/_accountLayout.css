@@ -1,0 +1,57 @@
+.accountLayout {
+    background-color: #f6f7fb;
+    display: flex;
+    width: 100%;
+    min-height: 90vh;
+    padding: 60px 0
+}
+
+.accountLayout__infoLeft {
+    width: 300px;
+    padding: 0 20px 20px 0
+}
+
+@media only screen and (max-width:768px) {
+    .accountLayout__infoLeft {
+        width: 35%
+    }
+}
+
+@media only screen and (max-width:480px) {
+    .accountLayout__infoLeft {
+        width: 100%;
+        padding: 0
+    }
+
+    .accountLayout {
+        padding: 10px 0 20px 0;
+    }
+}
+
+.accountLayout__infoRight {
+    background-color: #fff;
+    border: 1px solid #f13d56;
+    border-radius: 5px;
+    min-height: 90vh;
+    width: auto;
+    min-width: 200px;
+    width: 80%
+}
+
+@media only screen and (max-width:768px) {
+    .accountLayout__infoRight {
+        width: 70%
+    }
+}
+
+@media only screen and (max-width:480px) {
+    .accountLayout__infoRight {
+        width: 100%
+    }
+}
+
+@media only screen and (max-width:480px) {
+    .accountLayout .container {
+        flex-direction: column
+    }
+}

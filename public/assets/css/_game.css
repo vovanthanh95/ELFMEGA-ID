@@ -1,0 +1,81 @@
+.game-btn--default {
+    outline: 0;
+    /* transition: all .3s ease-out; */
+    min-width: 122px;
+    min-height: 31px;
+    font-weight: 700;
+    color: #54b046;
+    border: 1px solid #54b046;
+    border-radius: 16px;
+    background-color: #fff;
+    font-size: var(--medium_text);
+    padding: 8px 12px
+}
+
+.game-btn--default:hover {
+    background: linear-gradient(90deg, rgba(169, 0, 0, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(169, 0, 0, 1) 100%);
+    color: #fff;
+    border-color: rgba(169, 0, 0, 1);
+    cursor: pointer
+}
+
+.game-btn--danger {
+    outline: 0;
+    transition: all .3s ease-out;
+    min-width: 122px;
+    min-height: 31px;
+    font-weight: 700;
+    color: red;
+    border: 1px solid red;
+    border-radius: 16px;
+    background-color: #fff;
+    font-size: var(--medium_text);
+    padding: 8px 12px
+}
+
+.game-btn--danger:hover {
+    background-color: red;
+    color: #fff;
+    cursor: pointer
+}
+
+.game-btn--gray {
+    outline: 0;
+    transition: all .3s ease-out;
+    min-width: 122px;
+    min-height: 31px;
+    font-weight: 700;
+    color: gray;
+    border: 1px solid gray;
+    border-radius: 16px;
+    background-color: #fff;
+    font-size: var(--medium_text);
+    padding: 8px 12px
+}
+
+.game-btn--gray:hover {
+    background-color: gray;
+    color: #fff;
+    cursor: pointer
+}
+
+@media only screen and (max-width:480px) {
+
+    .game-btn--danger,
+    .game-btn--default,
+    .game-btn--gray {
+        min-width: 75px;
+        min-height: 20px;
+        font-size: var(--tiny_text);
+        padding: 6px 8px
+    }
+}
+
+@media only screen and (max-width:400px) {
+
+    .game-btn--danger,
+    .game-btn--default,
+    .game-btn--gray {
+        padding: 6px 8px
+    }
+}

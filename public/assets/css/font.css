@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'utm_cafetaregular';
+    src: url('./../fonts/UTMCafeta.ttf');
+
+}
+
+*{
+    font-family: 'utm_cafetaregular';
+    font-weight: normal;
+    font-size: 20px;
+}

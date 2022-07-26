@@ -6,7 +6,7 @@ return [
     'default' => [
         'length' => 4,
         'width' => 150,
-        'height' => 50,
+        'height' => 40,
         'quality' => 90,
         'math' => false,
         'expire' => 60,

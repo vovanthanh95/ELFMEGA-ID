@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'Montserrat', sans-serif;
+    src: url(../fonts/Montserrat-Regular.ttf) format("ttf"), url(../fonts/Montserrat-Regular.ttf) format("woff");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/Roboto-Regular.ttf) format("ttf"), url(../fonts/Roboto-Regular.woff) format("woff");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/Roboto-Bold.ttf) format("ttf"), url(../fonts/Roboto-Bold.woff) format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/Roboto-Bold.ttf) format("ttf"), url(../fonts/Roboto-Bold.woff) format("woff");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/Roboto-Medium.ttf) format("ttf"), url(../fonts/Roboto-Medium.woff) format("woff");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url(../fonts/Roboto-Medium.ttf) format("ttf"), url(../fonts/Roboto-Medium.woff) format("woff");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Arial";
+    src: url(../fonts/Arial-Regular.ttf) format("ttf");
+    font-weight: 500;
+}
+
+
+
+:root {
+    --extra_large_text: 16px;
+    --large_text: 14px;
+    --medium_text: 12px;
+    --small_text: 10px;
+    --tiny_text: 8px;
+    --extra_large_title: 22px;
+    --large_title: 20px;
+    --medium_title: 16px;
+    --small_title: 14px;
+    --tiny_title: 10px;
+    --default_font: sans-serif;
+    --default_font: sans-serif;
+    --default_color: #5b545b;
+    --card_height: 528px;
+    --SE: 320px;
+    --XS: 375px;
+    --SM: 480px;
+    --MD: 768px;
+    --LG: 998px;
+    --XL: 1600px
+}

@@ -11,25 +11,26 @@ class AdminPanel extends Model
     protected $table = "admin_panel";
     public $timestamps = false;
 
-    public function getPromotion($type) {
+    public function getPromotion($type,$type2='tlnapthe') {
         $return = array();
         $transfer = 0;
         $result = AdminPanel::where('type',$type)->first();
         if ($result != null){
             $data = $result->toArray();
-            $promotion = $this->loadPanel('tlnapthe', 'value');
+            $promotion = $this->loadPanel($type2, 'value');
             $now = date("Y-m-d H:i:s");
             if($now >= $data['time_start'] && $now <= $data['time_end']) {
                 $transfer = $promotion + ($data['value'] * ($promotion / 100));
-                // 100 + (50*(100/100))
                 $return['ispromotion'] = $data['value'];
                 $return['startpromotion'] = $data['time_start'];
                 $return['endpromotion'] = $data['time_end'];
                 $return['valuepromotion'] = $transfer;
+                $return['discount'] = $promotion;
             } else {
                 $transfer = $promotion;
                 $return['ispromotion'] = 0;
                 $return['valuepromotion'] = $transfer;
+                $return['discount'] = $promotion;
             }
         }
         return $return;

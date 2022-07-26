@@ -1,403 +1,322 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta id="viewport" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="theme-color" content="#00b7f1">
-    <link rel="icon" href="{{ asset('assets/images/3q-logo.png') }}">
-    <!-- CSRF Token -->
-    <title>{{config('custom.namegame')}}-{{config('custom.namewebsite')}}</title>
-    <meta content=", game online 2020, game mobile, game hot thailand, game android ios pc" name="keywords" />
-    <meta content=", game online 2020, game mobile, game hot thailand, game android ios pc" name="description" />
-    <!-- <link href="public/assets/css/roboto.css?v=<?php echo rand(); ?>" rel="stylesheet"> -->
-    <!-- Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng thanh toán Thần Thú Đại Chiến</title>
+    <link href="{{ asset('assets/img/pokeball.png') }}" rel="shortcut icon">
+    <meta name="format-detection" content="telephone=no">
+    
+    <link href="{{ asset('assets/css/googlefonts.css?family=Open+Sans:wght@600;700;800&amp;display=swap') }}"
+        rel="stylesheet">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/common.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/setting.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/reponsive.css') }}" rel="stylesheet">
-
-    <script src="{{ asset('assets/js/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jquery.js') }}"></script>
+    <link href="{{ asset('assets/libs/lity.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/libs/lity.min.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/Navbar.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/Banner.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/Footer.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/_variable.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/_global.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/_reset.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/_game.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/_accountLayout.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/_modal.css?version=400') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
     <script src="{{ asset('assets/js/sweetalert.all.js') }}" type="text/javascript"></script>
-
-    <script src="{{ asset('assets/dist/js/jquery.flagstrap.js') }}"></script>
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/css.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/login.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dashboard.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert.css') }}">
-    <link href="{{ asset('assets/dist/css/flags.css') }}" rel="stylesheet">
-
-
-    <style type="text/css">
-        #loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1000;
-            background: #000;
-            opacity: 0.5;
-            filter: alpha(opacity=50);
-        }
-
-        #loader {
-            display: block;
-            position: relative;
-            left: 50%;
-            top: 50%;
-            width: 150px;
-            height: 150px;
-            margin: -75px 0 0 -75px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: #3498db;
-            -webkit-animation: spin 2s linear infinite;
-            /* Chrome, Opera 15+, Safari 5+ */
-            animation: spin 2s linear infinite;
-            /* Chrome, Firefox 16+, IE 10+, Opera */
-            z-index: 1001;
-        }
-
-        #loader:before {
-            content: "";
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: #e74c3c;
-
-            -webkit-animation: spin 3s linear infinite;
-            /* Chrome, Opera 15+, Safari 5+ */
-            animation: spin 3s linear infinite;
-            /* Chrome, Firefox 16+, IE 10+, Opera */
-        }
-
-        #loader:after {
-            content: "";
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: #f9c922;
-
-            -webkit-animation: spin 1.5s linear infinite;
-            /* Chrome, Opera 15+, Safari 5+ */
-            animation: spin 1.5s linear infinite;
-            /* Chrome, Firefox 16+, IE 10+, Opera */
-        }
-
-        @-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-                /* Chrome, Opera 15+, Safari 3.1+ */
-                -ms-transform: rotate(0deg);
-                /* IE 9 */
-                transform: rotate(0deg);
-                /* Firefox 16+, IE 10+, Opera */
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-                /* Chrome, Opera 15+, Safari 3.1+ */
-                -ms-transform: rotate(360deg);
-                /* IE 9 */
-                transform: rotate(360deg);
-                /* Firefox 16+, IE 10+, Opera */
-            }
-        }
-
-        @keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-                /* Chrome, Opera 15+, Safari 3.1+ */
-                -ms-transform: rotate(0deg);
-                /* IE 9 */
-                transform: rotate(0deg);
-                /* Firefox 16+, IE 10+, Opera */
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-                /* Chrome, Opera 15+, Safari 3.1+ */
-                -ms-transform: rotate(360deg);
-                /* IE 9 */
-                transform: rotate(360deg);
-                /* Firefox 16+, IE 10+, Opera */
-            }
-        }
-
-        #loader-wrapper .loader-section {
-            position: fixed;
-            top: 0;
-            width: 51%;
-            height: 100%;
-            background: #ffffff;
-            z-index: 1000;
-            -webkit-transform: translateX(0);
-            /* Chrome, Opera 15+, Safari 3.1+ */
-            -ms-transform: translateX(0);
-            /* IE 9 */
-            transform: translateX(0);
-            /* Firefox 16+, IE 10+, Opera */
-        }
-
-        .loaded #loader {
-            opacity: 0;
-            -webkit-transition: all 0.3s ease-out;
-            transition: all 0.3s ease-out;
-        }
-
-        .loaded #loader-wrapper {
-            visibility: hidden;
-        }
-
-    </style>
-    <script>
-        $(document).ready(function() {
-
-            setTimeout(function() {
-                $('body').addClass('loaded');
-            }, 100);
-
-        });
-    </script>
+    <script src="{{ asset('assets/js/mobile-detect.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main2.js?version=400') }}"></script>
+    <script src="{{ asset('assets/js/Modal.js?version=400') }}"></script>
+    <script src="{{ asset('assets/js/ApiHelper.js?version=400') }}"></script>
+    <script src="{{ asset('assets/js/paginate.js?version=400') }}"></script>
+    <script src="{{ asset('assets/js/pagination.js?version=400') }}"></script>
+    <script src="{{ asset('assets/js/utils.js?version=400') }}"></script>
+    <script src="{{ asset('assets/js/loadingoverlay.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.standalone.min.css') }}">
+    <link type="text/css" href="{{ asset('assets/css/AccountMenu.css?version=400') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('assets/css/Account.css?version=400') }}" rel="stylesheet">
+    <script src="{{ asset('assets/js/AccountService.js?version=400') }}"></script>
+    <link type="text/css" href="{{ asset('assets/css/font.css') }}" rel="stylesheet">
 </head>
 
-<body class="dislable_scorll _conten_">
-    <div id="loader-wrapper">
-        <div id="loader">
-
+<body>
+    <nav class="game-navbar" style="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 d-flex" style="justify-content: space-between;">
+                    <div class="game-navbar__logo">
+                        <a href="/">
+                            <img src="{{ asset('assets/img/icon_logo.png') }}" alt=""
+                                class="d-none d-md-block">
+                            <img src="{{ asset('assets/img/icon_logo.png') }}" alt=""
+                                class="d-block d-md-none">
+                        </a>
+                    </div>
+                    <ul class="game-navbar-nav">
+                        <li class="game-navbar__navlink dropdown" style="left:0;">
+                            <a href="#" class="" role="button" id="dropdownMenuLinksS"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar-toggle">
+                                    <img src="{{ asset('assets/img/ico_logged_in.png') }}" alt="">
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink"
+                                style="margin: 0px;">
+                                <li class="accountInfo">
+                                    <div class="accountInfo__left">
+                                        <img src="{{ asset('assets/img/ico_logged_in.png') }}" alt="">
+                                    </div>
+                                    <div class="accountInfo__right">
+                                        <p class="username2">
+                                            <img class="user-img2" src="{{ asset('assets/img/pokemon-user.png') }}" width="14px"
+                                                alt="abc">
+                                            @if (Auth::guard('client')->check())
+                                               <span> {{ $username }}</span>
+                                            @endif
+                                        </p>
+                                        <p class="coin"><img src="{{ asset('assets/img/coins.png') }}" width="14px"
+                                                alt="abc">
+                                        <span>
+                                            @if (Auth::guard('client')->check())
+                                                {{ $money }}
+                                            @endif
+                                        </span>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="dropdownNavigation">
+                                    <a href="{{ route('account') }}">
+                                        <i class="fa-regular fa-user sub-icon"></i>
+                                        <span>&nbsp;TÀI KHOẢN</span>
+                                    </a>
+                                </li>
+                                <li class="dropdownNavigation">
+                                    <a href="{{ route('change-pass') }}">
+                                        <i class="fa-solid fa-key sub-icon"></i>
+                                        <span>&nbsp;ĐỔI MẬT KHẨU</span>
+                                    </a>
+                                </li>
+                                <li class="dropdownNavigation">
+                                    <a href="{{ route('top-up-vn') }}">
+                                        <img src="{{ asset('assets/img/icon-the-cao.png') }}" alt="abc">
+                                        <span>&nbsp;NẠP THẺ CÀO</span>
+                                    </a>
+                                </li>
+                                <li class="dropdownNavigation">
+                                    <a href="{{ route('top-up-banking') }}">
+                                        <i class="fa-regular fa-credit-card sub-icon"></i>
+                                        <span>&nbsp;ATM/BANKING</span>
+                                    </a>
+                                </li>
+                                <li class="dropdownNavigation">
+                                    <a href="{{ route('top-up-mo-mo') }}">
+                                        <img src="{{ asset('assets/img/MOBILE-MM.png') }}" alt="abc">
+                                        <span>&nbsp;VÍ ĐIỆN TỬ</span>
+                                    </a>
+                                </li>
+                                <li class="dropdownNavigation">
+                                    <a href="{{ route('history') }}">
+                                        <i class="fa-solid fa-clock-rotate-left sub-icon"></i>
+                                        <span>&nbsp;LỊCH SỬ</span>
+                                    </a>
+                                </li>
+                                <li class="dropdownNavigation">
+                                    <a href="{{ route('logout') }}" class="cursor">
+                                        <img src="{{ asset('assets/img/ico_dangxuat.png') }}" alt="abc">
+                                        <span>&nbsp;ĐĂNG XUẤT</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <!-- <div class="loader-section section-left"></div> -->
-        <!-- <div class="loader-section section-right"></div> -->
-    </div>
-    <div class="container  m_body m_main_mb no-padding">
-        <div class="header bg-white box-shadow">
-            <div class="container">
-                <div class="width-box main-box-header m-auto clearfix">
-                    <div class="row f-left" style="display: flex; align-items: center;">
-                        <div class="col-xs-3 f-left">
-                            <a href=""><img style="margin: 0.5rem 0 0 0; width:95%;"
-                                    src="{{ asset('assets/images/3q-logo.png') }}"></a>
+    </nav>
+    <div class="accountLayout">
+        <div class="container d-flex">
+            <div class="accountLayout__infoLeft">
+                <div class="menuInfo">
+                    <div class="menuInfo__headerInfo">
+                        <div class="avatar">
+                            <a href="{{ route('account') }}">
+                                <img class="avata-image" src="{{ asset('assets/img/pokeball.png') }}"
+                                    alt="">
+                            </a>
                         </div>
-                        <div class="col-xs-5" style="text-align: center;">
-                            <span style="color: #ff753a;">
-                                @if (Auth::guard('client')->check())
-                                    {{ __('message.serverid') }}: {{ session('servername')}}
-                                @endif
-
-                            </span>
-                        </div>
-                        <div class="col-xs-4" style="text-align: right;">
-                            <div class="name-user f-tahomabold">
-                                @if (Auth::guard('client')->check())
-                                    {{ $username }}
-                                @endif
-                            </div>
-                            <span style="color: #ff753a;font-size: 13px;"><b id="txtMoneyHave">
+                        <div class="userInfo">
+                            <div class="userInfo_name">
+                                <img src="{{ asset('assets/img/pokemon-user.png') }}"
+                                        alt="{{ config('custom.namemoney') }}">
+                                <p class="active username">
                                     @if (Auth::guard('client')->check())
-                                        {{ $money }}
+                                        {{ $username }}
                                     @endif
-                                </b>
-                                @if (Auth::guard('client')->check())
-                                    {{ config('custom.namemoney') }}
-                                @endif
-
-                            </span>
+                                </p><br>
+                            </div>
+                            <div class="row-coin">
+                                <div class="userInfo_ycoin">
+                                    <img src="{{ asset('assets/img/coins.png') }}"
+                                        alt="{{ config('custom.namemoney') }}">
+                                    @if (Auth::guard('client')->check())
+                                       <p class="coin-number"> {{ $money }}</p>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="container unauthorize" id="sidebar">
-            <div class="sidebar-header unauthorize">
-                <div class="sidebar-header-background">
-                    <div class="pull-left">
-                        <a href=""><img class="logodnm" src="{{ asset('assets/images/3q-logo.png') }}"
-                                style="left: 50%;transform: translateX(-50%);"></a>
+                    <div class="menuInfo__bodyInfo">
+                        <ul>
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <li class="accordion-header" id="flush-headingOne">
+                                        <a class="accordion-button collapsed row" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                            <img class="col-3" src="{{ asset('assets/img/ico_taikhoan.png') }}"
+                                                alt="">
+                                            <span class="col-9 menu-item tk"> TÀI KHOẢN </span>
+                                        </a>
+                                    </li>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse sub-menu"
+                                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul class="sub-menu-item">
+                                                <li class="mid dis-border-bot">
+                                                    <a class="row" href="{{ route('change-pass') }}">
+                                                        <img class="col-3"
+                                                            src="{{ asset('assets/img/ICO-PASS.png') }}"
+                                                            alt="">
+                                                        <span class="col-9 sub-item-1 mk">ĐỔI MẬT KHẨU</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <li class="accordion-header" id="flush-headingOne">
+                                        <a class="accordion-button collapsed row" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapse2"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                            <img class="col-3" src="{{ asset('assets/img/VI-DIEN-TU.png') }}"
+                                                alt=""> <span class="col-9 menu-item nt"> NẠP TIỀN </span>
+                                        </a>
+                                    </li>
+                                    <div id="flush-collapse2" class="accordion-collapse collapse sub-menu"
+                                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul class="sub-menu-item">
+                                                <li class="mid">
+                                                    <a class="row" href="{{ route('top-up-vn') }}">
+                                                        <img class="col-3"
+                                                            src="{{ asset('assets/img/icon-the-cao.png') }}"
+                                                            alt="">
+                                                        <span class="col-9 sub-item-3">NẠP THẺ CÀO</span>
+                                                    </a>
+                                                </li>
+                                                <li class="mid">
+                                                    <a class="row" href="{{ route('top-up-banking') }}">
+                                                        <img class="col-3"
+                                                            src="{{ asset('assets/img/THE-NGAN-HANG-CHON.png') }}"
+                                                            alt=""> <span
+                                                            class="col-9 sub-item-4">ATM/BANKING</span>
+                                                    </a>
+                                                </li>
+                                                <li class="end">
+                                                    <a class="row" href="{{ route('top-up-mo-mo') }}">
+                                                        <img class="col-3"
+                                                            src="{{ asset('assets/img/MOBILE-MM.png') }}"
+                                                            alt=""> <span class="col-9 sub-item-5">VÍ ĐIỆN
+                                                            TỬ</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li>
+                                <a class="row" href="{{ route('history') }}">
+                                    <img class="col-3" src="{{ asset('assets/img/ico_lichsu.png') }}"
+                                        alt="">
+                                    <span class="col-9 sub-item-7">
+                                        LỊCH SỬ
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
 
-                <div class="pull-left" id="close-menu-btn" style="padding: 0 15px;">
-                    <i class="fa fa-times" style="color:#fff; font-size: 25px;"></i>
-                </div>
-                <!--div id="close-menu-btn">
-                    <i class="fa fa-times" style="color:#fff; font-size: 25px;"></i>
-                </div-->
-                <div class="pull-right">
-                    <!--a class="btn btn-light" style="top: 14px;position: relative;color: #fff;" href="#" onclick="document.location = 'js-oc:kunlunClose:null';return false"> <i class="fa fa-arrow-right" style="font-size: 15px;"></i></a-->
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-
-        <script type="text/javascript">
-            var APILOADING = {};
-            APILOADING.submitTarget = function(el, target) {
-                var url = $(el).attr('action');
-                var method = $(el).attr('method');
-                var data = $(el).serialize();
-                $(el).find(':submit').prop('disabled', true);
-                $.post(url, data, function(json) {
-                    if (json['status'] == 0) {
-                        swal({
-                            title: json['msg'],
-                            type: "success"
-                        }, function() {}).then((value) => {
-                            if (json['url'] != "") {
-                                window.location = json['url'];
-                            }
-                        });
-                    } else if (json['status'] == 10) {
-                        window.location = json['url'];
-                    } else {
-                        swal(json['msg']);
-                    }
-                    $(el).find(':submit').prop('disabled', false);
-                }, 'json');
-
-                return false;
-            }
-
-            function changeCaptcha() {
-                $("#imgCapcha").attr("src", id);
-            }
-
-            function setNotification(str, url) {
-                swal({
-                    title: "Thông báo",
-                    text: "",
-                    type: "warning",
-                    html: str,
-                    confirmButtonText: 'Đi đến',
-                    cancelButtonText: 'Hủy',
-                    showCancelButton: true,
-                }, function() {}).then((result) => {
-                    if (result.value) {
-                        if (url != "") {
-                            window.location = url;
-                        }
-                    }
-                });
-            }
-            <?php if (isset($_SESSION['username']) && $_SESSION['username']) { ?>
-            reLoad();
-
-            function reLoad() {
-                $.post("ajax/ajax-reload.php", "", function(json) {
-                    $("#txtMoneyHave").html(json['money']);
-                    $("#txtPointHave").html(json['point']);
-                }, 'json');
-            }
-            <?php } ?>
-        </script>
-        <div class="payment-container container no-padding">
-            @yield('content')
-        </div>
-
-        <div class="nav-bottom bg-white">
-            <div class="container">
-                <div class="link-nav-bottom m-auto d-flex flex-center bg-white">
-                    @if (!Auth::guard('client')->check())
-                        <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-home"> </i>
-                            <span class="txt-nav-bottom">{{ __('message.home') }}</span>
-                        </a>
-                        <a href="http://3qbadao.mobi/" class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-download"> </i>
-                            <span class="txt-nav-bottom">{{ __('message.downloadgame') }}</span>
-                        </a>
-                        <a href="https://www.facebook.com/badao3q"
-                            class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-facebook-f"> </i>
-                            <span class="txt-nav-bottom">Fanpage</span>
-                        </a>
-                    @endif
-                    @if (Auth::guard('client')->check())
-                        <a href="{{ route('top-up') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-credit-card"> </i>
-                            <span class="txt-nav-bottom">{{ __('message.topup') }}</span>
-                        </a>
-                        <a href="{{ route('gift-code') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-gift"> </i>
-                            <span class="txt-nav-bottom">{{ __('message.giftcode') }}</span>
-                        </a>
-                        <a href="{{ route('history') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-history"> </i>
-                            <span class="txt-nav-bottom">{{ __('message.history') }}</span>
-                        </a>
-                        <a href="{{ route('account') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-user"> </i>
-                            <span class="txt-nav-bottom">{{ __('message.username') }}</span>
-                        </a>
-                        <a href="{{ route('logout') }}" class="item-nav-bottom d-flex flex-center f-d-column ">
-                            <i class="icon-nav-bottom d-flex flex-center fa fa-sign-out"> </i>
-                            <span class="txt-nav-bottom">{{ __('message.logout') }}</span>
-                        </a>
-                    @endif
+                <div class="col-12">
                 </div>
             </div>
-        </div>
-        <div class="footer_wapper  container">
-            <div class="company_title">
-                <a href="{{route('account')}}" style="color:#ccc">{{config('custom.namegame')}}</a><br />Server Time <span id="localTime"></span>
+            <div class="accountLayout__infoRight">
+                @yield('content')
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/sidebar.js') }}"></script>
-    <!--script>
-         $('#bk-login').submit(function() {
-             $('.bk-form-login').css('display', 'none');
-             $('.login-help').css('display', 'none');
-             $('.bk-loading').css('display', 'block');
-         });
-      </script-->
-    <script>
-        var x = setInterval(function() {
-            var now = new Date();
-            document.getElementById("localTime").innerHTML = now.toLocaleDateString() + "-" + now.toTimeString();
+    <footer class="page-footer is-pc">
+        <div class="container pc-view">
+            <div class="row pd_list">
+                <div class="col-md-6 col-6 reset-padding-left reset-padding-right ft1">
+                    <div class="footer1 r-0">
+                        <div class="p1" style="padding-top: '2px'">
+                            <p>Copyright@2022 thanthudaichien.com</p>
+                            <p>Chơi quá 180 phút một ngày sẽ ảnh hưởng xấu đến sức khỏe.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-6 reset-padding-left reset-padding-right" style="text-align: 'right'">
+                    <p class="contact-info">
+                        <a href="https://www.facebook.com/thanthudaichien" target="_blank">
+                            Fanpage: <span class="footer-info">thanthudaichien</span>
+                            <img src="{{ asset('assets/img/FOOTER-ICO-FB.png') }}" class="footer-ico">
+                        </a>
+                    </p>
+                    <p class="contact-info">
+                        <a href="">
+                            Email: <span class="footer-info">thanthudaichien.com@gmail.com</span>
+                            <img src="{{ asset('assets/img/FOOTER-ICO-MAIL.png') }}" class="footer-ico">
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        }, 1000);
-        $('#advanced').flagStrap({
-            buttonSize: "btn-lg",
-            buttonType: "btn-primary",
-            labelMargin: "20px",
-            scrollable: false,
-            scrollableHeight: "350px",
-            onSelect: function(value, element) {
-                $.post("ajax/ajax-language.php", "lang=" + value, function(json) {
-                    window.location.reload();
-                }, 'json');
-            }
-        });
-        $('#advancedtop').flagStrap({
-            buttonSize: "btn-lg",
-            buttonType: "btn-primary",
-            labelMargin: "20px",
-            scrollable: false,
-            scrollableHeight: "350px",
-            onSelect: function(value, element) {
-                $.post("ajax/ajax-language.php", "lang=" + value, function(json) {
-                    window.location.reload();
-                }, 'json');
+    <footer class="is-mobile">
+        <div class="footer-container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div>Copyright@2022 thanthudaichien.com</div>
+                    <div>Chơi quá 180 phút 1 ngày sẽ ảnh hưởng đến sức khỏe</div>
+                    <div>
+                        Fanpage:
+                        <a href="https://www.facebook.com/thanthudaichien" style="color: '#000'">
+                            &nbsp;thanthudaichien
+                        </a>
+                        | Email: <span style="color: '#000'">thanthudaichien.com@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-            }
-        });
-    </script>
-// thông báo
+    <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/js/Account.js?version=400') }}"></script>
+
+    {{-- thông báo --}}
     @if (session()->has('msg') && session()->has('type'))
         <script type="text/javascript">
             setTimeout(function() {
@@ -408,18 +327,17 @@
             }, 500);
         </script>
     @endif
-//thông báo validate()
+    {{-- thông báo validate() --}}
     @if ($errors->any())
-       <script type="text/javascript">
-        setTimeout(function() {
-            swal({
-                text: "{{$errors->all()[0]}}",
-                type: "error",
-            });
-        }, 500);
-    </script>
+        <script type="text/javascript">
+            setTimeout(function() {
+                swal({
+                    text: "{{ $errors->all()[0] }}",
+                    type: "error",
+                });
+            }, 500);
+        </script>
     @endif
-
 </body>
 
 </html>

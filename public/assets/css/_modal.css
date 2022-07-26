@@ -1,0 +1,16 @@
+.game-sweetalert .swal2-header:after,.swal2-popup{max-width:312px!important}
+.game-sweetalert .swal2-popup{border-top-left-radius:10px!important;border-top-right-radius:10px!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important;padding:0!important}
+.game-sweetalert .swal2-icon{display:none!important}
+.game-sweetalert .swal2-header{border-top-left-radius:10px!important;border-top-right-radius:10px!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important;position:relative!important;height:36px!important;background:transparent url(../images/312X36_BGXanh_koBo.png)!important;background-size:cover!important}
+.game-sweetalert .swal2-header:after{content:'';position:absolute;font-size:23.5px;height:36px;display:flex;align-items:center;justify-content:center;font-family:Arial;color:#ffff;padding-top:5px;font-weight:700}
+.game-sweetalert #swal2-content{width:100%!important;padding:10.98% 13.78%!important;font-family:Arial!important;font-size:14px!important;text-align:center!important}
+.game-sweetalert .swal2-confirm{height:20px!important;background:transparent url(../images/312X36_BGXanh_koBo.png)!important}
+.game-sweetalert .swal2-content{padding:0!important}
+.game-sweetalert .swal2-cancel{background-color:#fff!important;color:#333!important;border:1.25px solid #333!important}
+.game-sweetalert .swal2-popup .swal2-actions{margin-top:0!important;display:flex!important;justify-content:center;padding:0 13.78% 18px 13.78%!important}
+.game-sweetalert .popup-confirm-actions{justify-content:space-between!important}
+.game-sweetalert .swal2-popup .swal2-styled{margin:0!important;padding:0!important;font-size:13.5px!important;font-family:Arial!important;border-radius:5px!important;min-width:94px!important;min-height:20px!important;font-weight:700!important}
+.game-sweetalert .swal2-popup .swal2-styled:focus{outline:0!important;-webkit-box-shadow:unset!important;box-shadow:unset!important}
+.game-sweetalert .swal2-close{background:transparent url(../images/CLOSE_BUTTON.png)!important;background-size:100%!important;background-repeat:no-repeat!important;width:30px!important;height:30px!important;top:5px!important;z-index:100;right:5px!important}
+.game-sweetalert .swal2-actions:not(.swal2-loading) .swal2-cancel:hover{background-image:unset!important}
+.game-sweetalert .swal2-close:focus{outline:0;box-shadow:unset}

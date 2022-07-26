@@ -1,0 +1,181 @@
+.accountPage__layout {
+    padding: 20px
+}
+
+.inactive {
+    color: gray;
+}
+
+.accountPage__layout .rowTitle {
+    font-size: var(--medium_title);
+    padding: 15px;
+    background-color: #f13d56;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    line-height: 1;
+    align-items: center;
+    color: #fffced;
+    font-weight: 600;
+}
+
+.accountPage__layout .rowTitle a {
+    text-decoration: none
+}
+
+@media only screen and (max-width:480px) {
+    .accountPage__layout {
+        padding: 20px 10px
+    }
+}
+
+.accountPage__layout .rowButton {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.accountPage__layout .rowButton img {
+    width: 8vw;
+    min-width: 130px
+}
+
+.accountPage__layout .linkedInfo .message {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5
+}
+
+.accountPage__layout .linkedInfo .message .icon {
+    width: 3%;
+    min-width: 20px
+}
+
+.accountPage__layout .linkedInfo .rowInfo {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    padding: 16px 0 16px 0
+}
+
+.accountPage__layout .linkedInfo .rowInfo:last-child {
+    border-bottom: 0
+}
+
+.accountPage__layout .linkedInfo .rowInfo__ico {
+    width: 50px
+}
+
+.accountPage__layout .linkedInfo .rowInfo__typeInfo {
+    padding-left: 20px;
+    font-weight: 700;
+    font-size: var(--large_text);
+    color: gray;
+    width: 100%
+}
+
+.ico-plus{
+    display: none;
+}
+
+.ico-sub{
+    display: block;
+}
+
+.collapsed .ico-plus {
+    display: block;
+}
+.collapsed .ico-sub {
+    display: none;
+}
+@media only screen and (max-width:480px) {
+    .accountPage__layout .linkedInfo .rowInfo__typeInfo {
+        font-size: var(--large_text)
+    }
+    .accountPage__layout .linkedInfo .rowInfo__typeInfo .game-btn--danger,
+    .accountPage__layout .linkedInfo .rowInfo__typeInfo .game-btn--gray  {
+        padding: 10px 20px;
+        font-size: 12px;
+
+    }
+    .accountPage__layout .linkedInfo .message { 
+        font-size: 10px;
+    }
+}
+
+.accountPage__layout .linkedInfo .rowInfo__typeInfo .active {
+    color: var(--default_color)
+}
+
+.accountPage__layout .profileInfo {
+    padding-bottom: 20px
+}
+
+.accountPage__layout .profileInfo .rowInfo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f13d56;
+    padding: 16px 0;
+    font-size: var(--large_text)
+}
+
+.accountPage__layout .profileInfo .rowInfo.active span {
+    color: var(--default_color) !important;
+    font-weight: 700
+}
+
+@media only screen and (max-width:480px) {
+    .accountPage__layout .profileInfo .rowInfo {
+        padding: 16px 0
+    }
+}
+
+.accountPage__layout .profileInfo .rowInfo .label {
+    white-space: nowrap;
+    min-width: 10vw
+}
+
+@media only screen and (max-width:480px) {
+    .accountPage__layout .profileInfo .rowInfo .label {
+        min-width: 120px
+    }
+}
+
+.accountPage__layout .profileInfo .rowInfo .form-check-inline {
+    line-height: 1.6
+}
+
+.accountPage__layout .profileInfo .rowInfo .value {
+    width: 100%;
+    max-width: 300px
+}
+
+.accountPage__layout .profileInfo .rowInfo .value .active {
+    color: var(--default_color);
+    font-weight: 700
+}
+
+.accountPage__layout .profileInfo .rowInfo .label {
+    font-weight: 700;
+    color: #5b545b !important
+}
+
+.accountPage__layout .profileInfo .rowInfo:last-child {
+    border-bottom: 0;
+    padding-bottom: 0
+}
+
+.accountPage__layout .form-control[readonly] {
+    background-color: #fff;
+    opacity: 1
+}

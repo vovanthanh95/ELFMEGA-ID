@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\GetInfo;
+use App\Models\CardLog;
 
 class HistoryController extends Controller
 {
@@ -14,6 +15,8 @@ class HistoryController extends Controller
 
     public function history()
     {
-        return view('clients.history2')->with($this->getinfo->getDataUser());
+        $cardlog = new CardLog();
+        $data = $cardlog->getAll();
+        return view('clients.history')->with($this->getinfo->getDataUser())->with(compact('data'));
     }
 }

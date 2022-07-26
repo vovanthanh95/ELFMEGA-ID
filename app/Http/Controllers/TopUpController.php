@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Classes\Pay247;
 use App\Models\Account;
+use App\Models\Agency;
 use App\Models\MoneyLog;
 use Illuminate\Support\Facades\Log;
 
@@ -24,25 +25,24 @@ class TopUpController extends Controller
     {
         $cardlog = new CardLog();
         $data = $cardlog->getAll();
-        //dd($data->count());
         return view('clients.historypayment')->with($this->getinfo->getDataUser())->with(compact('data'));
     }
 
     public function topUpVn()
     {
         $ad = new AdminPanel();
-        $getpromotion     = $ad->getPromotion('tlkmnapthe');
+        $getpromotion = $ad->getPromotion('tlkmnapthe');
         $valuepromotion = $getpromotion['valuepromotion'];
-        return view('clients.topupvn2')->with($this->getinfo->getDataUser())->with('getpromotion',$valuepromotion);
+        return view('clients.topupvn')->with($this->getinfo->getDataUser())->with('getpromotion', $valuepromotion);
     }
 
     public function postTopUpVn(Request $request)
     {
         $rule = [
-            'card_provider'=>'required',
+            'card_provider' => 'required',
             'card_value' => 'numeric',
-            'card_serial'=>'regex:/^[0-9a-zA-Z]{6,20}$/i',
-            'card_password'=> 'regex:/^[0-9]{6,15}$/i',
+            'card_serial' => 'regex:/^[0-9a-zA-Z]{6,20}$/i',
+            'card_password' => 'regex:/^[0-9]{6,15}$/i',
             'captcha' => 'required|captcha',
         ];
         $message = [
@@ -168,7 +168,6 @@ class TopUpController extends Controller
                 $logcontent = "Xu ly thanh cong, the sai !! --> seri: $seri - pin: $pin - note: $note menh gia: $value";
                 // writeLog($logcontent,'ipnfailed.log');
                 Log::channel('ipnfailed')->info($logcontent);
-
             } else {
 
                 $code = 99;
@@ -177,7 +176,6 @@ class TopUpController extends Controller
                 $logcontent = "Xu ly khong thanh cong !! --> seri: $seri - pin: $pin - note: $note menh gia: $value";
                 //writeLog($logcontent,'ipnfailed.log');
                 Log::channel('ipnfailed')->info($logcontent);
-
             }
         } else {
             $logcontent = "Khong du tham so !! --> seri: " . $request->Code . "  pin: " . $request->Mess;
@@ -190,6 +188,39 @@ class TopUpController extends Controller
 
     public function topUpMoMo()
     {
-        return view('clients.topupmomo2')->with($this->getinfo->getDataUser());
+        $agency = new Agency();
+        $adminpanel = new AdminPanel();
+        $atm = $agency->getAgencyATM();
+        $momo = $agency->getAgencyWallet('MOMO');
+        $zalopay = $agency->getAgencyWallet('ZALO PAY');
+        $getpromotion = $adminpanel->getPromotion('tlkmnapthe','banking');
+        $discount = [];
+        $discount['value']= $getpromotion['discount'];
+        if(isset($getpromotion['startpromotion']) && isset($getpromotion['endpromotion'])){
+            $discount['timestart'] = date('H:i:s d-m-Y', strtotime($getpromotion['startpromotion']));
+            $discount['timeend'] = date('H:i:s d-m-Y', strtotime($getpromotion['endpromotion']));
+            $discount['ispromotion']= $getpromotion['ispromotion'];
+        }else{
+            $discount['ispromotion']= $getpromotion['ispromotion'];
+        }
+        return view('clients.topupmomo')->with($this->getinfo->getDataUser())->with(['momo' => $momo, 'zalopay' => $zalopay, 'discount' => $discount]);
+    }
+
+    public function topUpBanking()
+    {
+        $agency = new Agency();
+        $atm = $agency->getAgencyATM();
+        $adminpanel = new AdminPanel();
+        $getpromotion = $adminpanel->getPromotion('tlkmnapthe','banking');
+        $discount = [];
+        $discount['value']= $getpromotion['discount'];
+        if(isset($getpromotion['startpromotion']) && isset($getpromotion['endpromotion'])){
+            $discount['timestart'] = date('H:i:s d-m-Y', strtotime($getpromotion['startpromotion']));
+            $discount['timeend'] = date('H:i:s d-m-Y', strtotime($getpromotion['endpromotion']));
+            $discount['ispromotion']= $getpromotion['ispromotion'];
+        }else{
+            $discount['ispromotion']= $getpromotion['ispromotion'];
+        }
+        return view('clients.topupbanking')->with($this->getinfo->getDataUser())->with(['atm' => $atm, 'discount' => $discount]);;
     }
 }
