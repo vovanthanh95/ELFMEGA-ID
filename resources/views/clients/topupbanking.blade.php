@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-4 banking-center">
                         <button class="btn-copy btn-custom btn-custom-mb" onclick="saochep()">
-                            Sao Chép
+                            SAO CHÉP
                         </button>
                     </div>
                 </div>
@@ -75,15 +75,15 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-4 banking-center">
                         <button class="btn-copy btn-custom btn-custom-mb" onclick="saochep2()">
-                            Sao Chép
+                            SAO CHÉP
                         </button>
                     </div>
                 </div>
 
                 <div class="row center">
                     <span>Hệ thống sẽ tự động cộng {{ config('custom.namemoney') }} vào
-                        tài khoản cho bạn ngay sau khi nhận được tiền từ 30s-1p, trường hợp sau 5 phút bạn không nhận
-                        được Xu vui lòng liên hệ
+                        tài khoản cho bạn ngay sau khi nhận được tiền, trường hợp sau 5 phút bạn không nhận
+                        được {{ config('custom.namemoney') }} vui lòng liên hệ
                         <a href="https://www.facebook.com/thanthudaichien">
                             <span style="color: rgb(5, 21, 245);text-decoration: none;">Fanpage
                             </span>

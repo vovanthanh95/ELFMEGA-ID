@@ -5,6 +5,21 @@
             <div class="rowTitle">
                 <span>NẠP THẺ ĐIỆN THOẠI</span>
             </div>
+            @if ($getpromotion['ispromotion'] > 0)
+            <div class="row info-momo center">
+                <div class="col-md-12 col-sm-12 col-12">
+                    <img src="{{ asset('assets/img/icon-gift.svg') }}">
+                    <p>
+                        Từ {{ date('H:i:s d:m:Y',strtotime($getpromotion['startpromotion'])) . ' ' }} đến {{ ' ' . date('H:i:s d:m:Y',strtotime($getpromotion['endpromotion'])) . ' ' }}Ưu đãi lên tới
+                        <span style="color: rgb(5, 21, 245);">
+                            {{ $getpromotion['ispromotion'] }}%
+                        </span>
+                        giá trị nạp khi nạp thẻ
+                    </p>
+                  
+                </div>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-md-5 col-sm-12 col-12">
                     <table class="table-card">
@@ -131,21 +146,21 @@
             });
         });
         // load data table
-        document.getElementById("10").innerHTML = ((10000 / 100) * {{ $getpromotion }}).toString().replace(
+        document.getElementById("10").innerHTML = ((10000 / 100) * {{ $valuepromotion }}).toString().replace(
             /\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("20").innerHTML = ((20000 / 100) * {{ $getpromotion }}).toString().replace(
+        document.getElementById("20").innerHTML = ((20000 / 100) * {{ $valuepromotion }}).toString().replace(
             /\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("50").innerHTML = ((50000 / 100) * {{ $getpromotion }}).toString().replace(
+        document.getElementById("50").innerHTML = ((50000 / 100) * {{ $valuepromotion }}).toString().replace(
             /\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("100").innerHTML = ((100000 / 100) * {{ $getpromotion }}).toString().replace(
+        document.getElementById("100").innerHTML = ((100000 / 100) * {{ $valuepromotion }}).toString().replace(
             /\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("200").innerHTML = ((200000 / 100) * {{ $getpromotion }}).toString().replace(
+        document.getElementById("200").innerHTML = ((200000 / 100) * {{ $valuepromotion }}).toString().replace(
             /\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("300").innerHTML = ((300000 / 100) * {{ $getpromotion }}).toString().replace(
+        document.getElementById("300").innerHTML = ((300000 / 100) * {{ $valuepromotion }}).toString().replace(
             /\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("500").innerHTML = ((500000 / 100) * {{ $getpromotion }}).toString().replace(
+        document.getElementById("500").innerHTML = ((500000 / 100) * {{ $valuepromotion }}).toString().replace(
             /\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("1000").innerHTML = ((1000000 / 100) * {{ $getpromotion }}).toString().replace(
+        document.getElementById("1000").innerHTML = ((1000000 / 100) * {{ $valuepromotion }}).toString().replace(
             /\B(?=(\d{3})+(?!\d))/g, ",");
     </script>
 @endsection

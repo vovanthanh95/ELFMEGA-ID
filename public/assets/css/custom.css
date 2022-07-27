@@ -434,8 +434,8 @@ a:hover {
     }
 
     .icon-card-momo {
-        width: 40%;
-        margin-left: -65%;
+        width: 50%;
+        margin-left: -40%;
     }
 
     .sub-item-1 {
@@ -583,6 +583,10 @@ a:hover {
         margin-right: 0px;
         width: 100%;
     }
+    .icon-card-momo {
+        width: 120%;
+        margin-left: 20%;
+    }
 }
 
 @media only screen and (max-width: 575px) {
@@ -646,10 +650,7 @@ a:hover {
         line-height: 25px;
     }
 
-    .icon-card-momo {
-        width: 80%;
-        margin-left: 20%;
-    }
+    
 }
 
 /* sweet alert */

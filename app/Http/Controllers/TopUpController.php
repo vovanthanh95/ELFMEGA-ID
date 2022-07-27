@@ -33,7 +33,7 @@ class TopUpController extends Controller
         $ad = new AdminPanel();
         $getpromotion = $ad->getPromotion('tlkmnapthe');
         $valuepromotion = $getpromotion['valuepromotion'];
-        return view('clients.topupvn')->with($this->getinfo->getDataUser())->with('getpromotion', $valuepromotion);
+        return view('clients.topupvn')->with($this->getinfo->getDataUser())->with(['valuepromotion'=> $valuepromotion, 'getpromotion'=>$getpromotion]);
     }
 
     public function postTopUpVn(Request $request)
