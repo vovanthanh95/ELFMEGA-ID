@@ -43,13 +43,13 @@ class Account extends Authenticatable
             ->first();
         if ($user_bcrypt != null && Hash::check($password, $user_bcrypt->password)) {
             if ($user_bcrypt->status != 0) {
-                $info['msg'] = 'Tài khoản bị khóa';
+                $info['msg'] = trans('message.alertuserisblock');
                 $info['type'] = 'error';
                 return $info;
             }
             Auth::guard('client')->login($user_bcrypt);
         } else {
-            $info['msg'] = 'Tên hoặc mật khẩu chưa đúng';
+            $info['msg'] = trans('message.alertuserorpassnottrue');
             $info['type'] = 'error';
             return $info;
         }
@@ -133,13 +133,13 @@ class Account extends Authenticatable
         if ($userchange) {
             $userchange->email = $email;
             $user = Auth::guard('client')->user()->username;
-            if ($userchange->save() && $history->createHistory($user, "Cập nhật Email", $ip)) {
-                $info['msg'] = 'Cập nhật Email thành công';
+            if ($userchange->save() && $history->createHistory($user, trans('message.Textupdateemail'), $ip)) {
+                $info['msg'] = trans('message.alertupdateemailsuccess');
                 $info['type'] = 'success';
                 return $info;
             }
         } else {
-            $info['msg'] = 'Email không đúng';
+            $info['msg'] = trans('message.alertemailnottrue');
             $info['type'] = 'error';
             return $info;
         }
@@ -154,13 +154,13 @@ class Account extends Authenticatable
         if ($userchange) {
             $userchange->phone = $phone;
             $user = Auth::guard('client')->user()->username;
-            if ($userchange->save() && $history->createHistory($user, "Cập nhật SĐT", $ip)) {
-                $info['msg'] = 'Cập nhật SĐT thành công';
+            if ($userchange->save() && $history->createHistory($user, trans('message.Textupdatephone'), $ip)) {
+                $info['msg'] = trans('message.alertupdatephonesuccess');
                 $info['type'] = 'success';
                 return $info;
             }
         } else {
-            $info['msg'] = 'SĐT không đúng';
+            $info['msg'] = trans('message.alertphonenottrue');
             $info['type'] = 'error';
             return $info;
         }
@@ -196,12 +196,12 @@ class Account extends Authenticatable
             $history = new HistoryLog();
             $user = Auth::guard('client')->user()->username;
             if ($userchange->save() && $history->createHistory($user, "ChangePass", $ip)) {
-                $info['msg'] = 'Đổi mật khẩu thành công';
+                $info['msg'] = trans('message.alertchangepasssuccess');
                 $info['type'] = 'success';
                 return $info;
             }
         } else {
-            $info['msg'] = 'Mật khẩu không đúng';
+            $info['msg'] = trans('message.alertpassnottrue');
             $info['type'] = 'error';
             return $info;
         }
@@ -218,7 +218,7 @@ class Account extends Authenticatable
             $user->password2 = $this->encryptSecPwd(strval($newpass));
             $history = new HistoryLog();
             if ($user->save() && $history->createHistory($username, "ForgotPass", $ip)) {
-                $info['msg'] = 'Hãy kiểm tra mật khẩu ở Email đã đăng ký \\n(Chú ý trong hộp thư rác)';
+                $info['msg'] = trans('message.alertcheckpassinemail');
                 $info['type'] = 'success';
                 $details = [
                     'username' => $username,
@@ -227,12 +227,12 @@ class Account extends Authenticatable
                 Mail::to($email)->send(new ForgotPassEmail($details));
                 return $info;
             } else {
-                $info['msg'] = 'Vui lòng thử lại';
+                $info['msg'] = trans('message.alertpleasetryagain');
                 $info['type'] = 'error';
                 return $info;
             }
         } else {
-            $info['msg'] = 'Tên đăng nhập hoặc email không đúng';
+            $info['msg'] = trans('message.alertuseroremailnottrue');
             $info['type'] = 'error';
             return $info;
         }

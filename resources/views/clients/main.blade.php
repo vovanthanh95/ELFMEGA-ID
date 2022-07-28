@@ -2,10 +2,10 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cổng thanh toán Thần Thú Đại Chiến</title>
+    <title>{{ trans('message.title') }}</title>
     <link href="{{ asset('assets/img/pokeball.png') }}" rel="shortcut icon">
     <meta name="format-detection" content="telephone=no">
-    
+
     <link href="{{ asset('assets/css/googlefonts.css?family=Open+Sans:wght@600;700;800&amp;display=swap') }}"
         rel="stylesheet">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -27,6 +27,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/_accountLayout.css?version=400') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/_modal.css?version=400') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+    <style>
+        .swal2-header::before {
+            position: relative !important;
+            height: 36px !important;
+            width: 100%;
+            background: transparent url('{{ asset("assets/master-images/312X36_BGXanh_koBo.png") }}') !important;
+            content: '{{trans("message.alerttitle")}}';
+            color: #fff;
+            text-align: center;
+            padding-top: 4px;
+            font-size: 25px;
+            background-size: 100% !important;
+        }
+    </style>
     <script src="{{ asset('assets/js/sweetalert.all.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/mobile-detect.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
@@ -73,62 +87,62 @@
                                     </div>
                                     <div class="accountInfo__right">
                                         <p class="username2">
-                                            <img class="user-img2" src="{{ asset('assets/img/pokemon-user.png') }}" width="14px"
-                                                alt="abc">
+                                            <img class="user-img2" src="{{ asset('assets/img/pokemon-user.png') }}"
+                                                width="14px" alt="abc">
                                             @if (Auth::guard('client')->check())
-                                               <span> {{ $username }}</span>
+                                                <span> {{ $username }}</span>
                                             @endif
                                         </p>
                                         <p class="coin"><img src="{{ asset('assets/img/coins.png') }}" width="14px"
                                                 alt="abc">
-                                        <span>
-                                            @if (Auth::guard('client')->check())
-                                                {{ $money }}
-                                            @endif
-                                        </span>
+                                            <span>
+                                                @if (Auth::guard('client')->check())
+                                                    {{ $money }}
+                                                @endif
+                                            </span>
                                         </p>
                                     </div>
                                 </li>
                                 <li class="dropdownNavigation">
                                     <a href="{{ route('account') }}">
                                         <i class="fa-regular fa-user sub-icon"></i>
-                                        <span>&nbsp;TÀI KHOẢN</span>
+                                        <span class="item-menu-1">&nbsp;{{ trans('message.linkaccount') }}</span>
                                     </a>
                                 </li>
                                 <li class="dropdownNavigation">
                                     <a href="{{ route('change-pass') }}">
                                         <i class="fa-solid fa-key sub-icon"></i>
-                                        <span>&nbsp;ĐỔI MẬT KHẨU</span>
+                                        <span class="item-menu-2">&nbsp;{{ trans('message.linkchangepass') }}</span>
                                     </a>
                                 </li>
                                 <li class="dropdownNavigation">
                                     <a href="{{ route('top-up-vn') }}">
                                         <img src="{{ asset('assets/img/icon-the-cao.png') }}" alt="abc">
-                                        <span>&nbsp;NẠP THẺ CÀO</span>
+                                        <span class="item-menu-3">&nbsp;{{ trans('message.linktopupcard') }}</span>
                                     </a>
                                 </li>
                                 <li class="dropdownNavigation">
                                     <a href="{{ route('top-up-banking') }}">
                                         <i class="fa-regular fa-credit-card sub-icon"></i>
-                                        <span>&nbsp;ATM/BANKING</span>
+                                        <span class="item-menu-4">&nbsp;{{ trans('message.linktopupbanking') }}</span>
                                     </a>
                                 </li>
                                 <li class="dropdownNavigation">
                                     <a href="{{ route('top-up-mo-mo') }}">
                                         <img src="{{ asset('assets/img/MOBILE-MM.png') }}" alt="abc">
-                                        <span>&nbsp;VÍ ĐIỆN TỬ</span>
+                                        <span class="item-menu-5">&nbsp;{{ trans('message.linktopupewallet') }}</span>
                                     </a>
                                 </li>
                                 <li class="dropdownNavigation">
                                     <a href="{{ route('history') }}">
                                         <i class="fa-solid fa-clock-rotate-left sub-icon"></i>
-                                        <span>&nbsp;LỊCH SỬ</span>
+                                        <span class="item-menu-6">&nbsp;{{ trans('message.linkhistory') }}</span>
                                     </a>
                                 </li>
                                 <li class="dropdownNavigation">
                                     <a href="{{ route('logout') }}" class="cursor">
                                         <img src="{{ asset('assets/img/ico_dangxuat.png') }}" alt="abc">
-                                        <span>&nbsp;ĐĂNG XUẤT</span>
+                                        <span class="item-menu-7">&nbsp;{{ trans('message.linklogout') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -152,7 +166,7 @@
                         <div class="userInfo">
                             <div class="userInfo_name">
                                 <img src="{{ asset('assets/img/pokemon-user.png') }}"
-                                        alt="{{ config('custom.namemoney') }}">
+                                    alt="{{ config('custom.namemoney') }}">
                                 <p class="active username">
                                     @if (Auth::guard('client')->check())
                                         {{ $username }}
@@ -164,7 +178,7 @@
                                     <img src="{{ asset('assets/img/coins.png') }}"
                                         alt="{{ config('custom.namemoney') }}">
                                     @if (Auth::guard('client')->check())
-                                       <p class="coin-number"> {{ $money }}</p>
+                                        <p class="coin-number"> {{ $money }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -180,7 +194,8 @@
                                             aria-expanded="false" aria-controls="flush-collapseOne">
                                             <img class="col-3" src="{{ asset('assets/img/ico_taikhoan.png') }}"
                                                 alt="">
-                                            <span class="col-9 menu-item tk"> TÀI KHOẢN </span>
+                                            <span class="col-9 menu-item tk"> {{ trans('message.linkaccount') }}
+                                            </span>
                                         </a>
                                     </li>
                                     <div id="flush-collapseOne" class="accordion-collapse collapse sub-menu"
@@ -192,7 +207,8 @@
                                                         <img class="col-3"
                                                             src="{{ asset('assets/img/ICO-PASS.png') }}"
                                                             alt="">
-                                                        <span class="col-9 sub-item-1 mk">ĐỔI MẬT KHẨU</span>
+                                                        <span
+                                                            class="col-9 sub-item-1 mk">{{ trans('message.linkchangepass') }}</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -208,7 +224,8 @@
                                             data-bs-toggle="collapse" data-bs-target="#flush-collapse2"
                                             aria-expanded="false" aria-controls="flush-collapseOne">
                                             <img class="col-3" src="{{ asset('assets/img/VI-DIEN-TU.png') }}"
-                                                alt=""> <span class="col-9 menu-item nt"> NẠP TIỀN </span>
+                                                alt=""> <span class="col-9 menu-item nt">
+                                                {{ trans('message.linktopup') }} </span>
                                         </a>
                                     </li>
                                     <div id="flush-collapse2" class="accordion-collapse collapse sub-menu"
@@ -220,7 +237,8 @@
                                                         <img class="col-3"
                                                             src="{{ asset('assets/img/icon-the-cao.png') }}"
                                                             alt="">
-                                                        <span class="col-9 sub-item-3">NẠP THẺ CÀO</span>
+                                                        <span
+                                                            class="col-9 sub-item-3">{{ trans('message.linktopupcard') }}</span>
                                                     </a>
                                                 </li>
                                                 <li class="mid">
@@ -228,15 +246,15 @@
                                                         <img class="col-3"
                                                             src="{{ asset('assets/img/THE-NGAN-HANG-CHON.png') }}"
                                                             alt=""> <span
-                                                            class="col-9 sub-item-4">ATM/BANKING</span>
+                                                            class="col-9 sub-item-4">{{ trans('message.linktopupbanking') }}</span>
                                                     </a>
                                                 </li>
                                                 <li class="end">
                                                     <a class="row" href="{{ route('top-up-mo-mo') }}">
                                                         <img class="col-3"
                                                             src="{{ asset('assets/img/MOBILE-MM.png') }}"
-                                                            alt=""> <span class="col-9 sub-item-5">VÍ ĐIỆN
-                                                            TỬ</span>
+                                                            alt=""> <span
+                                                            class="col-9 sub-item-5">{{ trans('message.linktopupewallet') }}</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -249,7 +267,7 @@
                                     <img class="col-3" src="{{ asset('assets/img/ico_lichsu.png') }}"
                                         alt="">
                                     <span class="col-9 sub-item-7">
-                                        LỊCH SỬ
+                                        {{ trans('message.linkhistory') }}
                                     </span>
                                 </a>
                             </li>
@@ -273,7 +291,7 @@
                     <div class="footer1 r-0">
                         <div class="p1" style="padding-top: '2px'">
                             <p>Copyright@2022 thanthudaichien.com</p>
-                            <p>Chơi quá 180 phút một ngày sẽ ảnh hưởng xấu đến sức khỏe.</p>
+                            <p>{{ trans('message.infofooter') }}</p>
                         </div>
                     </div>
                 </div>
@@ -295,12 +313,12 @@
         </div>
     </footer>
 
-    <footer class="is-mobile">
+    <footer class="is-mobile footer1">
         <div class="footer-container">
-            <div class="row">
+            <div class="row ">
                 <div class="col-md-12 text-center">
                     <div>Copyright@2022 thanthudaichien.com</div>
-                    <div>Chơi quá 180 phút 1 ngày sẽ ảnh hưởng đến sức khỏe</div>
+                    <div>{{ trans('message.infofooter') }}</div>
                     <div>
                         Fanpage:
                         <a href="https://www.facebook.com/thanthudaichien" style="color: '#000'">
@@ -308,6 +326,32 @@
                         </a>
                         | Email: <span style="color: '#000'">thanthudaichien.com@gmail.com</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <footer class="is-mobile2">
+        <div class="footer-container">
+            <div class="row footer2">
+                <div class="col-3">
+                    <a href="http://thanthudaichien.com"><i class="fa-solid fa-house-chimney"></i>
+                        <p>{{ trans('message.linkhome') }}</p>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="{{ route('selection-top-up') }}"><i class="fa-solid fa-money-check-dollar"></i>
+                        <p>{{ trans('message.linktopup') }}</p>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="{{ route('history') }}"><i class="fa-solid fa-clock-rotate-left"></i>
+                        <p>{{ trans('message.linkhistory') }}</p>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="https://www.facebook.com/thanthudaichien"><i class="fa-solid fa-headset"></i>
+                        <p>{{ trans('message.linksupport') }}</p>
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <html lang="">
 
 <head>
-    <title>Cổng thanh toán Thần Thú Đại Chiến</title>
+    <title>{{trans('message.title')}}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +9,9 @@
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="1024">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <script src="{{ asset('assets/bootstrap/js/jquery-1.11.2.min.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -32,6 +35,19 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
     <link type="text/css" href="{{ asset('assets/css/font.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/custom.css') }}">
+    <style>
+        .swal2-header::before {
+            position: relative !important;
+            height: 36px !important;
+            width: 100%;
+            background: transparent url('{{ asset("assets/master-images/312X36_BGXanh_koBo.png") }}') !important;
+            content: '{{trans("message.alerttitle")}}';
+            color: #fff;
+            text-align: center;
+            font-size: 25px;
+            background-size: 100% !important;
+        }
+    </style>
 </head>
 
 <body style="">

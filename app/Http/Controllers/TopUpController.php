@@ -46,12 +46,12 @@ class TopUpController extends Controller
             'captcha' => 'required|captcha',
         ];
         $message = [
-            'card_provider.required' => 'Vui lòng chọn loại thẻ',
-            'card_value.numeric' => 'Vui lòng chọn mệnh giá thẻ',
-            'card_serial.regex' => 'Seri không hợp lệ',
-            'card_password.regex' => 'Mã thẻ không hợp lệ',
-            'captcha.required' => 'Captcha không được trống',
-            'captcha.captcha' => 'Captcha chưa đúng',
+            'card_provider.required' => trans('message.alertpleaseselecttypecard'),
+            'card_value.numeric' => trans('message.alertpleaseselectvaluecard'),
+            'card_serial.regex' => trans('message.alertserinottrue'),
+            'card_password.regex' => trans('message.alertcardcodenottrue'),
+            'captcha.required' => trans('message.alertcaptchanotfree'),
+            'captcha.captcha' => trans('message.alertcaptchanottrue'),
         ];
         $request->validate($rule, $message);
         $ad = new AdminPanel();
@@ -94,14 +94,14 @@ class TopUpController extends Controller
                 $content = $CardSeri . "|" . $this->getinfo->getDataUser()['username'] . "|" . $CardValue . "|" . $money;
                 $historylog->createHistory($this->getinfo->getDataUser()['username'], "PrepaidCard", $content, 0, $note);
                 $info['type'] = 'success';
-                $info['msg'] = 'Hệ thống đang xử lý thẻ của bạn trong một vài phút. Vui lòng kiểm tra trạng thái thẻ nạp!';
+                $info['msg'] = trans('message.alertsystemisprocessing');
             } else {
                 $info['type'] = 'error';
                 $info['msg'] = $obj->Message;
             }
         } else {
             $info['type'] = 'error';
-            $info['msg'] = 'Thẻ nạp đã tồn tại vui lòng không nạp nữa';
+            $info['msg'] = trans('message.alertcardisexist');
         }
         return redirect()->route('top-up-vn')->with($info);
     }
@@ -222,5 +222,8 @@ class TopUpController extends Controller
             $discount['ispromotion']= $getpromotion['ispromotion'];
         }
         return view('clients.topupbanking')->with($this->getinfo->getDataUser())->with(['atm' => $atm, 'discount' => $discount]);;
+    }
+    public function selectionTopUp(){
+        return view('clients.selectiontopup')->with($this->getinfo->getDataUser());
     }
 }

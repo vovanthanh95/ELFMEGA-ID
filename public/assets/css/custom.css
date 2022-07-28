@@ -1,52 +1,146 @@
-.ft1{
-    line-height: 28px;
+.footer2 p{
+    font-style: normal;
 }
-.pd_list{
+.input-custom {
+    position: relative;
+}
+
+.input-custom input{
+    padding-left: 65px;
+}
+
+.icon-input {
+    position: absolute;
+    z-index: 2;
+    top: 20%;
+    left: 15px;
+    font-size: 30px;
+    color: #f13d56;
+}
+.icon-captcha{
+    top: 25%;
+}
+
+.btn-center {
+    display: flex;
+    justify-content: center;
+}
+
+.footer2 {
+    background-color: #fff;
+    position: fixed;
+    height: 93px;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    text-align: center;
+    border-top: 2px solid #f13d56;
+}
+
+.footer2 a {
+    color: #5b545b;
+    text-decoration: none;
+}
+
+.footer2 i {
+    color: #f13d56;
+}
+
+.item-menu-1 {
+    margin-left: 4px;
+}
+
+.item-menu-2 {
+    margin-left: 3px;
+}
+
+.item-menu-3 {
+    margin-left: 1px;
+}
+
+.item-menu-4 {
+    margin-left: 3px;
+}
+
+.item-menu-5 {
+    margin-left: 3px;
+}
+
+.item-menu-6 {
+    margin-left: 6px;
+}
+
+.item-menu-7 {
+    margin-left: 3px;
+}
+
+.icon-momo-zalo {
+    display: flex;
+    justify-content: center;
+}
+
+.ft1 {
+    line-height: 30px;
+}
+
+.pd_list {
     align-items: end;
-}
-footer p, footer span, footer a{
-    font-size: 16px !important;
+    font-style: normal;
 }
 
-.is-mobile div{
-    font-size: 16px !important;
+footer p, footer span, footer a {
+    font-size: 18px !important;
 }
-.mk{
+
+.is-mobile div {
+    font-size: 16px !important;
+    font-style: normal !important;
+}
+
+.mk {
     margin-left: 3px;
 }
 
-.nt{
+.nt {
     margin-left: 3px;
 }
-input::placeholder{
+
+input::placeholder {
+    color: #5b545b50 !important;
+}
+
+input {
     color: #5b545b !important;
 }
-input{
-    color: #5b545b !important;
-}
-.topup-selection{
+
+.topup-selection {
     color: #5b545b !important;
     line-height: unset;
 }
-.topup-selection option{
+
+.topup-selection option {
     color: #5b545b;
 }
-.topup-selection::selection{
-    color: #5b545b;
-}
-.pagi{
+
+.pagi {
     margin-bottom: 15px;
 }
-.topup-info{
+
+.topup-info {
     text-align: center;
     margin-bottom: 10px;
     color: #5b545b;
 }
+
 .forgot i {
     color: #5b545b;
     font-size: 16px;
 }
-.forgot{
+
+.forgot {
     margin-top: 10px;
     margin-bottom: -10px;
 }
@@ -73,9 +167,10 @@ input{
     width: 20px !important;
 }
 
-.dropdown-menu-left li span, .dropdown-menu-left li i{
+.dropdown-menu-left li span, .dropdown-menu-left li i {
     font-size: 15px !important;
 }
+
 .username2 {
     display: flex;
     margin-left: -20px;
@@ -411,17 +506,17 @@ a:hover {
     }
 
     .login-forget a {
-        margin-right: 60px;
+        margin-right: -7px;
     }
 
     .input-mg {
-        margin-left: 80px;
-        margin-right: 80px;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
     .img-forget img {
         width: 117%;
-        height: 40px;
+        height: 55px;
     }
 
     .forgot-pass div {
@@ -439,7 +534,8 @@ a:hover {
     }
 
     .sub-item-1 {
-        margin-left: -17px;
+        margin-left: 40px;
+        text-align: left;
     }
 
     .sub-item-2 {
@@ -447,15 +543,18 @@ a:hover {
     }
 
     .sub-item-3 {
-        margin-left: -24px;
+        margin-left: 40px;
+        text-align: left;
     }
 
     .sub-item-4 {
-        margin-left: -16px;
+        margin-left: 40px;
+        text-align: left;
     }
 
     .sub-item-5 {
-        margin-left: -37px;
+        margin-left: 40px;
+        text-align: left;
     }
 
     .sub-item-7 {
@@ -509,7 +608,8 @@ a:hover {
     .menu-item {
         margin-left: 0px;
     }
-    .tk{
+
+    .tk {
         margin-left: 3px;
     }
 
@@ -583,6 +683,7 @@ a:hover {
         margin-right: 0px;
         width: 100%;
     }
+
     .icon-card-momo {
         width: 120%;
         margin-left: 20%;
@@ -591,9 +692,14 @@ a:hover {
 
 @media only screen and (max-width: 575px) {
 
-    .btn-custom-mb{
-        width: 90%;
+    .footer1 {
+        margin-bottom: 82px;
     }
+
+    .btn-custom-mb {
+        width: max-content;
+    }
+
     .userInfo_ycoin {
         font-size: 22px;
     }
@@ -623,7 +729,7 @@ a:hover {
 
     .img-forget img {
         width: 117%;
-        height: 40px;
+        height: 55px;
     }
 
     .form-input {
@@ -650,7 +756,7 @@ a:hover {
         line-height: 25px;
     }
 
-    
+
 }
 
 /* sweet alert */
@@ -671,12 +777,18 @@ a:hover {
     display: none !important;
 }
 
-.swal2-header {
+/* .swal2-header::before {
     position: relative !important;
     height: 36px !important;
+    width: 100%;
     background: transparent url(../master-images/312X36_BGXanh_koBo.png) !important;
+    content: "THÔNG BÁO";
+    color: #fff;
+    text-align: center;
+    padding-top: 2px;
+    font-size: 30px;
     background-size: 100% !important;
-}
+} */
 
 
 .swal2-header:after {
@@ -697,8 +809,8 @@ a:hover {
 #swal2-content {
     width: 100% !important;
     padding: 10.98% 13.78% !important;
-    font-family: 'Arial' !important;
-    font-size: 14px !important;
+    font-family: 'utm_cafetaregular' !important;
+    font-size: 20px !important;
     text-align: justify;
 }
 
@@ -730,14 +842,13 @@ a:hover {
 .swal2-popup .swal2-styled {
     margin: 0 !important;
     padding: 0 !important;
-    font-size: 16px !important;
-    font-family: 'Arial' !important;
+    font-size: 20px !important;
+    font-family: 'utm_cafetaregular' !important;
     border-radius: 5px !important;
 
     min-width: 110px !important;
     min-height: 40px !important;
-    font-weight: bold !important;
-    font-weight: 600;
+    font-weight: normal !important;
 
 }
 
@@ -869,6 +980,20 @@ a:hover {
         width: 100px;
         cursor: pointer;
     }
+
+    .nopading {
+        padding: unset;
+    }
+
+    .nopading label {
+        margin-left: -10;
+    }
+
+    .btn-login {
+        width: max-content;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 
 @media only screen and (max-width: 320px) {
@@ -893,5 +1018,19 @@ a:hover {
     .login-button img {
         width: 90px;
         cursor: pointer;
+    }
+
+    .nopading {
+        padding: unset;
+    }
+
+    .nopading label {
+        margin-left: -10;
+    }
+
+    .btn-login {
+        width: max-content;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }

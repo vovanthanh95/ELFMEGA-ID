@@ -3,16 +3,16 @@
     <div class="accountPage__layout">
         <div class="updatePasswordPage__layout">
             <div class="rowTitle">
-                <span>CẬP NHẬT EMAIL</span>
+                <span>{{trans('message.titleupdateemail')}}</span>
             </div>
             <form class="form-input" action="{{ route('post-update-email') }}" method="POST">
                 @csrf
                 <div class="input-row">
                     <input class="form-control my-3" name="email" type="email"
-                        placeholder="Nhập email mới" value="{{ old('email') }}" style="height: 40px;">
+                        placeholder="{{trans('message.formnewemail')}}" value="{{ old('email') }}" style="height: 40px;">
                 </div>
                 <div class="btn-confirm-row">
-                    <button class="btn-custom" type="submit">XÁC NHẬN</button>
+                    <button class="btn-custom" type="submit">{{trans('message.btnaccept')}}</button>
                 </div>
             </form>
         </div>

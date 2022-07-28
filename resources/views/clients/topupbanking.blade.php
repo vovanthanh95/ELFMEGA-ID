@@ -3,7 +3,7 @@
     <div class="accountPage__layout">
         <div class="updatePasswordPage__layout">
             <div class="rowTitle">
-                <span>NẠP ATM/BANKING</span>
+                <span>{{trans('message.titletopupbanking')}}</span>
             </div>
             <div class="banking">
                 <div class="row info-momo center">
@@ -11,26 +11,26 @@
                         <img src="{{ asset('assets/img/icon-gift.svg') }}">
                         @if (isset($discount['timestart']) && isset($discount['timeend']))
                             <p>
-                                Từ {{ $discount['timestart'] . ' ' }} đến {{ ' ' . $discount['timeend'] . ' ' }}Ưu đãi lên tới
+                                {{trans('message.Textfrom')}} {{ $discount['timestart'] . ' ' }} {{trans('message.Textto')}} {{ ' ' . $discount['timeend'] . ' ' }}{{trans('message.Textoffers')}}
                                 <span style="color: rgb(5, 21, 245);">
                                     {{ $discount['ispromotion'] }}%
                                 </span>
-                                giá trị nạp khi nạp qua ATM/BANKING
+                                {{trans('message.Texttopupvalue')}} ATM/BANKING
                             </p>
                         @else
                             <p>
-                                Tỷ lệ nạp lên tới
+                                {{trans('message.Textrateupto')}}
                                 <span style="color: rgb(5, 21, 245);">
                                     {{ $discount['value'] }}%
                                 </span>
-                                giá trị nạp khi nạp qua ATM/BANKING
+                                {{trans('message.Texttopupvalue')}} ATM/BANKING
                             </p>
                         @endif
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-6">
-                        Ngân Hàng:
+                        {{trans('message.Textbankname')}}:
                     </div>
                     <div class="col-md-5 col-sm-6 col-6">
                         {{ $atm['name'] }}
@@ -41,7 +41,7 @@
 
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-6">
-                        Chủ tài khoản:
+                        {{trans('message.Textaccountholder')}}:
                     </div>
                     <div class="col-md-5 col-sm-6 col-6">
                         {{ $atm['accountname'] }}
@@ -52,7 +52,7 @@
 
                 <div class="row">
                     <div class="col-md-3 col-sm-12 col-12">
-                        Số tài khoản:
+                        {{trans('message.Textaccountnumber')}}:
                     </div>
                     <div class="col-md-5 col-sm-8 col-8">
                         <input value="{{ $atm['accountnumber'] }}" id="payment_amount1" class="form-control"
@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-4 banking-center">
                         <button class="btn-copy btn-custom btn-custom-mb" onclick="saochep()">
-                            SAO CHÉP
+                            {{trans('message.btncopy')}}
                         </button>
                     </div>
                 </div>
@@ -75,15 +75,13 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-4 banking-center">
                         <button class="btn-copy btn-custom btn-custom-mb" onclick="saochep2()">
-                            SAO CHÉP
+                            {{trans('message.btncopy')}}
                         </button>
                     </div>
                 </div>
 
                 <div class="row center">
-                    <span>Hệ thống sẽ tự động cộng {{ config('custom.namemoney') }} vào
-                        tài khoản cho bạn ngay sau khi nhận được tiền, trường hợp sau 5 phút bạn không nhận
-                        được {{ config('custom.namemoney') }} vui lòng liên hệ
+                    <span>{{trans('message.infotopup',['coin'=>config('custom.namemoney')])}}
                         <a href="https://www.facebook.com/thanthudaichien">
                             <span style="color: rgb(5, 21, 245);text-decoration: none;">Fanpage
                             </span>
@@ -100,7 +98,7 @@
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");
             swal({
-                text: "Đã Sao Chép: " + copyText.value,
+                text: "{{trans('message.alerthascopy')}}: " + copyText.value,
                 type: "success"
             });
         }
@@ -111,7 +109,7 @@
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");
             swal({
-                text: "Đã Sao Chép: " + copyText.value,
+                text: "{{trans('message.alerthascopy')}}: " + copyText.value,
                 type: "success"
             });
         }

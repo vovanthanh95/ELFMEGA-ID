@@ -5,12 +5,12 @@
             <ul class="nav nav-tabs custom-tabs d-flex w-100 py-10" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link show bt-active" id="bt-active" onclick="onChangeTab('history-active')" data-tab="my_noti">
-                        LỊCH SỬ HOẠT ĐỘNG
+                        {{trans('message.titlehistoryactive')}}
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" id="bt-topup" onclick="onChangeTab('history-top-up')" data-tab="event_noti">
-                        LỊCH SỬ NẠP
+                        {{trans('message.titlehistorytopup')}}
                     </a>
                 </li>
             </ul>

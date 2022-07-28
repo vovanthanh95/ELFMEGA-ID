@@ -3,7 +3,7 @@
     <div class="accountPage__layout">
         <div class="updatePasswordPage__layout">
             <div class="rowTitle">
-                <span>VÍ ĐIỆN TỬ</span>
+                <span>{{trans('message.titletopupewallet')}}</span>
             </div>
             <div class="banking">
                 <div class="row info-momo center">
@@ -11,46 +11,41 @@
                         <img src="{{ asset('assets/img/icon-gift.svg') }}">
                         @if (isset($discount['timestart']) && isset($discount['timeend']))
                             <p>
-                                Từ {{ $discount['timestart'] . ' ' }} đến {{ ' ' . $discount['timeend'] . ' ' }}Ưu đãi lên
-                                tới
+                                {{trans('message.Textfrom')}} {{ $discount['timestart'] . ' ' }} {{trans('message.Textto')}} {{ ' ' . $discount['timeend'] . ' ' }}{{trans('message.Textoffers')}}
                                 <span style="color: rgb(5, 21, 245);">
                                     {{ $discount['ispromotion'] }}%
                                 </span>
-                                giá trị nạp khi nạp qua VÍ ĐIỆN TỬ
+                                {{trans('message.Texttopupvalue')}}{{trans('message.Textewallet')}}
                             </p>
                         @else
                             <p>
-                                Tỷ lệ nạp lên tới
+                                {{trans('message.Textrateupto')}}
                                 <span style="color: rgb(5, 21, 245);">
                                     {{ $discount['value'] }}%
                                 </span>
-                                giá trị nạp khi nạp qua VÍ ĐIỆN TỬ
+                                {{trans('message.btncopy')}}{{trans('message.Textewallet')}}
                             </p>
                         @endif
                     </div>
                 </div>
-                <div class="row center">
-                    <div class="col-3 card-item row" id="">
-                    </div>
-                    <div class="col-3 card-item row" id="">
+                <div class="row center icon-momo-zalo">
+                    <div class="col-3 card-item row nopading" id="">
                         <input class="col-3" type="radio" name="card_provider" value="mobifone" id="mobifone-input"
                             checked="checked" onclick="chon('momo','{{ $username }}')">
                         <label class="col-9" for="mobifone-input"><img id="mobifone" class="icon-card-momo"
                                 src="{{ asset('assets/img/momo.jpg') }}"> </label>
                     </div>
 
-                    <div class="col-3 card-item row" id="">
+                    <div class="col-3 card-item row nopading" id="">
                         <input class="col-3" type="radio" name="card_provider" value="viettel" id="card_2" onclick="chon('zalopay','{{ $username }}')">
                         <label class="col-9" for="card_2"><img class="icon-card-momo"
                                 src="{{ asset('assets/img/zalopay.png') }}"> </label>
-                    </div>
-                    <div class="col-3 card-item row" id="">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-3 col-sm-12 col-12" id="stk">
-                        Số tài khoản Momo:
+                        {{trans('message.Textaccountnumbermomo')}}:
                     </div>
                     <div class="col-md-5 col-sm-8 col-8">
                         <input value="{{ $momo['accountnumber'] }}" id="payment_amount1" class="form-control"
@@ -58,14 +53,14 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-4 banking-center">
                         <button class="btn-copy btn-custom btn-custom-mb" onclick="saochep()">
-                            SAO CHÉP
+                            {{trans('message.btncopy')}}
                         </button>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-3 col-sm-12 col-12">
-                        Nội dung:
+                        {{trans('message.Textcontent')}}:
                     </div>
                     <div class="col-md-5 col-sm-8 col-8">
                         <input value="NAP {{ $username }}" id="payment_amount" class="form-control"
@@ -73,15 +68,13 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-4 banking-center">
                         <button class="btn-copy btn-custom btn-custom-mb" onclick="saochep2()">
-                            SAO CHÉP
+                            {{trans('message.btncopy')}}
                         </button>
                     </div>
                 </div>
 
                 <div class="row center">
-                    <span>Hệ thống sẽ tự động cộng {{config('custom.namemoney')}} vào
-                        tài khoản cho bạn ngay sau khi nhận được tiền, trường hợp sau 5 phút bạn không nhận
-                        được {{config('custom.namemoney')}} vui lòng liên hệ
+                    <span>{{trans('message.infotopup',['coin'=>config('custom.namemoney')])}}
                         <a href="https://www.facebook.com/thanthudaichien">
                             <span style="color: rgb(5, 21, 245);text-decoration: none;">Fanpage
                             </span>
@@ -98,7 +91,7 @@
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");
             swal({
-                text: "Đã Sao Chép: " + copyText.value,
+                text: "{{trans('message.alerthascopy')}}: " + copyText.value,
                 type: "success"
             });
         }
@@ -109,7 +102,7 @@
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");
             swal({
-                text: "Đã Sao Chép: " + copyText.value,
+                text: "{{trans('message.alerthascopy')}}: " + copyText.value,
                 type: "success"
             });
         }
@@ -118,12 +111,12 @@
             if (data == "momo") {
                 $("#payment_amount1").val('{{ $momo['accountnumber'] }}');
                 $("#payment_amount").val("NAP " + username);
-                $("#stk").html('Số tài khoản Momo');
+                $("#stk").html("{{trans('message.Textaccountnumbermomo')}}");
             }
             if (data == "zalopay") {
                 $("#payment_amount1").val('{{ $zalopay['accountnumber'] }}');
                 $("#payment_amount").val("NAP " + username);
-                $("#stk").html('Số tài khoản Zalo Pay');
+                $("#stk").html("{{trans('message.Textaccountnumberzalo')}}");
             }
         }
     </script>

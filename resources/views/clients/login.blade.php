@@ -10,15 +10,21 @@
                     <form action="{{ route('post-login') }}" method="POST">
                         @csrf
                         <div class="login-body">
-                            <div class="row input-mg" style="margin-bottom: 20px;">
-                                <input name="username" class="col-md-12 form-control input-forget" type="text" placeholder="Tên đăng nhập" value="{{ old('username') }}" style="height: 40px;">
+                            <div class="row input-mg input-custom" style="margin-bottom: 20px;">
+                                <i class="fa-regular fa-user icon-input"></i>
+                                <input name="username" class="col-md-12 form-control input-forget" type="text"
+                                    placeholder="{{ trans('message.formusername') }}" value="{{ old('username') }}"
+                                    style="height: 55px;">
                             </div>
-                            <div class="row input-mg">
-                                <input name="password" class="col-12 form-control input-forget" type="password" placeholder="Mật khẩu" value="" style="height: 40px;">
+                            <div class="row input-mg input-custom">
+                                <i class="fa-solid fa-key icon-input"></i>
+                                <input name="password" class="col-12 form-control input-forget" type="password"
+                                    placeholder="{{ trans('message.formpassword') }}" value="" style="height: 55px;">
                             </div>
                             <div class="login-forget">
-                                <a id="forget-pass" href="{{ route('forgot-pass') }}">Quên mật
-                                    khẩu?</a>
+                                <a id="forget-pass" style="font-style: normal;" href="{{ route('forgot-pass') }}">
+                                    {{ trans('message.formforgotpass') }}
+                                </a>
                             </div>
                             <div class="login-button">
                                 <style>
@@ -26,11 +32,37 @@
                                         margin-right: 0px !important
                                     }
                                 </style>
-                                <button type="submit" class="btn-green core-btn">ĐĂNG NHẬP</button>
+                                <button type="submit"
+                                    class="btn-green core-btn btn-login">{{ trans('message.btnlogin') }}</button>
                             </div>
                         </div>
                     </form>
                     <div class="login-footer">
+                        <div class="lang">
+                            <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="languageMenu">
+                                @if (session('language') == "en")
+                                {{ trans('message.Textlangen') }}
+                                @else
+                                {{ trans('message.Textlangvi') }}
+                                @endif
+                                
+                                <img src="{{ asset('assets/master-images/ICO-V.png') }}" class="arrow">
+                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="languageMenu" style="border-bottom:none">
+                                <li>
+                                    <a class="lang" href="{{ route('change-language', ['language' => 'vi']) }}"
+                                        style="font-weight:normal; padding:8px 0 8px 10px; color: #5b545b">
+                                        {{ trans('message.Textlangvi') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="lang" href="{{ route('change-language', ['language' => 'en']) }}"
+                                        style="font-weight:normal; padding:8px 0 8px 10px; color: #5b545b">
+                                        {{ trans('message.Textlangen') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

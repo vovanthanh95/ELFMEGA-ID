@@ -27,11 +27,11 @@ class ClientChangeController extends Controller
             'captcha' => 'required|captcha',
         ];
         $message = [
-            'username.required' => 'Tên đăng nhập không được trống',
-            'email.required' => 'Email không được trống',
-            'email.email' => 'Email không đúng',
-            'captcha.required' => 'Captcha không được trống',
-            'captcha.captcha' => 'Captcha chưa đúng',
+            'username.required' => trans('message.alertusernotfree'),
+            'email.required' => trans('message.alertemailnotfree'),
+            'email.email' => trans('message.alertemailnottrue'),
+            'captcha.required' => trans('message.alertcaptchanotfree'),
+            'captcha.captcha' => trans('message.alertcaptchanottrue'),
         ];
         $request->validate($rule, $message);
         $user = new Account();
@@ -56,11 +56,11 @@ class ClientChangeController extends Controller
             'confirmpassword' => 'required|same:newpassword',
         ];
         $message = [
-            'currentpassword.required' => 'Mật khẩu không được trống',
-            'newpassword.required' => 'Mật khẩu không được trống',
-            'newpassword.different' => 'Không được trùng mật khẩu củ',
-            'confirmpassword.required' => 'Vui lòng xác nhận mật khẩu',
-            'confirmpassword.same' => 'Mật khẩu xác nhận không khớp',
+            'currentpassword.required' => trans('message.alertpassnotfree'),
+            'newpassword.required' => trans('message.alertpassnewnotfree'),
+            'newpassword.different' => trans('message.alertpassnotsameold'),
+            'confirmpassword.required' => trans('message.alertpleaseconfirmpass'),
+            'confirmpassword.same' => trans('message.alertpassconfirmnotsame'),
         ];
         $request->validate($rule, $message);
         $user = new Account();
@@ -139,9 +139,9 @@ class ClientChangeController extends Controller
             'email' => 'required|email|unique:account,email',
         ];
         $message = [
-            'email.required' => 'Email không được trống',
-            'email.email' => 'Email không đúng định dạng',
-            'email.unique' => 'Email đã tồn tại',
+            'email.required' => trans('message.alertemailnotfree'),
+            'email.email' => trans('message.alertemailnottrue'),
+            'email.unique' => trans('message.alertemailisexist'),
         ];
         $request->validate($rule, $message);
         $user = new Account();
@@ -157,10 +157,10 @@ class ClientChangeController extends Controller
             'phone' => 'required|digits_between:10,11|numeric|unique:account,phone',
         ];
         $message = [
-            'phone.required' => 'Số điện thoại không được trống',
-            'phone.digits_between' => 'Số điện thoại không hợp lệ',
-            'phone.numeric' => 'Số điện thoại không hợp lệ',
-            'phone.unique' => 'Số điện thoại đã tồn tại',
+            'phone.required' => trans('message.alertphonenotfree'),
+            'phone.digits_between' => trans('message.alertphonenotformat'),
+            'phone.numeric' => trans('message.alertphonenotformat'),
+            'phone.unique' => trans('message.alertphoneisexist'),
         ];
         $request->validate($rule, $message);
         $user = new Account();

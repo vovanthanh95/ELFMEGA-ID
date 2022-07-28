@@ -171,8 +171,8 @@ body{
 @media only screen and (max-width: 320px){
     .core-btn {
         width: 100px;
-        height: 23px;
-        font-size: 12px;
+        height: 40px;
+        font-size: 20px;
     }
     .btn-green {
         margin-right: 10px;
