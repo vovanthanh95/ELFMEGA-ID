@@ -315,7 +315,7 @@
 
     <footer class="is-mobile footer1">
         <div class="footer-container">
-            <div class="row ">
+            {{-- <div class="row ">
                 <div class="col-md-12 text-center">
                     <div>Copyright@2022 thanthudaichien.com</div>
                     <div>{{ trans('message.infofooter') }}</div>
@@ -327,7 +327,7 @@
                         | Email: <span style="color: '#000'">thanthudaichien.com@gmail.com</span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </footer>
     <footer class="is-mobile2">

@@ -49,7 +49,7 @@ return [
     'linkaccount' => "ACCOUNT",
     'linkhistory' => "HISTORY",
     'linksupport' => "SUPPORT",
-    'linklogout' => "LOG OUT",
+    'linklogout' => "LOGOUT",
     'linkchangepass' => "CHANGE PASSWORD",
 
     //Info--------------------------------------------------
