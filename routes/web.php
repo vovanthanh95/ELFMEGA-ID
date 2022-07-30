@@ -47,17 +47,11 @@ Route::group(['middleware' => 'locale'], function () {
     Route::middleware('loginclient')->get('change-pass', [ClientChangeController::class, 'changePass'])->name('change-pass');
     Route::middleware('loginclient')->post('change-pass', [ClientChangeController::class, 'postChangePass'])->name('post-change-pass');
 
-
-    Route::middleware('loginclient')->get('change-phone', [ClientChangeController::class, 'changePhone'])->name('change-phone');
-    Route::middleware('loginclient')->post('change-phone', [ClientChangeController::class, 'postChangePhone'])->name('post-change-phone');
-
     Route::middleware('loginclient')->get('update-email', [ClientChangeController::class, 'updateEmail'])->name('update-email');
     Route::middleware('loginclient')->post('update-email', [ClientChangeController::class, 'postUpdateEmail'])->name('post-update-email');
 
     Route::middleware('loginclient')->get('update-phone', [ClientChangeController::class, 'updatePhone'])->name('update-phone');
     Route::middleware('loginclient')->post('update-phone', [ClientChangeController::class, 'postUpdatePhone'])->name('post-update-phone');
-
-    Route::middleware('loginclient')->get('top-up', [TopUpController::class, 'topUp'])->name('top-up');
 
     Route::middleware('loginclient')->get('top-up-vn', [TopUpController::class, 'topUpVn'])->name('top-up-vn');
     Route::middleware('loginclient')->post('top-up-vn', [TopUpController::class, 'postTopUpVn'])->name('post-top-up-vn');
@@ -72,17 +66,6 @@ Route::group(['middleware' => 'locale'], function () {
 
 //callbacktopup
 Route::get('/call-back-top-up/{Code?}/{Mess?}/{Reason?}/{CardValue?}/{TrxID?}', [TopUpController::class, 'callBackTopUp'])->name('call-back-top-up');
-
-
-//app login
-Route::get('app-login', [AppClientController::class, 'login'])->name('app-login');
-Route::post('post-app-login', [AppClientController::class, 'postLogin'])->name('post-app-login');
-Route::get('app-register', [AppClientController::class, 'register'])->name('app-register');
-Route::post('post-app-register', [AppClientController::class, 'postRegister'])->name('post-app-register');
-
-//auth-app
-Route::get('login-app/{usr?}/{pwd?}', [AuthController::class, 'login']);
-Route::get('register-app/{usr?}/{pwd?}', [AuthController::class, 'register']);
 
 // check online
 Route::get('checkonline/{num?}/{svr?}', [CheckOnlineController::class, 'index']);

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class Account extends Authenticatable
 {
@@ -23,7 +24,6 @@ class Account extends Authenticatable
     protected $fillable = [
         'username',
         'password',
-        'password3',
         'email',
         'phone',
         'money',
@@ -33,7 +33,6 @@ class Account extends Authenticatable
     ];
 
     protected $hidden = [
-        'password3',
     ];
 
     public function login($username, $password)
@@ -88,10 +87,10 @@ class Account extends Authenticatable
         $this->createtime = date("Y-m-d H:i:s");
         $this->createip = $ip;
         $user = Account::where(['username' => $username])->first();
-        if($user){
+        if ($user) {
             $info['msg'] = 'Tài khoản đã được sử dụng';
             $info['code'] = '1';
-        }else{
+        } else {
             if ($this->save()) {
                 $info['msg'] = 'Đăng ký tài khoản thành công';
                 $info['code'] = '0';
@@ -265,7 +264,8 @@ class Account extends Authenticatable
             return 0;
         }
     }
-    public function setCoin($username, $money){
+    public function setCoin($username, $money)
+    {
         $data = Account::where('username', $username)->first();
         if ($data != null) {
             $data->money = $money;
@@ -275,7 +275,8 @@ class Account extends Authenticatable
             return false;
         }
     }
-    public function setMoneySumMoney($username, $money){
+    public function setMoneySumMoney($username, $money)
+    {
         $data = Account::where('username', $username)->first();
         if ($data != null) {
             $data->money += $money;
@@ -284,6 +285,64 @@ class Account extends Authenticatable
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function apiRegister($username, $password)
+    {
+        $data = $this->getUserByUserName($username);
+        $info = [];
+        if ($data != null) {
+            $info['msg'] = 'Tên đăng nhập đã tồn tại';
+            $info['type'] = 'error';
+            return $info;
+        } else {
+            try {
+                $account = new Account();
+                $account->username = $username;
+                $account->password = Hash::make($password);
+                $account->password2 = $this->encryptSecPwd($password);
+                $account->access_token = Str::random(40);
+                $account->refresh_token = Str::random(40);
+                $account->createtime = date("Y-m-d H:i:s");
+                $account->expires = date("Y-m-d H:i:s");
+                $account->save();
+                Auth::guard('client')->login($account);
+                return $info;
+            } catch (\Throwable $th) {
+                $info['msg'] = 'Lỗi đăng ký tài khoản';
+                $info['type'] = 'error';
+                return $info;
+            }
+        }
+    }
+
+    public function apiLogin($username, $password)
+    {
+        $info = [];
+        $user_bcrypt = Account::where('username', $username)
+            ->first();
+        if ($user_bcrypt != null && Hash::check($password, $user_bcrypt->password)) {
+            if ($user_bcrypt->status != 0) {
+                $info['msg'] = trans('message.alertuserisblock');
+                $info['type'] = 'error';
+                return $info;
+            }
+            try {
+                $user_bcrypt->access_token = Str::random(40);
+                $user_bcrypt->refresh_token = Str::random(40);
+                $user_bcrypt->expires = date("Y-m-d H:i:s");
+                $user_bcrypt->save();
+                Auth::guard('client')->login($user_bcrypt);
+            } catch (\Throwable $th) {
+                $info['msg'] = trans('message.alertuserorpassnottrue');
+                $info['type'] = 'error';
+                return $info;
+            }
+        } else {
+            $info['msg'] = trans('message.alertuserorpassnottrue');
+            $info['type'] = 'error';
+            return $info;
         }
     }
     //-----------------------------------------------------------------------------------------------------------//

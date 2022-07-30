@@ -21,12 +21,6 @@ class TopUpController extends Controller
     {
         $this->getinfo = new GetInfo();
     }
-    public function topUp()
-    {
-        $cardlog = new CardLog();
-        $data = $cardlog->getAll();
-        return view('clients.historypayment')->with($this->getinfo->getDataUser())->with(compact('data'));
-    }
 
     public function topUpVn()
     {

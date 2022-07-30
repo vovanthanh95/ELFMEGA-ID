@@ -68,64 +68,6 @@ class ClientChangeController extends Controller
         return redirect()->route('change-pass')->with($info);
     }
 
-    public function changeEmail()
-    {
-        return view('clients.changeemail2')->with($this->getinfo->getDataUser());
-    }
-
-    public function postChangeEmail(Request $request)
-    {
-        $rule = [
-            //'currentphone' => 'required|digits_between:10,11|numeric',
-            'currentemail' => 'required|email',
-            'newemail' => 'required|email|unique:account,email',
-        ];
-        $message = [
-            //'currentphone.required' => 'Số điện thoại không được trống',
-            //'currentphone.digits_between' => 'Số điện thoại không hợp lệ',
-            //'currentphone.numeric' => 'Số điện thoại không hợp lệ',
-            'currentemail.required' => 'Email không được trống',
-            'currentemail.email' => 'Email không đúng định dạng',
-            'newemail.required' => 'Email không được trống',
-            'newemail.email' => 'Email không đúng định dạng',
-            'newemail.unique' => 'Email đã tồn tại',
-
-        ];
-        $request->validate($rule, $message);
-        $user = new Account();
-        $info = $user->changeEmail($request->currentemail, $request->newemail, $this->getinfo->getIP());
-        return redirect()->route('change-email')->with($info);
-    }
-
-    public function changePhone()
-    {
-        return view('clients.changephone')->with($this->getinfo->getDataUser());
-    }
-
-    public function postChangePhone(Request $request)
-    {
-        $rule = [
-            //'currentemail' => 'required|email',
-            'currentphone' => 'required|digits_between:10,11|numeric',
-            'newphone' => 'required|digits_between:10,11|unique:account,phone|numeric',
-        ];
-        $message = [
-            //'currentemail.required' => 'Email không được trống',
-            //'currentemail.email' => 'Email không đúng định dạng',
-            'currentphone.required' => 'Số điện thoại không được trống',
-            'currentphone.digits_between' => 'Số điện thoại không hợp lệ',
-            'currentphone.numeric' => 'Số điện thoại không hợp lệ',
-            'newphone.required' => 'Số điện thoại không được trống',
-            'newphone.unique' => 'Số điện thoại đã được sử dụng',
-            'newphone.numeric' => 'Số điện thoại không hợp lệ',
-
-        ];
-        $request->validate($rule, $message);
-        $user = new Account();
-        $info = $user->changePhone($request->currentphone, $request->newphone, $this->getinfo->getIP());
-        return redirect()->route('change-phone')->with($info);
-    }
-
     public function updateAccount(){
         return view('clients.updateaccount')->with($this->getinfo->getDataUser());
     }

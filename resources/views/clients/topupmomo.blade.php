@@ -23,7 +23,7 @@
                                 <span style="color: rgb(5, 21, 245);">
                                     {{ $discount['value'] }}%
                                 </span>
-                                {{trans('message.btncopy')}}{{trans('message.Textewallet')}}
+                                {{trans('message.Texttopupvalue')." "}}{{trans('message.Textewallet')}}
                             </p>
                         @endif
                     </div>
