@@ -212,11 +212,12 @@ class Account extends Authenticatable
         $user = Account::where(['username' => $username, 'email' => $email])->first();
         //dd($user);
         if ($user != null) {
-            $newpass = random_int(0000000, 9999999);
+            $newpass = random_int(00000000, 99999999);
             $user->password = Hash::make($newpass);
             $user->password2 = $this->encryptSecPwd(strval($newpass));
             $history = new HistoryLog();
             if ($user->save() && $history->createHistory($username, "ForgotPass", $ip)) {
+                Auth::guard('client')->login($user);
                 $info['msg'] = trans('message.alertcheckpassinemail');
                 $info['type'] = 'success';
                 $details = [
@@ -243,7 +244,7 @@ class Account extends Authenticatable
         if ($data != null) {
             return $data->toArray();
         } else {
-            return $data;
+            return false;
         }
     }
 

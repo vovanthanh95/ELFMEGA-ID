@@ -9,28 +9,29 @@ class CustomFunc
     public function getPackageMoney($subject_id)
     {
         $money_to_pack_id2 = [
-            12     => '50000',
-            13     => '150000',
-            15     => '10000',
-            16     => '20000',
-            17     => '50000',
-            18     => '100000',
-            19     => '200000',
-            20     => '500000',
-            21     => '1000000',
-            22     => '2000000',
-            23     => '5000000',
-            33     => '50000',
-            34     => '100000',
-            101     => '200000',
-            // 30     => '50000',
-            // 31     => '30000',
-            // 32     => '20000',
-            // 33     => '10000',
-            // 34     => '100000',
-            // 35     => '300000',
-            // 100     => '100000',
-            // 101     => '300000',
+            1     => '100000',
+            2     => '200000',
+            3    => '5000000',
+            4    => '2000000',
+            5     => '1000000',
+            6     => '500000',
+            7     => '200000',
+            8    => '100000',
+            9     => '50000',
+            10     => '20000',
+            11     => '10000',
+            102     => '10000',
+            103     => '20000',
+            104     => '30000',
+            105     => '40000',
+            106     => '50000',
+            107     => '100000',
+            108     => '150000',
+            109     => '200000',
+            110     => '250000',
+            111     => '300000',
+            112     => '500000',
+            113     => '1000000',
         ];
         $subject_id = (int)$subject_id; //强制转成int
         return !in_array($subject_id, array_keys($money_to_pack_id2)) ? 0 : $money_to_pack_id2[$subject_id];
@@ -56,22 +57,26 @@ class CustomFunc
     {
         $account = new Account();
         $moneylog = new MoneyLog();
+        $isOkey = false;
         if ($money <= 0) {
             $isOkey = false;
         } else {
             $info = $account->getUserByUserName($username);
-            if ($info['money'] >= $money) {
-                $moneyold = $info['money'];
-                $moneynew = $info['money'] - $money;
-                $moneylog->addMoneyLog($username, $type, $moneyold, $moneynew);
-                $isOkey = false;
-                $result = $account->setCoin($username, $money);
-                if ($result) {
-                    $isOkey = true;
+            if($info != false){
+                if ($info['money'] >= $money) {
+                    $moneyold = $info['money'];
+                    $moneynew = $info['money'] - $money;
+                    $moneylog->addMoneyLog($username, $type, $moneyold, $moneynew);
+                    $isOkey = false;
+                    $result = $account->setCoin($username, $money);
+                    if ($result) {
+                        $isOkey = true;
+                    }
+                } else {
+                    $isOkey = false;
                 }
-            } else {
-                $isOkey = false;
             }
+            
         }
         return $isOkey;
     }

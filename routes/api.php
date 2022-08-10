@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\PayController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/users/register', [ApiController::class, 'register']);
 
 Route::post('/users/login', [ApiController::class, 'login']);
+
+Route::post('/users/forgotpass', [ApiController::class, 'forgotPass']);
+
+Route::post('/pay/genpay', [PayController::class, 'pay']);
