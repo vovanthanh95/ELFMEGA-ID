@@ -20,6 +20,8 @@ Route::post('/users/register', [ApiController::class, 'register']);
 
 Route::post('/users/login', [ApiController::class, 'login']);
 
-Route::post('/users/forgotpass', [ApiController::class, 'forgotPass']);
+Route::post('/users/forgotpassword', [ApiController::class, 'forgotPass']);
 
 Route::post('/pay/genpay', [PayController::class, 'pay']);
+
+Route::post('/pay/checkpay', [PayController::class, 'checkPay']);

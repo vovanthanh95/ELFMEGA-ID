@@ -139,5 +139,8 @@ return [
     'login' => "Login",
     'buypackages' => "Buy Packages",
     'executedsuccessatip' => "Successfully implemented at ip",
+    'successfulpurchaseofthepackage' => "successful purchaseofthepackage",
+    'receivedsuccessfullygiftcode'=> "Successfully received giftcode",
+    'giftcode' => "GiftCode",
 
 ];

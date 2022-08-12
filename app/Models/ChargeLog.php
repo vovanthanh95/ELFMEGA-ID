@@ -11,7 +11,7 @@ class ChargeLog extends Model
     protected $table = "charge_log";
     public $timestamps = false;
 
-    public function addChargeLog($username, $serverid, $money, $transcode, $roleid, $status)
+    public function addChargeLog($username, $serverid, $money, $transcode, $roleid, $status, $productid)
     {
 
         try {
@@ -21,11 +21,28 @@ class ChargeLog extends Model
             $data->serverid = $serverid;
             $data->money = $money;
             $data->transcode = $transcode;
-            $data->roleid = $roleid;
+            $data->productid = $productid;
+            $data->uid = $roleid;
             $data->status = $status;
             $data->save();
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    public function checkPay($username,$serverid, $money, $transcode, $roleid, $productid){
+        $data = ChargeLog::where('username',$username)
+        ->where('serverid', $serverid)
+        ->where('money', $money)
+        ->where('transcode', $transcode)
+        ->where('productid', $productid)
+        ->where('uid', $roleid)
+        ->first();
+        if($data != null){
+            $data->status = 1;
+            $data->save();
+            return true;
+        }
+        return false;
     }
 }

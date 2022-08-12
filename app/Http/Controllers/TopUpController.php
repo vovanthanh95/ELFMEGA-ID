@@ -184,7 +184,6 @@ class TopUpController extends Controller
     {
         $agency = new Agency();
         $adminpanel = new AdminPanel();
-        $atm = $agency->getAgencyATM();
         $momo = $agency->getAgencyWallet('MOMO');
         $zalopay = $agency->getAgencyWallet('ZALO PAY');
         $getpromotion = $adminpanel->getPromotion('tlkmnapthe','banking');

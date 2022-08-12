@@ -11,11 +11,17 @@ class Agency extends Model
     protected $table = "agency";
     public $timestamps = false;
     public function getAgencyATM(){
-        $data = Agency::where('type','ATM')->get()->toArray()[0];
-        return $data;
+        $data = Agency::where('type','ATM')->first();
+        if($data != null){
+            return $data->toArray();
+        }
+        return [];
     }
     public function getAgencyWallet($name){
-        $data = Agency::where('name',$name)->get()->toArray()[0];
-        return $data;
+        $data = Agency::where('name',$name)->first();
+        if($data != null){
+            return $data->toArray();
+        }
+        return [];
     }
 }

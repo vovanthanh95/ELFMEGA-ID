@@ -65,10 +65,10 @@ class CustomFunc
             if($info != false){
                 if ($info['money'] >= $money) {
                     $moneyold = $info['money'];
-                    $moneynew = $info['money'] - $money;
+                    $moneynew = $moneyold - $money;
                     $moneylog->addMoneyLog($username, $type, $moneyold, $moneynew);
                     $isOkey = false;
-                    $result = $account->setCoin($username, $money);
+                    $result = $account->setCoin($username, $moneynew);
                     if ($result) {
                         $isOkey = true;
                     }

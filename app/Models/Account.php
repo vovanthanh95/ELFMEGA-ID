@@ -32,8 +32,7 @@ class Account extends Authenticatable
         'createip',
     ];
 
-    protected $hidden = [
-    ];
+    protected $hidden = [];
 
     public function login($username, $password)
     {
@@ -209,9 +208,19 @@ class Account extends Authenticatable
     public function forgotPass($username, $email, $ip)
     {
         $info = [];
-        $user = Account::where(['username' => $username, 'email' => $email])->first();
+        $user = Account::where('username',$username)->first();
         //dd($user);
         if ($user != null) {
+            if($user->email == ""){
+                $info['msg'] = 'Tài khoản chưa cập nhật email. Vui lòng liên hệ Fanpage để được hỗ trợ';
+                $info['type'] = 'error';
+                return $info;
+            }
+            if($user->email != $email){
+                $info['msg'] = 'Tài khoản hoặc Email không đúng';
+                $info['type'] = 'error';
+                return $info;
+            }
             $newpass = random_int(00000000, 99999999);
             $user->password = Hash::make($newpass);
             $user->password2 = $this->encryptSecPwd(strval($newpass));
@@ -246,6 +255,12 @@ class Account extends Authenticatable
         } else {
             return false;
         }
+    }
+
+    public function getUserByUserName2($username)
+    {
+        $data = Account::where('username', $username)->first();
+        return $data;
     }
 
     public function updateMoneyTopUp($username, $moneynew)

@@ -9,56 +9,166 @@ use App\Models\ChargeLog;
 use App\Models\HistoryLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class PayController extends Controller
 {
     public function pay(Request $request)
     {
 
-        if (isset($request->uid) && isset($request->username) && isset($request->serverId) && isset($request->orderId) && isset($request->amount) && isset($request->productId)) {
-            $username = $request->username;
-            $serverId = $request->serverId;
-            $orderId = $request->orderId;
-            $amount = $request->amount;
-            $productId = $request->productId;
-            $uid = $request->uid;
-            $customfunc = new CustomFunc();
-            $acc = new Account();
-            $history = new HistoryLog();
-            $chargelog = new ChargeLog();
 
-            $package_money = $customfunc->getPackageMoney($productId);
-            if ($amount  != $package_money) {
-                exit('Parameter mismatch !');
+        $username = $request->username;
+        $serverid = $request->serverid;
+        $amount = $request->amount;
+        $productid = $request->productid;
+        $uid = $request->uid;
+        $customfunc = new CustomFunc();
+        $history = new HistoryLog();
+        $chargelog = new ChargeLog();
+        $account = new Account();
+
+        $rule = [
+            'username' => 'required|regex:/^[A-Za-z0-9_]{6,32}$/i',
+            'serverid' => 'required',
+            'uid' => 'required',
+            'productid' => 'required',
+            'amount' => 'required',
+        ];
+        $message = [
+            'username.required' => 'Vui lòng điền tên đăng nhập',
+            'username.regex' => 'Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự',
+            'serverid.required' => 'serverid không được trống',
+            'uid.required' => 'uid không được trống',
+            'productid.required' => 'productid không được trống',
+            'amount.required' => 'amount không được trống',
+        ];
+        $validator = Validator::make($request->all(), $rule, $message);
+        if ($validator->fails()) {
+            return response()->json([
+                "message" => $validator->errors()->first(),
+                "code" => 0,
+                "status" => 401,
+            ], 401);
+        }
+
+        $package_money = $customfunc->getPackageMoney($productid);
+        if ($amount  != $package_money) {
+            return response()->json([
+                "message" => 'Parameter mismatch !',
+                "code" => 0,
+                "status" => 201,
+            ], 201);
+        }
+
+        if ($amount < 1000) {
+            $str = $productid . "--" . $amount;
+            Log::channel('pay')->info($str);
+            return response()->json([
+                "message" => 'Parameter mismatch 2 !',
+                "code" => 0,
+                "status" => 201,
+            ], 201);
+        }
+        $info = $account->getUserByUserName2($username);
+        if($info != null){
+            if($info->money < $amount){
+                return response()->json([
+                    "message" => 'Tài khoản không đủ tiền',
+                    "messagecode" => '101',
+                    "code" => 0,
+                    "status" => 201,
+                ], 201);
             }
+        }else{
+            return response()->json([
+                "message" => 'Có lỗi Xảy ra',
+                "code" => 0,
+                "status" => 201,
+            ], 201);
+        }
+        $guiid = $this->GUID();
+        try {
+            $chargelog->addChargeLog($username, $serverid, $amount, $guiid, $uid, 0, $productid);
+            return response()->json([
+                "message" => "ok",
+                "transcode" => $guiid,
+                "code" => 1,
+                "status" => 200,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "message" => "Thất bại",
+                "code" => 0,
+                "status" => 201,
+            ], 201);
+        }
+       
+    }
 
-            if ($amount < 1000) {
-                $str = $productId . "--" . $amount;
-                Log::channel('pay')->info($str);
-                exit('Parameter mismatch 2 !');
-            }
-
-            $coin = $acc->getCoin($username);
+    public function checkPay(Request $request)
+    {
+        $username = $request->username;
+        $serverid = $request->serverid;
+        $uid = $request->uid;
+        $productid = $request->productid;
+        $amount = $request->amount;
+        $transcode = $request->transcode;
+        $chargelog = new ChargeLog();
+        $customfunc = new CustomFunc();
+        $history = new HistoryLog();
+        
+        $rule = [
+            'username' => 'required|regex:/^[A-Za-z0-9_]{6,32}$/i',
+            'serverid' => 'required',
+            'uid' => 'required',
+            'productid' => 'required',
+            'amount' => 'required',
+            'transcode' => 'required',
+        ];
+        $message = [
+            'username.required' => 'Vui lòng điền tên đăng nhập',
+            'username.regex' => 'Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự',
+            'serverid.required' => 'serverid không được trống',
+            'uid.required' => 'uid không được trống',
+            'productid.required' => 'productid không được trống',
+            'amount.required' => 'amount không được trống',
+            'transcode.required' => 'transcode không được trống',
+        ];
+        $validator = Validator::make($request->all(), $rule, $message);
+        if ($validator->fails()) {
+            return response()->json([
+                "message" => $validator->errors()->first(),
+                "code" => 0,
+                "status" => 401,
+            ], 401);
+        }
+        
+        $data = $chargelog->checkPay($username, $serverid, $amount, $transcode, $uid, $productid);
+        if ($data == true) {
+            $package_money = $customfunc->getPackageMoney($productid);
             $removemoney = $customfunc->removeMoney($username, "Mua Gói", $package_money);
             if ($removemoney) {
-                $content = $productId . "|" . $username . "|" . $package_money . "|" . $uid . "|" . $serverId;
+                $content = $productid . "|" . $username . "|" . $package_money . "|" . $uid . "|" . $serverid;
                 $history->createHistory($username, "BuyProduct", $content, 1);
-                $result = $customfunc->addRecharge($productId, $uid, $serverId);
-                $chargelog->addChargeLog($username, $serverId, $amount, $this->GUID(), $uid, 0);
-                if ($result['code'] != 0) {
-                    return "ok";
-                    exit();
-                } else {
-                    $customfunc->addMoney($username, "Mua gói thất bại", $package_money);
-                    exit();
-                }
-                return 'ok';
+                return response()->json([
+                    "message" => 'ok',
+                    "code" => 1,
+                    "status" => 200,
+                ], 200);
             } else {
-                exit('Số tiền trong tài khoản không đủ');
+                return response()->json([
+                    "message" => 'Tài khoản không đủ tiền',
+                    "messagecode" => '101',
+                    "code" => 0,
+                    "status" => 201,
+                ], 201);
             }
-        } else {
-            exit('có lỗi xảy ra');
         }
+        return response()->json([
+            "message" => 'Không thành công',
+            "code" => 0,
+            "status" => 201,
+        ], 201);
     }
 
     public function GUID()

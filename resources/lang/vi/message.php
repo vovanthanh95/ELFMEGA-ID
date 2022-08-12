@@ -139,5 +139,8 @@ return [
     'login' => "Đăng nhập",
     'buypackages' => "Mua Gói",
     'executedsuccessatip' => "Đã thực hiện thành công tại ip",
+    'successfulpurchaseofthepackage' => "Mua thành công gói",
+    'receivedsuccessfullygiftcode'=> "Nhận thành công giftcode",
+    'giftcode' => "GiftCode",
 
 ];
