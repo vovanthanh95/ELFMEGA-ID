@@ -32,6 +32,20 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-3 col-sm-12 col-12" id="stk">
+                        </div>
+                        <div class="col-md-5 col-sm-12 col-12">
+                            <div class="">
+                                <span class="col-md-2 col-3" style="color:#f13d56;"> LƯU Ý:</span>
+                                <span class="col-md-10 col-9"> - Không giới hạn số tiền nạp.</span>
+                             </div>
+                             <div class="">
+                                <span class="col-md-2 col-3" style="color:#f13d56;">    </span>
+                                <span class="col-md-10 col-9 text2"> - Số tiền nạp tối thiểu là <span style="color:#f13d56;"> 50,000 VNĐ</span></span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3 col-sm-6 col-6">
                             {{ trans('message.Textbankname') }}:
                         </div>

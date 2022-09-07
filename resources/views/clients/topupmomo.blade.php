@@ -40,13 +40,27 @@
                         </div>
 
                         <div class="col-3 card-item row nopading" id="">
-                            <input class="col-3" type="radio" name="card_provider" value="viettel" id="card_2"
+                            {{-- <input class="col-3" type="radio" name="card_provider" value="viettel" id="card_2"
                                 onclick="chon('zalopay','{{ $username }}')">
                             <label class="col-9" for="card_2"><img class="icon-card-momo"
-                                    src="{{ asset('assets/img/zalopay.png') }}"> </label>
+                                    src="{{ asset('assets/img/zalopay.png') }}"> </label> --}}
                         </div>
                     </div>
-
+                    
+                     <div class="row">
+                        <div class="col-md-3 col-sm-12 col-12" id="stk">
+                        </div>
+                        <div class="col-md-5 col-sm-12 col-12">
+                            <div class="">
+                                <span class="col-md-2 col-3" style="color:#f13d56;"> LƯU Ý:</span>
+                                <span class="col-md-10 col-9"> - Không giới hạn số tiền nạp.</span>
+                             </div>
+                             <div class="">
+                                <span class="col-md-2 col-3" style="color:#f13d56;">    </span>
+                                <span class="col-md-10 col-9 text2"> - Số tiền nạp tối thiểu là <span style="color:#f13d56;"> 50,000 VNĐ</span></span>
+                             </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-3 col-sm-12 col-12" id="stk">
                             {{ trans('message.Textaccountnumbermomo') }}:
@@ -67,7 +81,7 @@
                             {{ trans('message.Textcontent') }}:
                         </div>
                         <div class="col-md-5 col-sm-8 col-8">
-                            <input value="NAP {{ $username }}" id="payment_amount" class="form-control"
+                            <input value="{{ $username }}" id="payment_amount" class="form-control"
                                 style="height: 40px;" readonly>
                         </div>
                         <div class="col-md-4 col-sm-4 col-4 banking-center">
@@ -114,12 +128,12 @@
             function chon(data, username) {
                 if (data == "momo") {
                     $("#payment_amount1").val('{{ $momo['accountnumber'] }}');
-                    $("#payment_amount").val("NAP " + username);
+                    $("#payment_amount").val(username);
                     $("#stk").html("{{ trans('message.Textaccountnumbermomo') }}");
                 }
                 if (data == "zalopay") {
                     $("#payment_amount1").val('{{ $zalopay['accountnumber'] }}');
-                    $("#payment_amount").val("NAP " + username);
+                    $("#payment_amount").val(username);
                     $("#stk").html("{{ trans('message.Textaccountnumberzalo') }}");
                 }
             }

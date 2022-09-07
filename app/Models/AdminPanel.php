@@ -45,4 +45,24 @@ class AdminPanel extends Model
         return $info;
     }
 
+    public function checkAccumulat(){
+        try {
+            $now = date("Y-m-d H:i:s");
+            $data = AdminPanel::where('type','mocnap')
+            ->where('time_start','<', $now)
+            ->where('time_end','>', $now)
+            ->first();
+            if($data != null){
+                return true;
+            }
+            return false;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function getTimeAccumulat(){
+        return AdminPanel::where('type','mocnap')->get()->toArray()[0];
+    }
+
 }

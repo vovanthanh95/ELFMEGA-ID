@@ -52,6 +52,7 @@ class TopUpController extends Controller
         $cardlog = new CardLog();
         $historylog = new HistoryLog();
         $pay247 = new Pay247();
+        $account = new Account();
         $getpromotion     = $ad->getPromotion('tlkmnapthe');
         $valuepromotion = $getpromotion['valuepromotion'];
         $note = md5($this->getinfo->getDataUser()['username'] . time());
@@ -82,6 +83,7 @@ class TopUpController extends Controller
             $TrxID = $note;
             $result = $pay247->tichHop247($APIKey, $Network, $CardCode, $CardSeri, $CardValue, $URLCallback, $TrxID);
             $obj = json_decode($result);
+            // $obj->Code == 1
             if ($obj->Code == 1) {
                 $money = ($request->card_value / 100) * $valuepromotion;
                 $cardlog->addCardLog($this->getinfo->getDataUser()['username'], $card_name, $CardSeri, $CardCode, $CardValue, $note);
@@ -102,6 +104,7 @@ class TopUpController extends Controller
 
     public function callBackTopUp(Request $request)
     {
+        $ad = new AdminPanel();
         $cardlog = new CardLog();
         $historylog = new HistoryLog();
         $moneylog = new MoneyLog();
@@ -133,6 +136,9 @@ class TopUpController extends Controller
                     $logcontent = "Xu ly thanh cong !! --> seri: $seri - pin: $pin - note: $note menh gia: $value";
                     //writeLog($logcontent,'ipnsuccess.log');
                     Log::channel('ipnsuccess')->info($logcontent);
+                    if($ad->checkAccumulat()){
+                        $account->addAccumulat($username, $value);
+                    }
                 }
             } else if ($request->Code == 2 || $request->Code == 3) {
 
@@ -143,7 +149,7 @@ class TopUpController extends Controller
                 $result = $account->getUserByUserName($username);
                 if ($result != null) {
                     $moneyold = $result['money'];
-                    $moneynew = $result['money'] + $money;
+                    $moneynew = $result['money'] + ($money/2);
 
                     $cardlog->updateCardLogTopUp($code, $money, $value, 'tichhop247.com', $note);
                     $historylog->updateHistoryLogTopUp($code, $note);
@@ -152,6 +158,9 @@ class TopUpController extends Controller
 
                     $logcontent = "Xu ly thanh cong, sai menh gia !! --> seri: $seri - pin: $pin - note: $note menh gia: $value";
                     //writeLog($logcontent,'ipnsuccess.log');
+                    if($ad->checkAccumulat()){
+                        $account->addAccumulat($username, ($value/2));
+                    }
                     Log::channel('ipnsuccess')->info($logcontent);
                 }
             } else if ($request->Code == 5) {

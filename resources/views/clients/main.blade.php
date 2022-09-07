@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ trans('message.title') }}</title>
-    <link href="{{ asset('assets/img/pokeball.png') }}" rel="shortcut icon">
+    <link href="{{ asset('assets/img/icon_logo.png') }}" rel="shortcut icon">
     <meta name="format-detection" content="telephone=no">
 
     <link href="{{ asset('assets/css/googlefonts.css?family=Open+Sans:wght@600;700;800&amp;display=swap') }}"
@@ -131,6 +131,12 @@
                                     <a href="{{ route('top-up-mo-mo') }}">
                                         <img src="{{ asset('assets/img/MOBILE-MM.png') }}" alt="abc">
                                         <span class="item-menu-5">&nbsp;{{ trans('message.linktopupewallet') }}</span>
+                                    </a>
+                                </li>
+                                <li class="dropdownNavigation">
+                                    <a href="{{ route('accumulat') }}">
+                                        <i class="fa-solid fa-gift sub-icon"></i>
+                                        <span class="item-menu-7">&nbsp;{{ trans('message.linkaccumulat') }}</span>
                                     </a>
                                 </li>
                                 <li class="dropdownNavigation">
@@ -263,6 +269,15 @@
                                 </div>
                             </div>
                             <li>
+                                <a class="row" href="{{ route('accumulat') }}">
+                                    <img class="col-3" src="{{ asset('assets/img/ico_giftcode2.png') }}"
+                                        alt="">
+                                    <span class="col-9 sub-item-7">
+                                        {{ trans('message.linkaccumulat') }}
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
                                 <a class="row" href="{{ route('history') }}">
                                     <img class="col-3" src="{{ asset('assets/img/ico_lichsu.png') }}"
                                         alt="">
@@ -333,22 +348,27 @@
     <footer class="is-mobile2">
         <div class="footer-container">
             <div class="row footer2">
-                <div class="col-3">
+                <div class="col-2">
                     <a href="http://thanthudaichien.com"><i class="fa-solid fa-house-chimney"></i>
                         <p>{{ trans('message.linkhome') }}</p>
                     </a>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <a href="{{ route('selection-top-up') }}"><i class="fa-solid fa-money-check-dollar"></i>
                         <p>{{ trans('message.linktopup') }}</p>
                     </a>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <a href="{{ route('history') }}"><i class="fa-solid fa-clock-rotate-left"></i>
                         <p>{{ trans('message.linkhistory') }}</p>
                     </a>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
+                    <a href="{{ route('accumulat') }}"><i class="fa-solid fa-gift"></i>
+                        <p>{{ trans('message.linkaccumulat') }}</p>
+                    </a>
+                </div>
+                <div class="col-2">
                     <a href="https://www.facebook.com/thanthudaichien"><i class="fa-solid fa-headset"></i>
                         <p>{{ trans('message.linksupport') }}</p>
                     </a>

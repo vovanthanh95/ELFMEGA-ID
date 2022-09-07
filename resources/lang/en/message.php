@@ -14,6 +14,7 @@ return [
     'titleupdateemail' => "UPDATE EMAIL",
     'titleupdatephone' => "UPDATE PHONE NUMBER",
     'titlselectiontopup' => "CHOOSE HOW TO DEPOSIT",
+    'titleaccumulat' => "ACCUMULAT",
 
     // form----------------------------------------
     'formusername' => "User name",
@@ -24,13 +25,14 @@ return [
     'formemailrecoveryaccount' => "Recovery Email is the account",
     'formforgotpass' => "Forgot password?",
     'formcaptcha' => "Captcha code",
-    'formcurrentpassword' => "Enter current password (from 6-32 characters)",
-    'formnewpassword' => "Enter a new password (from 6-32 characters)",
-    'formrepeatnewpassword' => "Re-enter new password (from 6-32 characters)",
+    'formcurrentpassword' => "Enter current password (from 8-32 characters)",
+    'formnewpassword' => "Enter a new password (from 8-32 characters)",
+    'formrepeatnewpassword' => "Re-enter new password (from 8-32 characters)",
     'formcardseri' => "Card series",
     'formcardcode' => "ID Card",
     //Button--------------------------------------------
     'btnlogin' => "LOGIN",
+    'btnregister' => "REGISTER",
     'btncancel' => "CANCEL",
     'btnok' => "OK",
     'btnaccept' => "CONFIRM",
@@ -40,6 +42,7 @@ return [
     'btntopupcard' => "RECHARGE CARDS",
     'btnbanking' => "ATM/BANKING",
     'btnewallet' => "E-WALLET",
+    'btngetgiftcode' => "GET GIFTCODE",
     //Menu link--------------------------------------------
     'linkhome' => "HOME",
     'linktopup' => "RECHARGE",
@@ -51,6 +54,7 @@ return [
     'linksupport' => "SUPPORT",
     'linklogout' => "LOGOUT",
     'linkchangepass' => "CHANGE PASSWORD",
+    'linkaccumulat' => "ACCUMULAT",
 
     //Info--------------------------------------------------
     'infocaptcha' => "*click on captcha to change captcha",
@@ -71,6 +75,7 @@ return [
     'Texttopupvalue' => "load value when loaded over",
     'Textcard' => "Scratch cards",
     'Textselectvalue' => "Choose denomination",
+    'Textselectaccumulat' => "Choose accumulat",
     'TextDenominations' => "Denominations",
     'Textbankname' => "Bank",
     'Textaccountholder' => "Account holder",
@@ -142,5 +147,7 @@ return [
     'successfulpurchaseofthepackage' => "successful purchaseofthepackage",
     'receivedsuccessfullygiftcode'=> "Successfully received giftcode",
     'giftcode' => "GiftCode",
+    'accumulat' => "Accumulat",
+    'receivedsuccessfullygiftcodeaccumulat'=> "Successfully received giftcode accumulat",
 
 ];

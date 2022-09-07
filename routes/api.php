@@ -25,3 +25,5 @@ Route::post('/users/forgotpassword', [ApiController::class, 'forgotPass']);
 Route::post('/pay/genpay', [PayController::class, 'pay']);
 
 Route::post('/pay/checkpay', [PayController::class, 'checkPay']);
+
+Route::post('/pay/auth', [PayController::class, 'auth']);

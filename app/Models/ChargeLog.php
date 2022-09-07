@@ -34,7 +34,6 @@ class ChargeLog extends Model
         $data = ChargeLog::where('username',$username)
         ->where('serverid', $serverid)
         ->where('money', $money)
-        ->where('transcode', $transcode)
         ->where('productid', $productid)
         ->where('uid', $roleid)
         ->first();

@@ -23,7 +23,7 @@
     <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
     <script src="{{ asset('assets/js/sweetalert.all.js') }}" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/hoverAnimation/hover.css') }}">
-    <link rel="SHORTCUT ICON" href="{{ asset('assets/img/pokeball.png') }}">
+    <link rel="SHORTCUT ICON" href="{{ asset('assets/img/icon_logo.png') }}">
     <script src="{{ asset('assets/js/mobile-detect.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootbox/bootbox.min.js') }}"></script>
     <link href="{{ asset('assets/plugins/holdon/HoldOn.min.css') }}" rel="stylesheet">

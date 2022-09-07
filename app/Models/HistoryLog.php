@@ -116,6 +116,10 @@ class HistoryLog extends Authenticatable
                         $type = __('message.giftcode');
                         $content = __('message.receivedsuccessfullygiftcode') . " <span style='color:#f13d56'>" . $array[0] . "</span>";
                         break;
+                    case "Accumulat":
+                        $type = __('message.accumulat');
+                        $content = __('message.receivedsuccessfullygiftcodeaccumulat') . " <span style='color:#f13d56'>" . $array[1] . "</span> ".number_format($array[2])." ". config('custom.namemoney');
+                        break;
                     case "RechargeGift":
                         $type = __('message.event');
                         $content = __('message.receivedsuccessfullyevent') . " " . $array[0];

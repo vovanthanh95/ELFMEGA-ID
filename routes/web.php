@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccumulatController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AppClientController;
 use App\Http\Controllers\AuthController;
@@ -34,6 +35,9 @@ Route::group(['middleware' => 'locale'], function () {
     Route::middleware('loginclient')->get('/', [ClientController::class, 'index']);
     Route::middleware('loginclient')->get('/account', [ClientController::class, 'index'])->name('account');
 
+    Route::get('register', [ClientAuthController::class, 'register'])->name('register');
+    Route::post('register', [ClientAuthController::class, 'postRegister'])->name('post-register');
+
     Route::get('login', [ClientAuthController::class, 'login'])->name('login');
     Route::post('login', [ClientAuthController::class, 'postLogin'])->name('post-login');
     Route::middleware('loginclient')->get('logout', [ClientAuthController::class, 'logout'])->name('logout');
@@ -59,8 +63,14 @@ Route::group(['middleware' => 'locale'], function () {
     Route::middleware('loginclient')->get('top-up-mo-mo', [TopUpController::class, 'topUpMoMo'])->name('top-up-mo-mo');
     Route::middleware('loginclient')->get('selection-top-up', [TopUpController::class, 'selectiontopup'])->name('selection-top-up');
 
+    Route::middleware('loginclient')->get('accumulat', [AccumulatController::class, 'index'])->name('accumulat');
+    Route::middleware('loginclient')->post('get-award-accumulat', [AccumulatController::class, 'getAwardByAccumulat'])->name('get-award-accumulat');
+    Route::middleware('loginclient')->post('get-giftcode-accumulat', [AccumulatController::class, 'getGiftCode'])->name('get-giftcode-accumulat');
+
     Route::get('history', [HistoryController::class, 'history'])->name('history');
     Route::post('ajaxhistory', [AjaxController::class, 'ajaxHistory'])->name('ajax-history');
+
+    Route::get('test', [AccumulatController::class, 'test'])->name('test');
 });
 
 

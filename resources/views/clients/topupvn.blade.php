@@ -88,6 +88,9 @@
                                             src="{{ asset('assets/img/Vinaphone_Logo.png') }}"></label>
                                 </div>
                             </div>
+                            <div class="row note-card">
+                               <span class="col-md-2 col-3 txt-card"> LƯU Ý:</span><span class="col-md-10 col-9"> Thẻ Nạp Sai Mệnh Giá Sẽ Nhận Được 50% Giá Trị</span>
+                            </div>
                         </div>
                         <div class="input-row">
                             <select class="select-list form-control my-3 topup-selection" name="card_value" id="rid"

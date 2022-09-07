@@ -10,10 +10,11 @@ return [
     'titletopupbanking' => "NẠP ATM/BANKING",
     'titletopupewallet' => "VÍ ĐIỆN TỬ",
     'titlehistorytopup' => "LỊCH SỬ NẠP",
-    'titlehistoryactive' => "LỊCH HOẠT ĐỘNG",
+    'titlehistoryactive' => "LỊCH SỬ HOẠT ĐỘNG",
     'titleupdateemail' => "CẬP NHẬT EMAIL",
     'titleupdatephone' => "CẬP NHẬT SỐ ĐIỆN THOẠI",
     'titlselectiontopup' => "LỰA CHỌN CÁCH THỨC NẠP TIỀN",
+    'titleaccumulat' => "TÍCH NẠP",
 
     // form----------------------------------------
     'formusername' => "Tên đăng nhập",
@@ -24,13 +25,14 @@ return [
     'formemailrecoveryaccount' => "Email Khôi phục là khoản",
     'formforgotpass' => "Quên mật khẩu?",
     'formcaptcha' => "Mã captcha",
-    'formcurrentpassword' => "Nhập mật khẩu hiện tại (từ 6-32 kí tự)",
-    'formnewpassword' => "Nhập mật khẩu mới (từ 6-32 kí tự)",
-    'formrepeatnewpassword' => "Nhập Lại mật khẩu mới (từ 6-32 kí tự)",
+    'formcurrentpassword' => "Nhập mật khẩu hiện tại (từ 8-32 kí tự)",
+    'formnewpassword' => "Nhập mật khẩu mới (từ 8-32 kí tự)",
+    'formrepeatnewpassword' => "Nhập Lại mật khẩu mới (từ 8-32 kí tự)",
     'formcardseri' => "Seri thẻ",
     'formcardcode' => "Mã thẻ",
     //Button--------------------------------------------
     'btnlogin' => "ĐĂNG NHẬP",
+    'btnregister' => "ĐĂNG KÝ",
     'btncancel' => "HỦY",
     'btnok' => "OK",
     'btnaccept' => "XÁC NHẬN",
@@ -40,6 +42,7 @@ return [
     'btntopupcard' => "NẠP THẺ CÀO",
     'btnbanking' => "ATM/BANKING",
     'btnewallet' => "VÍ ĐIỆN TỬ",
+    'btngetgiftcode' => "NHẬN GIFTCODE",
     //Menu link--------------------------------------------
     'linkhome' => "TRANG CHỦ",
     'linktopup' => "NẠP TIỀN",
@@ -51,6 +54,7 @@ return [
     'linksupport' => "HỖ TRỢ",
     'linklogout' => "ĐĂNG XUẤT",
     'linkchangepass' => "ĐỔI MẬT KHẨU",
+    'linkaccumulat' => "TÍCH NẠP",
 
     //Info--------------------------------------------------
     'infocaptcha' => "click vào captcha để thay đổi captcha",
@@ -71,6 +75,7 @@ return [
     'Texttopupvalue' => "giá trị nạp khi nạp qua",
     'Textcard' => "thẻ cào",
     'Textselectvalue' => "Chọn mệnh giá",
+    'Textselectaccumulat' => "Chọn mốc tích lũy",
     'TextDenominations' => "Mệnh giá (VNĐ)",
     'Textbankname' => "Ngân hàng",
     'Textaccountholder' => "Chủ tài khoản",
@@ -142,5 +147,7 @@ return [
     'successfulpurchaseofthepackage' => "Mua thành công gói",
     'receivedsuccessfullygiftcode'=> "Nhận thành công giftcode",
     'giftcode' => "GiftCode",
+    'accumulat' => "Tích nạp",
+    'receivedsuccessfullygiftcodeaccumulat'=> "Nhận thành công giftcode tích nạp",
 
 ];

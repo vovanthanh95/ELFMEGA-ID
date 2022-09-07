@@ -57,7 +57,7 @@ class Account extends Authenticatable
     {
         $info = [];
         $this->username = $username;
-        $this->password3 = Hash::make($password);
+        $this->password = Hash::make($password);
         $this->password2 = $this->encryptSecPwd($password);
         $this->email = $email;
         $this->phone = $phone;
@@ -359,6 +359,41 @@ class Account extends Authenticatable
             $info['msg'] = trans('message.alertuserorpassnottrue');
             $info['type'] = 'error';
             return $info;
+        }
+    }
+
+    public function addAccumulat($username, $amount){
+        try {
+            $data = Account::where('username', $username)->first();
+            $data->accumulat = $data->accumulat + $amount;
+            $data->save();
+            return true;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return false;
+        }
+    }
+
+    public function getAccumulat($username){
+        try {
+            $data = Account::where('username', $username)->first();
+            return $data->accumulat;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function updateAccumulat($username, $money){
+        try {
+            $data = Account::where('username', $username)->first();
+            if($data != null){
+                $data->accumulat = $data->accumulat - $money;
+                $data->save();
+                return true;
+            }
+            return false;
+        } catch (\Throwable $th) {
+            return false;
         }
     }
     //-----------------------------------------------------------------------------------------------------------//
