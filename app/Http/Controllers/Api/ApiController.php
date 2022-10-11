@@ -43,13 +43,15 @@ class ApiController extends Controller
             $password = $request->password;
             $platform = $request->platform;
             $ip = $request->ip();
-            $countryname = "";
-            $countrycode = "";
+            $countryname = "Chưa xác định";
+            $countrycode = "Chưa xác định";
             try {
                 $locate = Location::get($ip);
                 if ($locate != false) {
-                    $countryname = $locate->countryName;
-                    $countrycode = $locate->countryCode;
+                    if($locate->countryName != "" && $locate->countryCode != ""){
+                        $countryname = $locate->countryName;
+                        $countrycode = $locate->countryCode;
+                    }
                 }
             } catch (\Throwable $th) {
                 //throw $th;
