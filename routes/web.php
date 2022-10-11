@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'locale'], function () {
     Route::get('/change-language/{language}', [LocaleController::class, 'setLocale'])->name('change-language');
 
-    Route::middleware('loginclient')->get('/', [ClientController::class, 'index']);
+    Route::middleware('loginclient')->get('/', [ClientController::class, 'index'])->name('home');
     Route::middleware('loginclient')->get('/account', [ClientController::class, 'index'])->name('account');
 
     Route::get('register', [ClientAuthController::class, 'register'])->name('register');

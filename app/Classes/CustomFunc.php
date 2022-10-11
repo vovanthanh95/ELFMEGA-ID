@@ -9,8 +9,8 @@ class CustomFunc
     public function getPackageMoney($subject_id)
     {
         $money_to_pack_id2 = [
-            1     => '100000',
-            2     => '200000',
+            1     => '50000',
+            2     => '100000',
             3    => '5000000',
             4    => '2000000',
             5     => '1000000',

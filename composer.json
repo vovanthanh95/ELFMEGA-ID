@@ -12,7 +12,9 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "mews/captcha": "^3.2"
+        "mews/captcha": "^3.2",
+        "mongodb/mongodb": "^1.12",
+        "stevebauman/location": "^6.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

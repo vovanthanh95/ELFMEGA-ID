@@ -2,7 +2,7 @@
 
 return [
     //Title--------------------------------------------
-    'title'    => "Cổng thanh toán Thần Thú Đại Chiến",
+    'title'    => "ELF MEGA",
     'titleaccount' => "THÔNG TIN TÀI KHOẢN",
     'titlechangepass' => "ĐỔI MẬT KHẨU",
     'titleforgotpass' => "QUÊN MẬT KHẨU",
@@ -66,6 +66,7 @@ return [
     'Textaccount' => "Tài khoản",
     'Textlangvi' => "Tiếng Việt",
     'Textlangen' => "Tiếng Anh",
+    'Textlangth' => "Thái Lan",
     'Textemail' => "Email",
     'Textphone' => "Số điện thoại",
     'Texttimeregister' => "Thời gian đăng ký",
@@ -88,6 +89,13 @@ return [
     'Textewallet' => "VÍ ĐIỆN TỬ",
     'Textupdateemail' => "Cập nhật email",
     'Textupdatephone' => "Cập nhật SĐT",
+    'Texteventaccumulatend' => "Sự kiện nạp tích lũy chưa diễn ra",
+    'Texteventaccumutatcomback' => "Vui lòng quay lại sau khi có sự kiện mới",
+    'Textnote' => "Chú ý",
+    'Textnotetopupcard' => "Thẻ Nạp Sai Mệnh Giá Sẽ Nhận Được 50% Giá Trị",
+    'Textnolimitmoney' => "Không giới hạn số tiền nạp",
+    'Textminimummoney' => "Số tiền nạp tối thiểu là",
+    'money' => "VNĐ",
 
     //alert info--------------------------------------------
     'alertuserorpassnottrue' => "Tên hoặc mật khẩu chưa đúng",
@@ -123,6 +131,25 @@ return [
     'alertsystemisprocessing' => 'Hệ thống đang xử lý thẻ của bạn trong một vài phút. Vui lòng kiểm tra trạng thái thẻ nạp!',
     'alertcardisexist' => "Thẻ nạp đã tồn tại vui lòng không nạp nữa",
     'alerttitle' => "THÔNG BÁO",
+    'alertusernameisexist' => "Tên đăng nhập đã tồn tại",
+    'alertusernameregex' => "Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự",
+    'alertpassregex' => "Mật khẩu phải từ 8 kí tự trở lên",
+    'alertregistersuccess' => "Đăng ký thành công",
+    'alertregisterinfonottrue' => "Thông tin đăng ký không hợp lệ",
+    'alertloginsuccess' => "Đăng nhập thành công",
+    'alertlogininfonottrue' => "Thông tin đăng nhập không hợp lệ",
+    'alertregistererror' => "Lỗi đăng ký tài khoản",
+
+    'alertamountnotfree' => "amount không được trống",
+    'alertuidnotfree' => "uid không được trống",
+    'alertproductidnotfree' => "productid không được trống",
+    'alertserveridnotfree' => "serverid không được trống",
+    'alerttranscodenotfree' => "transcode không được trống",
+
+    'alertparametermismatch' => "Tham số không khớp",
+    'alerthaserror' => "Có lỗi xảy ra",
+    'alertfailure' => "Thất bại",
+    'alertaccountnotenoughmoney' => "Tài khoản không đủ tiền",
 
     'historymsg1' => "Đã nạp thẻ thành công",
     'historymsg2' => "giá trị",
@@ -149,5 +176,9 @@ return [
     'giftcode' => "GiftCode",
     'accumulat' => "Tích nạp",
     'receivedsuccessfullygiftcodeaccumulat'=> "Nhận thành công giftcode tích nạp",
+    'supportfanpage'=> "Vui lòng liên hệ",
+    'support'=> "để nhận thông tin nạp tiền của Paypal.",
+    'rate'=> "Tỉ lệ",
+    'minimum'=> "Nhỏ nhất",
 
 ];

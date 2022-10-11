@@ -8,6 +8,7 @@ use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Stevebauman\Location\Facades\Location;
 
 class ApiController extends Controller
 {
@@ -23,50 +24,67 @@ class ApiController extends Controller
             'password' => 'required|min:8',
         ];
         $message = [
-            'username.required' => 'Vui lòng điền tên đăng nhập',
-            'username.regex' => 'Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự',
-            'password.required' => 'Vui lòng nhập mật khẩu',
-            'password.min' => 'Mật khẩu phải từ 8 kí tự trở lên',
+            'username.required' => trans('message.alertusernotfree'),
+            'username.regex' => trans('message.alertusernameregex'),
+            'password.required' => trans('message.alertpassnotfree'),
+            'password.min' => trans('message.alertpassregex'),
         ];
         $validator = Validator::make($request->all(), $rule, $message);
         if ($validator->fails()) {
             return response()->json([
                 "message" => $validator->errors()->first(),
                 "code" => 0,
-                "status" => 401,
-            ], 401);
+                "name"=> "",
+                "status" => 400,
+            ], 400);
         }
-        if (isset($request->username) && isset($request->password)) {
+        if (isset($request->username) && isset($request->password) && isset($request->platform)) {
             $username = $request->username;
             $password = $request->password;
+            $platform = $request->platform;
+            $ip = $request->ip();
+            $countryname = "";
+            $countrycode = "";
+            try {
+                $locate = Location::get($ip);
+                if ($locate != false) {
+                    $countryname = $locate->countryName;
+                    $countrycode = $locate->countryCode;
+                }
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+
             $account = new Account();
-            $info = $account->apiRegister($username, $password);
+            $info = $account->apiRegister($username, $password, $platform, $ip, $countryname, $countrycode);
             if (empty($info)) {
                 return response()->json([
                     "name" => "OK!",
-                    "message" => "Đăng ký thành công",
+                    "message" => trans('message.alertregistersuccess'),
                     "code" => 1,
                     "status" => 200,
                     "data" => [
                         "user_id" => Auth::guard('client')->user()->username,
                         "access_token" => Auth::guard('client')->user()->access_token,
                         "refresh_token" => Auth::guard('client')->user()->refresh_token,
-                        "expires" => 3600
+                        "expires" => strtotime(Auth::guard('client')->user()->expires),
                     ]
                 ], 200);
             } else {
                 return response()->json([
                     "message" => $info['msg'],
                     "code" => 0,
-                    "status" => 401,
-                ], 401);
+                    "name"=> "",
+                    "status" => 400,
+                ], 400);
             }
         } else {
             return response()->json([
-                "message" => "Thông tin đăng ký không hợp lệ",
+                "message" => trans('message.alertregisterinfonottrue'),
                 "code" => 0,
-                "status" => 401,
-            ], 401);
+                "name"=> "",
+                "status" => 400,
+            ], 400);
         }
     }
 
@@ -78,50 +96,54 @@ class ApiController extends Controller
             'password' => 'required|min:8',
         ];
         $message = [
-            'username.required' => 'Vui lòng điền tên đăng nhập',
-            'username.regex' => 'Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự',
-            'password.required' => 'Vui lòng nhập mật khẩu',
-            'password.min' => 'Mật khẩu phải từ 8 kí tự trở lên',
+            'username.required' => trans('message.alertusernotfree'),
+            'username.regex' => trans('message.alertusernameregex'),
+            'password.required' => trans('message.alertpassnotfree'),
+            'password.min' => trans('message.alertpassregex'),
         ];
         $validator = Validator::make($request->all(), $rule, $message);
         if ($validator->fails()) {
             return response()->json([
                 "message" => $validator->errors()->first(),
                 "code" => 0,
-                "status" => 401,
-            ], 401);
+                "name"=> "",
+                "status" => 400,
+            ], 400);
         }
-        if (isset($request->username) && isset($request->password)) {
+        if (isset($request->username) && isset($request->password) && isset($request->platform)) {
             $username = $request->username;
             $password = $request->password;
+            $platform = $request->platform;
             $account = new Account();
-            $info = $account->apiLogin($username, $password);
+            $info = $account->apiLogin($username, $password, $platform);
             if (empty($info)) {
                 return response()->json([
                     "name" => "OK!",
-                    "message" => "Đăng nhập thành công",
+                    "message" => trans('message.alertloginsuccess'),
                     "code" => 1,
                     "status" => 200,
                     "data" => [
                         "user_id" => Auth::guard('client')->user()->username,
                         "access_token" => Auth::guard('client')->user()->access_token,
                         "refresh_token" => Auth::guard('client')->user()->refresh_token,
-                        "expires" => 3600
+                        "expires" => strtotime(Auth::guard('client')->user()->expires),
                     ]
                 ], 200);
             } else {
                 return response()->json([
                     "message" => $info['msg'],
                     "code" => 0,
-                    "status" => 401,
-                ], 401);
+                    "name"=> "",
+                    "status" => 400,
+                ], 400);
             }
         } else {
             return response()->json([
-                "message" => "Thông tin đăng nhập không hợp lệ",
+                "message" => trans('message.alertlogininfonottrue'),
                 "code" => 0,
-                "status" => 401,
-            ], 401);
+                "name"=> "",
+                "status" => 400,
+            ], 400);
         }
     }
 
@@ -132,10 +154,10 @@ class ApiController extends Controller
             'email' => 'required|email',
         ];
         $message = [
-            'username.required' => 'Vui lòng điền tên đăng nhập',
-            'username.regex' => 'Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự',
-            'email.required' => 'Vui lòng nhập email',
-            'email.email' => 'Email không đúng định dạng',
+            'username.required' => trans('message.alertusernotfree'),
+            'username.regex' => trans('message.alertusernameregex'),
+            'email.required' => trans('message.alertemailnotfree'),
+            'email.email' => trans('message.alertemailnottrue'),
         ];
         $validator = Validator::make($request->all(), $rule, $message);
         if ($validator->fails()) {
@@ -156,7 +178,7 @@ class ApiController extends Controller
         }
         return response()->json([
             "name" => "OK!",
-            "message" => "Vui lòng kiểm tra mật khẩu mới trong email",
+            "message" => trans('message.alertcheckpassinemail'),
             "code" => 1,
             "status" => 200,
             "data" => [

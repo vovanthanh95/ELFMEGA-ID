@@ -27,3 +27,5 @@ Route::post('/pay/genpay', [PayController::class, 'pay']);
 Route::post('/pay/checkpay', [PayController::class, 'checkPay']);
 
 Route::post('/pay/auth', [PayController::class, 'auth']);
+
+Route::post('/pay/test', [PayController::class, 'test']);

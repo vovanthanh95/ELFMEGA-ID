@@ -36,12 +36,12 @@ class PayController extends Controller
             'amount' => 'required',
         ];
         $message = [
-            'username.required' => 'Vui lòng điền tên đăng nhập',
-            'username.regex' => 'Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự',
-            'serverid.required' => 'serverid không được trống',
-            'uid.required' => 'uid không được trống',
-            'productid.required' => 'productid không được trống',
-            'amount.required' => 'amount không được trống',
+            'username.required' => trans('message.alertusernotfree'),
+            'username.regex' => trans('message.alertusernameregex'),
+            'serverid.required' => trans('message.alertserveridnotfree'),
+            'uid.required' => trans('message.alertuidnotfree'),
+            'productid.required' => trans('message.alertproductidnotfree'),
+            'amount.required' => trans('message.alertamountnotfree'),
         ];
         $validator = Validator::make($request->all(), $rule, $message);
         if ($validator->fails()) {
@@ -55,7 +55,7 @@ class PayController extends Controller
         $package_money = $customfunc->getPackageMoney($productid);
         if ($amount  != $package_money) {
             return response()->json([
-                "message" => 'Parameter mismatch !',
+                "message" => trans('message.alertparametermismatch'),
                 "code" => 0,
                 "status" => 201,
             ], 201);
@@ -65,7 +65,7 @@ class PayController extends Controller
             $str = $productid . "--" . $amount;
             Log::channel('pay')->info($str);
             return response()->json([
-                "message" => 'Parameter mismatch 2 !',
+                "message" => trans('message.alertparametermismatch'),
                 "code" => 0,
                 "status" => 201,
             ], 201);
@@ -74,7 +74,7 @@ class PayController extends Controller
         if ($info != null) {
             if ($info->money < $amount) {
                 return response()->json([
-                    "message" => 'Tài khoản không đủ tiền',
+                    "message" => trans('message.alertaccountnotenoughmoney'),
                     "messagecode" => '101',
                     "code" => 0,
                     "status" => 201,
@@ -82,7 +82,7 @@ class PayController extends Controller
             }
         } else {
             return response()->json([
-                "message" => 'Có lỗi Xảy ra',
+                "message" => trans('message.alerthaserror'),
                 "code" => 0,
                 "status" => 201,
             ], 201);
@@ -98,7 +98,7 @@ class PayController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
-                "message" => "Thất bại",
+                "message" => trans('message.alertfailure'),
                 "code" => 0,
                 "status" => 201,
             ], 201);
@@ -126,13 +126,13 @@ class PayController extends Controller
             'transcode' => 'required',
         ];
         $message = [
-            'username.required' => 'Vui lòng điền tên đăng nhập',
-            'username.regex' => 'Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự',
-            'serverid.required' => 'serverid không được trống',
-            'uid.required' => 'uid không được trống',
-            'productid.required' => 'productid không được trống',
-            'amount.required' => 'amount không được trống',
-            'transcode.required' => 'transcode không được trống',
+            'username.required' => trans('message.alertusernotfree'),
+            'username.regex' => trans('message.alertusernameregex'),
+            'serverid.required' => trans('message.alertserveridnotfree'),
+            'uid.required' => trans('message.alertuidnotfree'),
+            'productid.required' => trans('message.alertproductidnotfree'),
+            'amount.required' => trans('message.alertamountnotfree'),
+            'transcode.required' => trans('message.alerttranscodenotfree'),
         ];
         $validator = Validator::make($request->all(), $rule, $message);
         if ($validator->fails()) {
@@ -157,7 +157,7 @@ class PayController extends Controller
                 ], 200);
             } else {
                 return response()->json([
-                    "message" => 'Tài khoản không đủ tiền',
+                    "message" => trans('message.alertaccountnotenoughmoney'),
                     "messagecode" => '101',
                     "code" => 0,
                     "status" => 201,
@@ -165,7 +165,7 @@ class PayController extends Controller
             }
         }
         return response()->json([
-            "message" => 'Không thành công',
+            "message" => trans('message.alertfailure'),
             "code" => 0,
             "status" => 201,
         ], 201);
@@ -191,6 +191,8 @@ class PayController extends Controller
         $amount = $request->amount;
         $productid = $request->productid;
         $uid = $request->uid;
+        $productdesc = $request->productDesc;
+        $platform = $request->platform;
         $customfunc = new CustomFunc();
         $history = new HistoryLog();
         $chargelog = new ChargeLog();
@@ -204,12 +206,12 @@ class PayController extends Controller
             'amount' => 'required',
         ];
         $message = [
-            'username.required' => 'Vui lòng điền tên đăng nhập',
-            'username.regex' => 'Tên đăng nhập phải là các kí tự A-Z, a-z, 0-9 và dấu gạch dưới, có độ dài từ 6 đến 32 kí tự',
-            'serverid.required' => 'serverid không được trống',
-            'uid.required' => 'uid không được trống',
-            'productid.required' => 'productid không được trống',
-            'amount.required' => 'amount không được trống',
+            'username.required' => trans('message.alertusernotfree'),
+            'username.regex' => trans('message.alertusernameregex'),
+            'serverid.required' => trans('message.alertserveridnotfree'),
+            'uid.required' => trans('message.alertuidnotfree'),
+            'productid.required' => trans('message.alertproductidnotfree'),
+            'amount.required' => trans('message.alertamountnotfree'),
         ];
         $validator = Validator::make($request->all(), $rule, $message);
         if ($validator->fails()) {
@@ -222,7 +224,7 @@ class PayController extends Controller
         $package_money = $customfunc->getPackageMoney($productid);
         if ($amount  != $package_money) {
             return response()->json([
-                "message" => 'Parameter mismatch !',
+                "message" => trans('message.alertparametermismatch'),
                 "status" => 500,
             ], 500);
         }
@@ -231,7 +233,7 @@ class PayController extends Controller
             $str = $productid . "--" . $amount;
             Log::channel('pay')->info($str);
             return response()->json([
-                "message" => 'Parameter mismatch 2 !',
+                "message" => trans('message.alertparametermismatch'),
                 "status" => 500,
             ], 500);
         }
@@ -244,14 +246,14 @@ class PayController extends Controller
             }
         } else {
             return response()->json([
-                "message" => 'Có lỗi Xảy ra',
+                "message" => trans('message.alerthaserror'),
                 "status" => 500,
             ], 500);
         }
         $guiid = $this->GUID();
         try {
-            $chargelog->addChargeLog($username, $serverid, $amount, $guiid, $uid, 0, $productid);
-            $data1 = Http::asForm()->post('http://gate.thanthudaichien.com:23757/tjgame/payment', [
+            $chargelog->addChargeLog($username, $serverid, $amount, $guiid, $uid, 0, $productid, $platform, $productdesc);
+            $data1 = Http::asForm()->post('http://gate.elfmega.com:23757/tjgame/payment', [
                 'accountId' => $accountId,
                 'orderStatus' => $orderStatus,
                 'orderId' => $orderId,
@@ -276,7 +278,7 @@ class PayController extends Controller
                         ], 200);
                     } else {
                         return response()->json([
-                            "message" => 'Có lỗi xảy ra',
+                            "message" => trans('message.alerthaserror'),
                             "code" => 0,
                             "status" => 500,
                         ], 500);
@@ -284,14 +286,134 @@ class PayController extends Controller
                 }
             } else {
                 return response()->json([
-                    "message" => "Thất bại",
+                    "message" => trans('message.alertfailure'),
                     "code" => 0,
                     "status" => 500,
                 ], 500);
             }
         } catch (\Throwable $th) {
             return response()->json([
-                "message" => "Thất bại",
+                "message" => trans('message.alertfailure'),
+                "code" => 0,
+                "status" => 500,
+            ], 500);
+        }
+    }
+
+    public function test(Request $request)
+    {
+        $accountId = $request->accountId;
+        $orderStatus = $request->orderStatus;
+        $orderId = $request->orderId;
+        $game_extra = $request->game_extra;
+        $username = $request->username;
+        $serverid = $request->serverid;
+        $amount = $request->amount;
+        $productid = $request->productid;
+        $uid = $request->uid;
+        $productdesc = $request->productDesc;
+        $platform = $request->platform;
+        $customfunc = new CustomFunc();
+        $history = new HistoryLog();
+        $chargelog = new ChargeLog();
+        $account = new Account();
+
+        $rule = [
+            'username' => 'required|regex:/^[A-Za-z0-9_]{6,32}$/i',
+            'serverid' => 'required',
+            'uid' => 'required',
+            'productid' => 'required',
+            'amount' => 'required',
+        ];
+        $message = [
+            'username.required' => trans('message.alertusernotfree'),
+            'username.regex' => trans('message.alertusernameregex'),
+            'serverid.required' => trans('message.alertserveridnotfree'),
+            'uid.required' => trans('message.alertuidnotfree'),
+            'productid.required' => trans('message.alertproductidnotfree'),
+            'amount.required' => trans('message.alertamountnotfree'),
+        ];
+        $validator = Validator::make($request->all(), $rule, $message);
+        if ($validator->fails()) {
+            return response()->json([
+                "message" => $validator->errors()->first(),
+                "status" => 500,
+            ], 500);
+        }
+
+        $package_money = $customfunc->getPackageMoney($productid);
+        if ($amount  != $package_money) {
+            return response()->json([
+                "message" => trans('message.alertparametermismatch'),
+                "status" => 500,
+            ], 500);
+        }
+
+        if ($amount < 1000) {
+            $str = $productid . "--" . $amount;
+            Log::channel('pay')->info($str);
+            return response()->json([
+                "message" => trans('message.alertparametermismatch'),
+                "status" => 500,
+            ], 500);
+        }
+        $info = $account->getUserByUserName2($username);
+        if ($info != null) {
+            if ($info->money < $amount) {
+                return response()->json([
+                    "code" => 201,
+                ], 200);
+            }
+        } else {
+            return response()->json([
+                "message" => trans('message.alerthaserror'),
+                "status" => 500,
+            ], 500);
+        }
+        $guiid = $this->GUID();
+        try {
+            $chargelog->addChargeLog($username, $serverid, $amount, $guiid, $uid, 0, $productid, $platform, $productdesc);
+            $data1 = Http::asForm()->post('http://test.elfmega.com:23757/tjgame/payment', [
+                'accountId' => $accountId,
+                'orderStatus' => $orderStatus,
+                'orderId' => $orderId,
+                'amount' => $amount,
+                'game_extra' => $game_extra,
+                'signkey' => '$2a$12$J0uc60O/lyfdajMrMSqxgONkWpuGEL/eNiEkk6pFrWPusePYxIzqS',
+            ]);
+            $ret = $data1->json()['ret'];
+            $data = $data1->json()['data'];
+            if ($ret == '0' && $data == "Ok") {
+                
+                $data = $chargelog->checkPay($username, $serverid, $amount, "", $uid, $productid);
+                if ($data == true) {
+                    $package_money = $customfunc->getPackageMoney($productid);
+                    $removemoney = $customfunc->removeMoney($username, "Mua Gói", $package_money);
+                    if ($removemoney) {
+                        $content = $productid . "|" . $username . "|" . $package_money . "|" . $uid . "|" . $serverid;
+                        $history->createHistory($username, "BuyProduct", $content, 1);
+                        return response()->json([
+                            "code" => 200,
+                            "status" => 200,
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            "message" => trans('message.alerthaserror'),
+                            "code" => 0,
+                            "status" => 500,
+                        ], 500);
+                    }
+                }
+            } else {
+                return response()->json([
+                    "message" => trans('message.alertfailure'),
+                    "code" => 0,
+                    "status" => 500,
+                ], 500);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                "message" => trans('message.alertfailure'),
                 "code" => 0,
                 "status" => 500,
             ], 500);

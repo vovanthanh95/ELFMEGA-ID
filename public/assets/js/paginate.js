@@ -30,7 +30,7 @@ function pagination(link, tab) {
     for (var i = 1; i <= total; i++) {
       if (i == curPage)
         btn +=
-          '<a class="page-number" style="font-weight: bold;background-color: #f13d56; color: #fff !important" href="/' +
+          '<a class="page-number" style="font-weight: bold;background-color: #36b3df; color: #fff !important" href="/' +
           link +
           '/?tab=' +
           tab +
@@ -105,7 +105,7 @@ function pagination(link, tab) {
   for (var i = curPage; i < end; i++) {
     if (i == curPage) {
       btn +=
-        '<a class="page-number" style="font-weight: bold;background-color: #f13d56; color: #fff !important" href="#" onclick="getListArticle(' +
+        '<a class="page-number" style="font-weight: bold;background-color: #36b3df; color: #fff !important" href="#" onclick="getListArticle(' +
         i +
         ')">' +
         i +
@@ -150,7 +150,7 @@ function pagination(link, tab) {
       '</a>';
   } else if (curPage == total) {
     btn +=
-      '<a class="page-number" style="font-weight: bold; background-color: #f13d56; color: #fff"  href="/' +
+      '<a class="page-number" style="font-weight: bold; background-color: #36b3df; color: #fff"  href="/' +
       link +
       '?tab=' +
       tab +

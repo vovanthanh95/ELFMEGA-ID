@@ -3,29 +3,32 @@
     <div class="accountPage__layout">
         <div class="updatePasswordPage__layout">
             <div class="rowTitle">
-                <span>{{trans('message.titletopupcard')}}</span>
+                <span>{{ trans('message.titletopupcard') }}</span>
             </div>
             @if ($getpromotion['ispromotion'] > 0)
-            <div class="row info-momo center">
-                <div class="col-md-12 col-sm-12 col-12">
-                    <img src="{{ asset('assets/img/icon-gift.svg') }}">
-                    <p>
-                        {{trans('message.Textto')}} {{ date('H:i:s d:m:Y',strtotime($getpromotion['startpromotion'])) . ' ' }} {{trans('message.Textfrom')}} {{ ' ' . date('H:i:s d:m:Y',strtotime($getpromotion['endpromotion'])) . ' ' }}{{trans('message.Textoffers')}}
-                        <span style="color: rgb(5, 21, 245);">
-                            {{ $getpromotion['ispromotion'] }}%
-                        </span>
-                        {{trans('message.Texttopupvalue')." "}}{{trans('message.Textcard')}}
-                    </p>
-                  
+                <div class="row info-momo center">
+                    <div class="col-md-12 col-sm-12 col-12">
+                        <img src="{{ asset('assets/img/icon-gift.svg') }}">
+                        <p>
+                            {{ trans('message.Textto') }}
+                            {{ date('H:i:s d:m:Y', strtotime($getpromotion['startpromotion'])) . ' ' }}
+                            {{ trans('message.Textfrom') }}
+                            {{ ' ' . date('H:i:s d:m:Y', strtotime($getpromotion['endpromotion'])) . ' ' }}{{ trans('message.Textoffers') }}
+                            <span style="color: rgb(5, 21, 245);">
+                                {{ $getpromotion['ispromotion'] }}%
+                            </span>
+                            {{ trans('message.Texttopupvalue') . ' ' }}{{ trans('message.Textcard') }}
+                        </p>
+
+                    </div>
                 </div>
-            </div>
             @endif
             <div class="row">
                 <div class="col-md-5 col-sm-12 col-12">
                     <table class="table-card">
                         <thead>
                             <tr class="tb-head">
-                                <td width="60%" class="tb-head">{{trans('message.TextDenominations')}}</span></td>
+                                <td width="60%" class="tb-head">{{ trans('message.TextDenominations') }}</span></td>
                                 <td width="40%"class="tb-head">{{ config('custom.namemoney') }}</td>
                             </tr>
                         </thead>
@@ -70,32 +73,34 @@
                         @csrf
                         <div class="input-row">
                             <div class="row">
-                                <div class="col-4 card-item row" id="">
+                                {{-- <div class="col-4 card-item row" id="">
                                     <input class="col-3" type="radio" name="card_provider" value="12" id="mobifone-input"
                                         checked="checked">
                                     <label class="col-9" for="mobifone-input"><img id="mobifone" class="icon-card"
                                             src="{{ asset('assets/img/mobifone.png') }}"> </label>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-4 card-item row" id="">
-                                    <input class="col-3" type="radio" name="card_provider" value="11" id="card_2">
+                                    <input class="col-3" type="radio" name="card_provider" value="11" id="card_2"
+                                        checked="checked">
                                     <label class="col-9" for="card_2"><img class="icon-card"
                                             src="{{ asset('assets/img/viettel-logo.png') }}"> </label>
                                 </div>
-                                <div class="col-4 card-item row" id="">
+                                {{-- <div class="col-4 card-item row" id="">
                                     <input class="col-3" type="radio" name="card_provider" value="13" id="card_3">
                                     <label class="col-9" for="card_3"><img class="icon-card"
                                             src="{{ asset('assets/img/Vinaphone_Logo.png') }}"></label>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row note-card">
-                               <span class="col-md-2 col-3 txt-card"> LƯU Ý:</span><span class="col-md-10 col-9"> Thẻ Nạp Sai Mệnh Giá Sẽ Nhận Được 50% Giá Trị</span>
+                                <li><span class="hight-light"> {{ trans('message.Textnote') }}:</span><span>
+                                        {{ trans('message.Textnotetopupcard') }}</span></li>
                             </div>
                         </div>
                         <div class="input-row">
                             <select class="select-list form-control my-3 topup-selection" name="card_value" id="rid"
                                 style="height: 40px;">
-                                <option value="">{{trans('message.Textselectvalue')}}</option>
+                                <option value="">{{ trans('message.Textselectvalue') }}</option>
                                 <option value="10000">10,000</option>
                                 <option value="20000">20,000</option>
                                 <option value="50000">50,000</option>
@@ -108,15 +113,18 @@
                         </div>
                         <div class="input-row">
                             <input class="form-control my-3" name="card_serial" id="oldPassword" type="text"
-                                placeholder="{{trans('message.formcardseri')}}" value="{{ old('card_serial') }}" style="height: 40px;">
+                                placeholder="{{ trans('message.formcardseri') }}" value="{{ old('card_serial') }}"
+                                style="height: 40px;">
                         </div>
                         <div class="input-row">
                             <input class="form-control my-3" name="card_password" id="newPassword" type="text"
-                                placeholder="{{trans('message.formcardcode')}}" value="{{ old('card_password') }}" style="height: 40px;">
+                                placeholder="{{ trans('message.formcardcode') }}" value="{{ old('card_password') }}"
+                                style="height: 40px;">
                         </div>
                         <div class="row input-row">
                             <input class="col-7 form-control cus-input" name="captcha" id="newPassword" type="text"
-                                placeholder="{{trans('message.formcaptcha')}}" value="{{ old('captcha') }}" style="height: 40px;">
+                                placeholder="{{ trans('message.formcaptcha') }}" value="{{ old('captcha') }}"
+                                style="height: 40px;">
                             <div class="col-5 img-captcha">
                                 <p id="refreshCaptcha">
                                     {!! captcha_img() !!}
@@ -124,10 +132,10 @@
                             </div>
                         </div>
                         <div class="row input-row topup-info">
-                            <p><i style="color: #5b545b;">{{trans('message.infocaptcha')}}<i></p>
+                            <p><i style="color: #5b545b;">{{ trans('message.infocaptcha') }}<i></p>
                         </div>
                         <div class="btn-confirm-row">
-                            <button class="btn-custom" type="submit">{{trans('message.btnaccept')}}</button>
+                            <button class="btn-custom" type="submit">{{ trans('message.btnaccept') }}</button>
                         </div>
                     </form>
                 </div>

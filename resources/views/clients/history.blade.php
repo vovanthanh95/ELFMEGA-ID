@@ -4,13 +4,14 @@
         <div class="updatePasswordPage__layout">
             <ul class="nav nav-tabs custom-tabs d-flex w-100 py-10" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link show bt-active" id="bt-active" onclick="onChangeTab('history-active')" data-tab="my_noti">
-                        {{trans('message.titlehistoryactive')}}
+                    <a class="nav-link show bt-active" id="bt-active" onclick="onChangeTab('history-active')"
+                        data-tab="my_noti">
+                        {{ trans('message.titlehistoryactive') }}
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" id="bt-topup" onclick="onChangeTab('history-top-up')" data-tab="event_noti">
-                        {{trans('message.titlehistorytopup')}}
+                        {{ trans('message.titlehistorytopup') }}
                     </a>
                 </li>
             </ul>
@@ -18,7 +19,8 @@
                 <div class="row">
                     <div class="row center shadow">
                         <div id="data" class="data-history"></div>
-                        <ul class="pagination paginationjs paginationjs-small paginationjs-theme-yellow pagi" id="pagination">
+                        <ul class="pagination paginationjs paginationjs-small paginationjs-theme-yellow pagi"
+                            id="pagination">
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -118,7 +120,7 @@
                                 @else
                                     @if ($value['status'] == 1)
                                         @php
-                                            $status = '<font color="#f13d56">' . __('message.success') . '</font>';
+                                            $status = '<font color="#36b3df">' . __('message.success') . '</font>';
                                         @endphp
                                     @elseif ($value['status'] == 2)
                                         @php
@@ -147,7 +149,7 @@
                                     @endif
                                 @endif
 
-                                @if ($value['type'] != 'MOMO')
+                                @if ($value['type'] == 'Viettel')
                                     @php
                                         $stringType = '<p>PIN: <span class="blue">' . preg_replace("/^.+(?=(.{5}$))/", '********', $value['pin']) . '</span></p>';
                                     @endphp
@@ -168,7 +170,28 @@
                                             {!! $status !!}
                                         </p>
                                         <p class="text-right ">{{ number_format($value['amount']) }}
-                                            {{ config('custom.namemoney') }}</p>
+                                            @switch($value['type'])
+                                                @case('GCASH')
+                                                    {{ 'GCASH' }}
+                                                @break
+
+                                                @case('BATH')
+                                                    {{ 'BATH' }}
+                                                @break
+
+                                                @case('BCA')
+                                                    {{ 'IDR' }}
+                                                @break
+
+                                                @case('PAYPAL')
+                                                    {{ 'USD' }}
+                                                @break
+
+                                                @default
+                                                    {{ config('custom.namemoney') }}
+                                            @endswitch
+
+                                        </p>
                                     </div>
                                     {{-- <div class="clearfix"></div> --}}
                                 </div>

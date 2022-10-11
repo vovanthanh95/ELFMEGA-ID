@@ -37,7 +37,9 @@ class HistoryLog extends Authenticatable
 
         $page = trim(request()->page);
         $json = array();
-        if ($page < 1){ $page = 1;}
+        if ($page < 1) {
+            $page = 1;
+        }
         $row_count = 5;
         $offset = ($page - 1) *  $row_count;
 
@@ -55,7 +57,7 @@ class HistoryLog extends Authenticatable
             ->get();
         if ($result->count() > 0) {
             $json['table'] = '<ul class="tbl-row-group">';
-                foreach($result as $key => $value){
+            foreach ($result as $key => $value) {
                 $array = explode("|", $value['content']);
                 $status = "";
                 if ($value['status'] == 1) {
@@ -78,14 +80,6 @@ class HistoryLog extends Authenticatable
                 switch ($value['type']) {
                     case "PrepaidCard":
                         $type = __('message.topup');
-                        $content = __('message.historymsg1') . " <span style='color:#0515f5'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . __('message.historymsg3') . " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
-                        break;
-                    case "MOMO":
-                        $type =  __('message.topup');
-                        $content = __('message.historymsg1') . " <span style='color:#0515f5'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . $__('message.historymsg3'). " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
-                        break;
-                    case "ATM":
-                        $type =  __('message.topup');
                         $content = __('message.historymsg1') . " <span style='color:#0515f5'>" . $array[0] . "</span> " . __('message.historymsg2') . " <span style='color:red'>" . number_format($array[2]) . "</span> " . __('message.historymsg3') . " <span style='color:red'>" . number_format($array[3]) . "</span> " . config('custom.namemoney');
                         break;
                     case "Recharge":
@@ -114,31 +108,19 @@ class HistoryLog extends Authenticatable
                         break;
                     case "GiftCode":
                         $type = __('message.giftcode');
-                        $content = __('message.receivedsuccessfullygiftcode') . " <span style='color:#f13d56'>" . $array[0] . "</span>";
+                        $content = __('message.receivedsuccessfullygiftcode') . " <span style='color:#36b3df'>" . $array[0] . "</span>";
                         break;
                     case "Accumulat":
                         $type = __('message.accumulat');
-                        $content = __('message.receivedsuccessfullygiftcodeaccumulat') . " <span style='color:#f13d56'>" . $array[1] . "</span> ".number_format($array[2])." ". config('custom.namemoney');
-                        break;
-                    case "RechargeGift":
-                        $type = __('message.event');
-                        $content = __('message.receivedsuccessfullyevent') . " " . $array[0];
-                        break;
-                    case "TranferDiamon":
-                        $type = __('message.transferdiamon');
-                        $content = __('message.characters') . " " . $array[0] . " " . __('message.historymsg3') . " " . $array[4] . " " . __('message.diamond');
+                        $content = __('message.receivedsuccessfullygiftcodeaccumulat') . " <span style='color:#36b3df'>" . $array[1] . "</span> " . number_format($array[2]) . " " . config('custom.namemoney');
                         break;
                     case "BuyProduct":
                         $type = __('message.buypackages');
-                        $content = __('message.successfulpurchaseofthepackage') . " <span style='color:#f13d56'>" . number_format($array[2]) . "</span> " . config('custom.namemoney');
-                        break;
-                    case "TMT":
-                        $type = __('message.topup');
-                        $content = __('message.historymsg1') . " " . $array[0] . " " . __('message.historymsg2') . " " . number_format($array[2]) . " " . __('message.historymsg3') . " " . number_format($array[3]) . " " . config('custom.namemoney');
+                        $content = __('message.successfulpurchaseofthepackage') . " <span style='color:#36b3df'>" . number_format($array[2]) . "</span> " . config('custom.namemoney');
                         break;
                     default:
                         $type = $value['type'];
-                        $content = "";
+                        $content = $array[0];
                         break;
                 }
                 $table .= '
@@ -166,23 +148,25 @@ class HistoryLog extends Authenticatable
         return $json;
     }
 
-    public function createHistory($username, $type, $content, $status = 1, $note = ""){
+    public function createHistory($username, $type, $content, $status = 1, $note = "")
+    {
         $this->username = $username;
         $this->type = $type;
         $this->content = $content;
         $this->status = $status;
         $this->time = date("Y-m-d H:i:s");
         $this->note = $note;
-        if($this->save()){
+        if ($this->save()) {
             return true;
-        }else{
+        } else {
             return false;
         };
     }
 
-    public function updateHistoryLogTopUp($status, $note){
+    public function updateHistoryLogTopUp($status, $note)
+    {
         $data = HistoryLog::where('note', $note)->first();
-        if($data != null){
+        if ($data != null) {
             $data->status = $status;
             $data->save();
         }

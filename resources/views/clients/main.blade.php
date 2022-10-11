@@ -32,8 +32,8 @@
             position: relative !important;
             height: 36px !important;
             width: 100%;
-            background: transparent url('{{ asset("assets/master-images/312X36_BGXanh_koBo.png") }}') !important;
-            content: '{{trans("message.alerttitle")}}';
+            background: transparent url('{{ asset('assets/master-images/312X36_BGXanh_koBo.png') }}') !important;
+            content: '{{ trans('message.alerttitle') }}';
             color: #fff;
             text-align: center;
             padding-top: 4px;
@@ -128,12 +128,6 @@
                                     </a>
                                 </li>
                                 <li class="dropdownNavigation">
-                                    <a href="{{ route('top-up-mo-mo') }}">
-                                        <img src="{{ asset('assets/img/MOBILE-MM.png') }}" alt="abc">
-                                        <span class="item-menu-5">&nbsp;{{ trans('message.linktopupewallet') }}</span>
-                                    </a>
-                                </li>
-                                <li class="dropdownNavigation">
                                     <a href="{{ route('accumulat') }}">
                                         <i class="fa-solid fa-gift sub-icon"></i>
                                         <span class="item-menu-7">&nbsp;{{ trans('message.linkaccumulat') }}</span>
@@ -195,13 +189,16 @@
                             <div class="accordion accordion-flush" id="accordionFlushExample">
                                 <div class="accordion-item">
                                     <li class="accordion-header" id="flush-headingOne">
-                                        <a class="accordion-button collapsed row" type="button"
+                                        <a class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
                                             aria-expanded="false" aria-controls="flush-collapseOne">
-                                            <img class="col-3" src="{{ asset('assets/img/ico_taikhoan.png') }}"
-                                                alt="">
-                                            <span class="col-9 menu-item tk"> {{ trans('message.linkaccount') }}
-                                            </span>
+                                            <div class="col-3">
+                                                <img src="{{ asset('assets/img/ico_taikhoan.png') }}" alt="">
+                                            </div>
+                                            <div class="col-8 adiv">
+                                                <span> {{ trans('message.linkaccount') }}
+                                                </span>
+                                            </div>
                                         </a>
                                     </li>
                                     <div id="flush-collapseOne" class="accordion-collapse collapse sub-menu"
@@ -210,11 +207,12 @@
                                             <ul class="sub-menu-item">
                                                 <li class="mid dis-border-bot">
                                                     <a class="row" href="{{ route('change-pass') }}">
-                                                        <img class="col-3"
-                                                            src="{{ asset('assets/img/ICO-PASS.png') }}"
-                                                            alt="">
-                                                        <span
-                                                            class="col-9 sub-item-1 mk">{{ trans('message.linkchangepass') }}</span>
+                                                        <div class="col-3"><img
+                                                                src="{{ asset('assets/img/ICO-PASS.png') }}"
+                                                                alt=""></div>
+                                                        <div class="col-8 adiv">
+                                                            <span>{{ trans('message.linkchangepass') }}</span>
+                                                        </div>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -226,41 +224,42 @@
                             <div class="accordion accordion-flush" id="accordionFlushExample">
                                 <div class="accordion-item">
                                     <li class="accordion-header" id="flush-headingOne">
-                                        <a class="accordion-button collapsed row" type="button"
+                                        <a class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#flush-collapse2"
                                             aria-expanded="false" aria-controls="flush-collapseOne">
-                                            <img class="col-3" src="{{ asset('assets/img/VI-DIEN-TU.png') }}"
-                                                alt=""> <span class="col-9 menu-item nt">
-                                                {{ trans('message.linktopup') }} </span>
+                                            <div class="col-3">
+                                                <img src="{{ asset('assets/img/VI-DIEN-TU.png') }}">
+                                            </div>
+                                            <div class="col-8 adiv">
+                                                <span>{{ trans('message.linktopup') }} </span>
+                                            </div>
                                         </a>
                                     </li>
                                     <div id="flush-collapse2" class="accordion-collapse collapse sub-menu"
                                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
                                             <ul class="sub-menu-item">
-                                                <li class="mid">
-                                                    <a class="row" href="{{ route('top-up-vn') }}">
-                                                        <img class="col-3"
-                                                            src="{{ asset('assets/img/icon-the-cao.png') }}"
-                                                            alt="">
-                                                        <span
-                                                            class="col-9 sub-item-3">{{ trans('message.linktopupcard') }}</span>
+                                                <li>
+                                                    <a href="{{ route('top-up-vn') }}">
+                                                        <div class="col-3">
+                                                            <img class="col-3"
+                                                                src="{{ asset('assets/img/icon-the-cao.png') }}"
+                                                                alt="">
+                                                        </div>
+                                                        <div class="col-8 adiv">
+                                                            <span>{{ trans('message.linktopupcard') }}</span>
+                                                        </div>
                                                     </a>
                                                 </li>
-                                                <li class="mid">
-                                                    <a class="row" href="{{ route('top-up-banking') }}">
-                                                        <img class="col-3"
-                                                            src="{{ asset('assets/img/THE-NGAN-HANG-CHON.png') }}"
-                                                            alt=""> <span
-                                                            class="col-9 sub-item-4">{{ trans('message.linktopupbanking') }}</span>
-                                                    </a>
-                                                </li>
-                                                <li class="end">
-                                                    <a class="row" href="{{ route('top-up-mo-mo') }}">
-                                                        <img class="col-3"
-                                                            src="{{ asset('assets/img/MOBILE-MM.png') }}"
-                                                            alt=""> <span
-                                                            class="col-9 sub-item-5">{{ trans('message.linktopupewallet') }}</span>
+                                                <li>
+                                                    <a href="{{ route('top-up-banking') }}">
+                                                        <div class="col-3">
+                                                            <img src="{{ asset('assets/img/THE-NGAN-HANG-CHON.png') }}"
+                                                                alt="">
+                                                        </div>
+                                                        <div class="col-8 adiv">
+                                                            <span>{{ trans('message.linktopupbanking') }}</span>
+                                                        </div>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -268,7 +267,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <li>
+
+                            <div>
+                                <div class="">
+                                    <li>
+                                        <a class="alink" href="{{ route('accumulat') }}">
+                                            <div class="col-3"><img
+                                                    src="{{ asset('assets/img/ico_giftcode2.png') }}" alt="">
+                                            </div>
+                                            <div class="col-8 adiv"><span>
+                                                    {{ trans('message.linkaccumulat') }} </span></div>
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="">
+                                    <li>
+                                        <a class="alink" href="{{ route('history') }}">
+                                            <div class="col-3"><img src="{{ asset('assets/img/ico_lichsu.png') }}"
+                                                    alt=""></div>
+                                            <div class="col-8 adiv"><span>
+                                                    {{ trans('message.linkhistory') }} </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>
+                            {{-- <li class="row">
                                 <a class="row" href="{{ route('accumulat') }}">
                                     <img class="col-3" src="{{ asset('assets/img/ico_giftcode2.png') }}"
                                         alt="">
@@ -277,15 +303,15 @@
                                     </span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="row">
                                 <a class="row" href="{{ route('history') }}">
                                     <img class="col-3" src="{{ asset('assets/img/ico_lichsu.png') }}"
                                         alt="">
-                                    <span class="col-9 sub-item-7">
+                                    <p class="col-9 sub-item-7">
                                         {{ trans('message.linkhistory') }}
-                                    </span>
+                                    </p>
                                 </a>
-                            </li>
+                            </li> --}}
 
                         </ul>
                     </div>
@@ -305,21 +331,21 @@
                 <div class="col-md-6 col-6 reset-padding-left reset-padding-right ft1">
                     <div class="footer1 r-0">
                         <div class="p1" style="padding-top: '2px'">
-                            <p>Copyright@2022 thanthudaichien.com</p>
+                            <p>Copyright@2022 ElfMega</p>
                             <p>{{ trans('message.infofooter') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-6 reset-padding-left reset-padding-right" style="text-align: 'right'">
                     <p class="contact-info">
-                        <a href="https://www.facebook.com/thanthudaichien" target="_blank">
-                            Fanpage: <span class="footer-info">thanthudaichien</span>
+                        <a href="https://www.facebook.com/ElfMega" target="_blank">
+                            Fanpage: <span class="footer-info"> ElfMega</span>
                             <img src="{{ asset('assets/img/FOOTER-ICO-FB.png') }}" class="footer-ico">
                         </a>
                     </p>
                     <p class="contact-info">
                         <a href="">
-                            Email: <span class="footer-info">thanthudaichien.com@gmail.com</span>
+                            Email: <span class="footer-info">ElfMega.com@gmail.com</span>
                             <img src="{{ asset('assets/img/FOOTER-ICO-MAIL.png') }}" class="footer-ico">
                         </a>
                     </p>
@@ -349,7 +375,7 @@
         <div class="footer-container">
             <div class="row footer2">
                 <div class="col-2">
-                    <a href="http://thanthudaichien.com"><i class="fa-solid fa-house-chimney"></i>
+                    <a href="{{ route('home') }}"><i class="fa-solid fa-house-chimney"></i>
                         <p>{{ trans('message.linkhome') }}</p>
                     </a>
                 </div>
@@ -369,7 +395,7 @@
                     </a>
                 </div>
                 <div class="col-2">
-                    <a href="https://www.facebook.com/thanthudaichien"><i class="fa-solid fa-headset"></i>
+                    <a href="https://www.facebook.com/ElfMega"><i class="fa-solid fa-headset"></i>
                         <p>{{ trans('message.linksupport') }}</p>
                     </a>
                 </div>
@@ -379,7 +405,7 @@
 
     <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/Account.js?version=400') }}"></script>
-
+    <script src="{{ asset('assets/js/mdb.min.js') }}"></script>
     {{-- thông báo --}}
     @if (session()->has('msg') && session()->has('type'))
         <script type="text/javascript">

@@ -205,7 +205,7 @@ img {
     height: 35px;
     overflow: hidden;
     background: url(../../assets/images/arrow-down.png) no-repeat right;
-    border-color: #f13d56 !important;
+    border-color: #36b3df !important;
     border-style: solid;
     margin: 0 auto
 }
@@ -412,7 +412,7 @@ article img {
 
 .page-number.active {
     font-weight: bold;
-    background-color: #f13d56;
+    background-color: #36b3df;
     color: #fff !important;
 }
 
@@ -506,7 +506,7 @@ article img {
     height: 35px;
     overflow: hidden;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAhCAMAAAD5wuvoAAAAclBMVEVUskP7/vv5/Pi13q2r2qOa0pD3+/bx+fCKy399xXB6w2xsvV71+vTt9+vd8NrY7tS44LGi1ZmX0IySzodywGRvvmBou1ny+fHj8+HC5LuBx3Xn9OTT687D5L2v26ek1puf1JaGyXp2wWhjuVRiuFJYtEcho2sOAAAAkUlEQVQoz+3LNxKDMBBA0Y8CMoicwTnd/4oW43GhMVQed7xit/i7bP6lzYTk41mIrPVyLqNhhLdjFsvcy6Ljvi9gVgwPbIj/DV2qcE5pB+PBy9YoaE0JZ2NBphZPk7h0SyqdNKB6N3yx0BCFYQylG1+moHY9Ai0mFuyCHU7t1qIquM5HNSsuQqlAs0qbvmLzsxdgDAVwHsEKCwAAAABJRU5ErkJggg==) no-repeat 100%;
-    border-color: #f13d56 !important;
+    border-color: #36b3df !important;
     border-style: solid;
     margin: 0 auto
 }

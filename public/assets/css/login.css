@@ -4,7 +4,7 @@
 }
 
 .login-container{
-    border: 1px solid #f13d56;
+    border: 1px solid #36b3df;
     margin: auto;
 
 }
@@ -141,14 +141,14 @@ body{
     color: #ffff;
     border: none;
     background: rgb(139, 229, 39);
-    background: linear-gradient(180deg, #f13d56 0%, #f85979 100%);
+    background: linear-gradient(180deg, #36b3df 0%, #f85979 100%);
 }
 .btn-white {
     margin-right: 8px;
     color: #ffff;
     border: none;
     background: white;
-    background: linear-gradient(180deg, #f13d56 0%, #f85979 100%);
+    background: linear-gradient(180deg, #36b3df 0%, #f85979 100%);
 }
 .btn-black {
     margin-right: 8px;
@@ -239,7 +239,7 @@ body{
         border-radius: 8px;
         width: 100%;
         /* padding-left: 46px; */
-        border: 1px solid #f13d56;
+        border: 1px solid #36b3df;
         text-indent: 78px;
         outline: none;
         font-size: 16px;
@@ -416,7 +416,7 @@ body{
         border-radius: 8px;
         width: 100%;
         /* padding-left: 46px; */
-        border: 1px solid #f13d56;
+        border: 1px solid #36b3df;
         text-indent: 99px;
         outline: none;
         font-size: 18px;
@@ -592,7 +592,7 @@ body{
         border-radius: 8px;
         width: 100%;
         /* padding-left: 46px; */
-        border: 1px solid #f13d56;
+        border: 1px solid #36b3df;
         text-indent: 43px;
         outline: none;
         font-size: 12px;
@@ -755,7 +755,7 @@ body{
     .login-logo {
         margin-top: 20px;
         width: auto;
-        height: 44px;
+        height: 100px;
     }
 
     .login-body {
@@ -768,7 +768,7 @@ body{
         border-radius: 8px;
         width: 100%;
         /* padding-left: 46px; */
-        border: 1px solid #f13d56;
+        border: 1px solid #36b3df;
         text-indent: 40px;
         outline: none;
         font-size: 12px;
@@ -946,7 +946,7 @@ body{
         border-radius: 8px;
         width: 100%;
         /* padding-left: 46px; */
-        border: 1px solid #f13d56;
+        border: 1px solid #36b3df;
         text-indent: 40px;
         outline: none;
         font-size: 11px;

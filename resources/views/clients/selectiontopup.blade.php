@@ -16,11 +16,6 @@
                     <button class="btn-custom btn-capnhat"><a href="{{route('top-up-banking')}}"> {{trans('message.btnbanking')}}</a></button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 col-12 value label btn-center">
-                    <button class="btn-custom btn-capnhat"><a href="{{route('top-up-mo-mo')}}"> {{trans('message.btnewallet')}}</a></button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

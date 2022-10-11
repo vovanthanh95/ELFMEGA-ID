@@ -1,3 +1,9 @@
+.nav-tabs-custom .nav-link.active{
+    background-color: #36b3df !important;
+}
+.nav-justified{
+    margin-top: 10px;
+}
 .swal2-confirm{
  margin-right: 15px !important;
 }
@@ -16,7 +22,7 @@
 }
 
 .text-hightlight {
-    color: #f13d56;
+    color: #36b3df;
 }
 
 .info-accumulat ul {
@@ -42,7 +48,7 @@
     top: 20%;
     left: 15px;
     font-size: 30px;
-    color: #f13d56;
+    color: #36b3df;
 }
 
 .icon-captcha {
@@ -65,7 +71,7 @@
     align-items: center;
     left: 0;
     text-align: center;
-    border-top: 2px solid #f13d56;
+    border-top: 2px solid #36b3df;
 }
 
 .footer2 a {
@@ -74,7 +80,7 @@
 }
 
 .footer2 i {
-    color: #f13d56;
+    color: #36b3df;
 }
 
 .item-menu-1 {
@@ -254,14 +260,14 @@ input {
 }
 
 .profileInfo .row {
-    border-bottom: 1px solid #f13d56;
+    border-bottom: 1px solid #36b3df;
     color: #5b545b;
     font-weight: 600;
     padding: 16px 0 16px 0
 }
 
 .input-forget {
-    border: 1px solid #f13d56;
+    border: 1px solid #36b3df;
     color: #5b545b;
     font-size: 20px;
 }
@@ -318,7 +324,7 @@ input {
 }
 
 .bt-active {
-    background-color: #f13d56 !important;
+    background-color: #36b3df !important;
 }
 
 .custom-tabs {
@@ -344,7 +350,7 @@ input {
 }
 
 .sub-icon {
-    color: #f13d56;
+    color: #36b3df;
 }
 
 .userInfo_name {
@@ -392,11 +398,11 @@ input {
 }
 
 .txn {
-    border-bottom: 1px solid #f13d56;
+    border-bottom: 1px solid #36b3df;
 }
 
 input[type='radio'] {
-    accent-color: #f13d56;
+    accent-color: #36b3df;
 }
 
 .info-momo img {
@@ -479,17 +485,17 @@ input[type='radio'] {
 }
 
 .table-card thead {
-    background-color: #f13d56;
+    background-color: #36b3df;
 }
 
 .table-card,
 th,
 td {
-    border: 1px solid #f13d56;
+    border: 1px solid #36b3df;
     height: 40px;
     text-align: center;
     vertical-align: middle;
-    color: #f13d56;
+    color: #36b3df;
 }
 
 .img-captcha {
@@ -512,14 +518,18 @@ a:hover {
     width: 50%;
 }
 
+.hight-light{
+    color: #36b3df;
+}
 @media only screen and (max-width: 1920px) {
     .txt-card {
         margin-right: -42px;
-        color: #f13d56;
+        color: #36b3df;
     }
 
     .note-card {
         line-height: 25px;
+        list-style: none;
     }
 
     .coin-number {
@@ -614,9 +624,9 @@ a:hover {
     .btn-xunhan {
         width: 150px;
         height: 40px;
-        border: 1px solid #f13d56;
+        border: 1px solid #36b3df;
         border-radius: 8px;
-        background-color: #f13d56;
+        background-color: #36b3df;
         color: #fffced;
         font-weight: 500;
     }
@@ -639,9 +649,9 @@ a:hover {
     .btn-custom {
         width: 120px;
         height: 40px;
-        border: 1px solid #f13d56;
+        border: 1px solid #36b3df;
         border-radius: 8px;
-        background-color: #f13d56;
+        background-color: #36b3df;
         color: #fffced;
     }
 
@@ -663,8 +673,8 @@ a:hover {
         margin-left: 3px;
     }
 
-    .sub-menu {
-        margin-left: 10px;
+    .sub-menu-item a{
+        padding-left: 25px !important;
     }
 
     .sub-item {
@@ -672,7 +682,7 @@ a:hover {
     }
 
     .sub-menu-item .mid {
-        border-bottom: 1px solid #f13d56;
+        border-bottom: 1px solid #36b3df;
         border-top: none !important;
     }
 
@@ -682,7 +692,7 @@ a:hover {
 
     .select2-selection--single {
         height: 60px !important;
-        border: 1px solid #f13d56 !important;
+        border: 1px solid #36b3df !important;
         border-radius: 8px !important;
         margin-top: 20px;
         margin-left: 23px;

@@ -9,7 +9,7 @@
 .accountPage__layout .rowTitle {
     font-size: var(--medium_title);
     padding: 15px;
-    background-color: #f13d56;
+    background-color: #36b3df;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -124,7 +124,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #f13d56;
+    border-bottom: 1px solid #36b3df;
     padding: 16px 0;
     font-size: var(--large_text)
 }

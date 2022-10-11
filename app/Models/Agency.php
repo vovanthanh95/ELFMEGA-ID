@@ -11,7 +11,7 @@ class Agency extends Model
     protected $table = "agency";
     public $timestamps = false;
     public function getAgencyATM(){
-        $data = Agency::where('type','ATM')->first();
+        $data = Agency::where('type','ATM')->get();
         if($data != null){
             return $data->toArray();
         }

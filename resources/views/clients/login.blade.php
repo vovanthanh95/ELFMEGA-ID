@@ -40,19 +40,27 @@
                     <div class="login-footer">
                         <div class="lang">
                             <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="languageMenu">
-                                @if (session('language') == "en")
-                                {{ trans('message.Textlangen') }}
-                                @else
+                                @if (session('language') == "vi")
                                 {{ trans('message.Textlangvi') }}
+                                @elseif(session('language') == "th")
+                                {{ trans('message.Textlangth') }}
+                                @else
+                                {{ trans('message.Textlangen') }}
                                 @endif
                                 
                                 <img src="{{ asset('assets/master-images/ICO-V.png') }}" class="arrow">
                             </div>
                             <ul class="dropdown-menu" aria-labelledby="languageMenu" style="border-bottom:none">
-                                <li>
+                                {{-- <li>
                                     <a class="lang" href="{{ route('change-language', ['language' => 'vi']) }}"
                                         style="font-weight:normal; padding:8px 0 8px 10px; color: #5b545b">
                                         {{ trans('message.Textlangvi') }}
+                                    </a>
+                                </li> --}}
+                                <li>
+                                    <a class="lang" href="{{ route('change-language', ['language' => 'th']) }}"
+                                        style="font-weight:normal; padding:8px 0 8px 10px; color: #5b545b">
+                                        {{ trans('message.Textlangth') }}
                                     </a>
                                 </li>
                                 <li>

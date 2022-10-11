@@ -50,15 +50,26 @@
                      <div class="row">
                         <div class="col-md-3 col-sm-12 col-12" id="stk">
                         </div>
-                        <div class="col-md-5 col-sm-12 col-12">
-                            <div class="">
-                                <span class="col-md-2 col-3" style="color:#f13d56;"> LƯU Ý:</span>
-                                <span class="col-md-10 col-9"> - Không giới hạn số tiền nạp.</span>
-                             </div>
-                             <div class="">
-                                <span class="col-md-2 col-3" style="color:#f13d56;">    </span>
-                                <span class="col-md-10 col-9 text2"> - Số tiền nạp tối thiểu là <span style="color:#f13d56;"> 50,000 VNĐ</span></span>
-                             </div>
+                        <div class="col-md-9 col-sm-12 col-12">
+
+                            <li class="row">
+                                <span class="col-3" style="color:#36b3df;">{{trans('message.Textnote')}}:</span>
+                                <span class="col-9"> - {{trans('message.Textnolimitmoney')}}.</span>
+                             </li>
+                             <li class="row">
+                                <span class="col-3" style="color:#36b3df;"></span>
+                                <span class="col-9"> - {{trans('message.Textminimummoney')}} <span style="color:#36b3df;"> 50,000{{trans('message.money')}}</span></span>
+                             </li>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-6">
+                            {{ trans('message.Textaccountholder') }}:
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-6" id="accountname">
+                            {{ $momo['accountname'] }}
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-12">
                         </div>
                     </div>
                     <div class="row">
@@ -127,11 +138,13 @@
 
             function chon(data, username) {
                 if (data == "momo") {
+                    $("#accountname").html('{{ $momo['accountname'] }}');
                     $("#payment_amount1").val('{{ $momo['accountnumber'] }}');
                     $("#payment_amount").val(username);
                     $("#stk").html("{{ trans('message.Textaccountnumbermomo') }}");
                 }
                 if (data == "zalopay") {
+                    $("#accountname").html('{{ $zalopay['accountname'] }}');
                     $("#payment_amount1").val('{{ $zalopay['accountnumber'] }}');
                     $("#payment_amount").val(username);
                     $("#stk").html("{{ trans('message.Textaccountnumberzalo') }}");

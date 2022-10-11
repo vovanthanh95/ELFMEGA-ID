@@ -5,7 +5,7 @@
     flex: 1;
     flex-direction: column;
     background-color: #fff;
-    border: 1px solid #f13d56;
+    border: 1px solid #36b3df;
     border-radius: 5px;
     overflow: hidden;
     align-items: center
@@ -157,7 +157,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    border-top: 1px solid #f13d56;
+    border-top: 1px solid #36b3df;
     text-align: center;
     cursor: pointer;
     position: relative
@@ -192,8 +192,8 @@
     }
 }
 
-.menuInfo__bodyInfo ul li a {
-    position: relative;
+.menuInfo__bodyInfo a {
+    /* position: relative;
     width: 100%;
     padding: 20px 16px;
     color: #5b545b;
@@ -202,20 +202,36 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    text-decoration: none;
+    color: #5b545b;
+    font-weight: 700;
+    font-size: var(--large_text);
+    padding: 10px 10px;
+    height: 55px;
+}
+.word-br{
+    word-break: break-all;
 }
 
+.adiv{
+    display: flex;
+}
 .menuInfo__bodyInfo ul li a img {
-    width: 45px;
-    position: absolute;
+    width: 35px;
+    /* position: absolute;
     left: 20px;
     top: 50%;
-    transform: translateY(-50%)
+    transform: translateY(-50%) */
 }
 
 .menuInfo__bodyInfo ul li a.active {
     background-image: linear-gradient(to right, rgba(178, 178, 178, 0), rgba(178, 178, 178, .5));
-    border-right: 3px solid #f13d56
+    border-right: 3px solid #36b3df
 }
 
 @media only screen and (max-width:480px) {

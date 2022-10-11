@@ -58,8 +58,8 @@
             @else
                 <div class="input-row end-time">
                     <ul>
-                        <li>Sự kiện nạp tích lũy chưa diễn ra.</li>
-                        <li>Vui lòng quay lại sau khi có sự kiện mới.</li>
+                        <li>{{trans('message.Texteventaccumulatend')}}.</li>
+                        <li>{{trans('message.Texteventaccumutatcomback')}}.</li>
                     </ul>
                 </div>
             @endif

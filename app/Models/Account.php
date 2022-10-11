@@ -131,7 +131,7 @@ class Account extends Authenticatable
         if ($userchange) {
             $userchange->email = $email;
             $user = Auth::guard('client')->user()->username;
-            if ($userchange->save() && $history->createHistory($user, trans('message.Textupdateemail'), $ip)) {
+            if ($userchange->save() && $history->createHistory($user, trans('message.Textupdateemail'), $email)) {
                 $info['msg'] = trans('message.alertupdateemailsuccess');
                 $info['type'] = 'success';
                 return $info;
@@ -152,7 +152,7 @@ class Account extends Authenticatable
         if ($userchange) {
             $userchange->phone = $phone;
             $user = Auth::guard('client')->user()->username;
-            if ($userchange->save() && $history->createHistory($user, trans('message.Textupdatephone'), $ip)) {
+            if ($userchange->save() && $history->createHistory($user, trans('message.Textupdatephone'), $phone)) {
                 $info['msg'] = trans('message.alertupdatephonesuccess');
                 $info['type'] = 'success';
                 return $info;
@@ -172,7 +172,7 @@ class Account extends Authenticatable
             $userchange->phone = $newphone;
             $history = new HistoryLog();
             $user = Auth::guard('client')->user()->username;
-            if ($userchange->save() && $history->createHistory($user, "ChangePhone", $ip)) {
+            if ($userchange->save() && $history->createHistory($user, "ChangePhone", $phone)) {
                 $info['msg'] = 'Đổi số điện thoại thành công';
                 $info['type'] = 'success';
                 return $info;
@@ -193,7 +193,7 @@ class Account extends Authenticatable
             $userchange->password2 = $this->encryptSecPwd($newpassword);
             $history = new HistoryLog();
             $user = Auth::guard('client')->user()->username;
-            if ($userchange->save() && $history->createHistory($user, "ChangePass", $ip)) {
+            if ($userchange->save() && $history->createHistory($user, "ChangePass", $password)) {
                 $info['msg'] = trans('message.alertchangepasssuccess');
                 $info['type'] = 'success';
                 return $info;
@@ -208,15 +208,15 @@ class Account extends Authenticatable
     public function forgotPass($username, $email, $ip)
     {
         $info = [];
-        $user = Account::where('username',$username)->first();
+        $user = Account::where('username', $username)->first();
         //dd($user);
         if ($user != null) {
-            if($user->email == ""){
+            if ($user->email == "") {
                 $info['msg'] = 'Tài khoản chưa cập nhật email. Vui lòng liên hệ Fanpage để được hỗ trợ';
                 $info['type'] = 'error';
                 return $info;
             }
-            if($user->email != $email){
+            if ($user->email != $email) {
                 $info['msg'] = 'Tài khoản hoặc Email không đúng';
                 $info['type'] = 'error';
                 return $info;
@@ -304,12 +304,12 @@ class Account extends Authenticatable
         }
     }
 
-    public function apiRegister($username, $password)
+    public function apiRegister($username, $password, $platform, $ip, $countryname, $countrycode)
     {
         $data = $this->getUserByUserName($username);
         $info = [];
         if ($data != null) {
-            $info['msg'] = 'Tên đăng nhập đã tồn tại';
+            $info['msg'] = trans('message.alertusernameisexist');
             $info['type'] = 'error';
             return $info;
         } else {
@@ -320,20 +320,25 @@ class Account extends Authenticatable
                 $account->password2 = $this->encryptSecPwd($password);
                 $account->access_token = Str::random(40);
                 $account->refresh_token = Str::random(40);
+                $account->os_register = $platform;
+                $account->os = $platform;
                 $account->createtime = date("Y-m-d H:i:s");
-                $account->expires = date("Y-m-d H:i:s");
+                $account->createip = $ip;
+                $account->countryname = $countryname;
+                $account->countrycode = $countrycode;
+                $account->expires = date('Y-m-d H:i:s', strtotime('+2 hour', strtotime(date("Y-m-d H:i:s"))));
                 $account->save();
                 Auth::guard('client')->login($account);
                 return $info;
             } catch (\Throwable $th) {
-                $info['msg'] = 'Lỗi đăng ký tài khoản';
+                $info['msg'] = trans('message.alertregistererror');
                 $info['type'] = 'error';
                 return $info;
             }
         }
     }
 
-    public function apiLogin($username, $password)
+    public function apiLogin($username, $password, $platform)
     {
         $info = [];
         $user_bcrypt = Account::where('username', $username)
@@ -345,11 +350,16 @@ class Account extends Authenticatable
                 return $info;
             }
             try {
-                $user_bcrypt->access_token = Str::random(40);
-                $user_bcrypt->refresh_token = Str::random(40);
-                $user_bcrypt->expires = date("Y-m-d H:i:s");
-                $user_bcrypt->save();
-                Auth::guard('client')->login($user_bcrypt);
+                if ($user_bcrypt->expires < date("Y-m-d H:i:s") | $user_bcrypt->os != $platform) {
+                    $user_bcrypt->access_token = Str::random(40);
+                    $user_bcrypt->refresh_token = Str::random(40);
+                    $user_bcrypt->expires = date('Y-m-d H:i:s', strtotime('+2 hour', strtotime(date("Y-m-d H:i:s"))));
+                    $user_bcrypt->os = $platform;
+                    $user_bcrypt->save();
+                    Auth::guard('client')->login($user_bcrypt);
+                } else {
+                    Auth::guard('client')->login($user_bcrypt);
+                }
             } catch (\Throwable $th) {
                 $info['msg'] = trans('message.alertuserorpassnottrue');
                 $info['type'] = 'error';
@@ -362,7 +372,8 @@ class Account extends Authenticatable
         }
     }
 
-    public function addAccumulat($username, $amount){
+    public function addAccumulat($username, $amount)
+    {
         try {
             $data = Account::where('username', $username)->first();
             $data->accumulat = $data->accumulat + $amount;
@@ -374,7 +385,8 @@ class Account extends Authenticatable
         }
     }
 
-    public function getAccumulat($username){
+    public function getAccumulat($username)
+    {
         try {
             $data = Account::where('username', $username)->first();
             return $data->accumulat;
@@ -383,10 +395,11 @@ class Account extends Authenticatable
         }
     }
 
-    public function updateAccumulat($username, $money){
+    public function updateAccumulat($username, $money)
+    {
         try {
             $data = Account::where('username', $username)->first();
-            if($data != null){
+            if ($data != null) {
                 $data->accumulat = $data->accumulat - $money;
                 $data->save();
                 return true;

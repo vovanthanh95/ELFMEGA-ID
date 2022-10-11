@@ -11,7 +11,7 @@ class ChargeLog extends Model
     protected $table = "charge_log";
     public $timestamps = false;
 
-    public function addChargeLog($username, $serverid, $money, $transcode, $roleid, $status, $productid)
+    public function addChargeLog($username, $serverid, $money, $transcode, $roleid, $status, $productid, $platform = "", $productdesc = "")
     {
 
         try {
@@ -24,6 +24,8 @@ class ChargeLog extends Model
             $data->productid = $productid;
             $data->uid = $roleid;
             $data->status = $status;
+            $data->os = $platform;
+            $data->productdesc = $productdesc;
             $data->save();
         } catch (\Throwable $th) {
             //throw $th;
